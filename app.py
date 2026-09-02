@@ -1,24 +1,46 @@
 import streamlit as st
+import base64
 
 st.set_page_config(page_title="AL MAHYRA JAPAN CENTER", page_icon="🎌", layout="wide")
 
-# CSS BUAT BACKGROUND JEPANG
-st.markdown("""
+# FUNGSI BUAT BACA GAMBAR BACKGROUND
+def get_base64_of_bin_file(bin_file):
+    with open(bin_file, 'rb') as f:
+        data = f.read()
+    return base64.b64encode(data).decode()
+
+# BACA GAMBAR "Latar belakang.jpg" YANG UDAH KAMU UPLOAD
+try:
+    bin_str = get_base64_of_bin_file('Latar belakang.jpg') 
+    bg_image = f"url(data:image/jpg;base64,{bin_str})"
+except:
+    bg_image = "linear-gradient(180deg, #FFF5F5 0%, #ffffff 100%)" # cadangan kalau gagal
+
+# CSS BUAT BACKGROUND + BOX PUTIH
+st.markdown(f"""
 <style>
-.stApp {
-    background: linear-gradient(180deg, #ffffff 0%, #FFF5F5 100%);
-    background-image: 
-        url("https://www.transparenttextures.com/patterns/asanoha.png"); /* motif asanoha jepang */
-}
-h1, h2, h3 {
+.stApp {{
+    background-image: {bg_image};
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}}
+/* Biar kontennya ada box putih transparan biar kebaca */
+.block-container {{
+    background-color: rgba(255, 255, 255, 0.92);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}}
+h1, h2, h3 {{
     color: #B22222; /* merah jepang */
-}
-[data-testid="stSidebar"] {
-    background-color: #B22222;
-}
-[data-testid="stSidebar"] * {
+}}
+[data-testid="stSidebar"] {{
+    background: linear-gradient(180deg, #B22222 0%, #8B0000 100%);
+}}
+[data-testid="stSidebar"] * {{
     color: white;
-}
+}}
 </style>
 """, unsafe_allow_html=True)
 
