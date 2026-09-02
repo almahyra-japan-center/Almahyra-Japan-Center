@@ -29,27 +29,30 @@ st.markdown(f"""
     background-attachment: fixed;
 }}
 
-/* BACKGROUND TRANSPARAN TIPIS */
+/* CONTAINER TRANSPARAN BANGET */
 .block-container {{
-    background-color: rgba(255, 255, 255, 0.10);
-    backdrop-filter: blur(12px);
+    background-color: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
     padding: 2rem;
-    padding-top: 120px; /* KASIH JARAK BIAR GA KETIMPA LOGO */
+    padding-top: 250px; /* INI PENTING! KASIH JARAK SEBESAR LOGO */
 }}
 
-/* LOGO FIXED DI TENGAH ATAS */
+/* LOGO GEDE FIXED DI ATAS */
 .fixed-logo {{
     position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 9999;
-    width: 150px;
-    background: rgba(255,255,255,0.7); /* KASIH KACA DI BELAKANG LOGO */
-    backdrop-filter: blur(5px);
-    padding: 10px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 9999; /* PALING DEPAN */
+    background: rgba(255,255,255,0.85); /* KASIH BACKGROUND PUTIH TIPIS */
+    backdrop-filter: blur(8px);
+    padding: 15px 0;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}}
+.fixed-logo img {{
+    width: 220px; /* GEDEIN LOGO */
+    height: auto;
 }}
 
 h1, h2, h3 {{
@@ -68,6 +71,7 @@ p, li {{
 [data-testid="stSidebar"] {{
     background: rgba(178, 34, 34, 0.9);
     backdrop-filter: blur(10px);
+    z-index: 10000; /* SIDEBAR PALING DEPAN */
 }}
 [data-testid="stSidebar"] * {{
     color: white;
@@ -78,7 +82,7 @@ p, li {{
 
 # TAMPILIN LOGO FIXED
 if logo_base64:
-    st.markdown(f'<img src="{logo_base64}" class="fixed-logo">', unsafe_allow_html=True)
+    st.markdown(f'<div class="fixed-logo"><img src="{logo_base64}"></div>', unsafe_allow_html=True)
 
 
 NO_WA_ADMIN = "6281234567890"
@@ -89,7 +93,7 @@ with st.sidebar:
     menu = st.radio("Menu", ["Beranda", "Program", "Pendaftaran", "Kontak"])
 
 if menu == "Beranda":
-    st.header("Selamat Datang! 👋") # HAPUS st.image("logo.png") YG LAMA
+    st.header("Selamat Datang! 👋")
     st.write("Terima kasih sudah berkunjung ke website resmi kami.")
     st.subheader("Wujudkan Mimpimu Bekerja & Kuliah ke Jepang Bersama Kami")
     st.write("Belajar Bahasa Jepang dengan metode santai, cepat paham, dan dibimbing sampai lulus JLPT.")
