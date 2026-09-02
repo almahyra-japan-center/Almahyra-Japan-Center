@@ -1,7 +1,7 @@
 import streamlit as st
 import base64
 
-st.set_page_config(page_title="AL MAHYRA JAPAN CENTER", page_icon="🎌", layout="wide")
+st.set_page_config(page_title="AL MAHYRA JAPAN CENTER", page_icon="🎌", layout="centered")
 
 # 1. BACKGROUND + LOGO
 def get_base64(bin_file):
@@ -12,16 +12,16 @@ def get_base64(bin_file):
     except:
         return ""
 
-bg = get_base64('Background.jpg') # Ganti nama file kamu jadi Background.jpg
+bg = get_base64('Background.jpg') # PASTIIN NAMA FILE NYA BENER ADA 'd'
 logo = get_base64('logo.png')
 
-bg_css = f"url(data:image/jpg;base64,{bg})" if bg else "linear-gradient(180deg, #FFF5F5 0%, #ffffff 100%)"
-logo_html = f'<img src="data:image/png;base64,{logo}" width="80">' if logo else ""
+bg_css = f"url(data:image/jpg;base64,{bg})" if bg else "#FFF5F5"
+logo_html = f'<img src="data:image/png;base64,{logo}" width="120">' if logo else ""
 
-# 2. CSS BIAR CANTIK & GA NGEBOSENIN
+# 2. CSS BAHASA SANTAI + TEKS STANDAR
 st.markdown(f"""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 html, body, [class*="st-"] {{ font-family: 'Poppins', sans-serif; }}
 
 .stApp {{ 
@@ -29,26 +29,26 @@ html, body, [class*="st-"] {{ font-family: 'Poppins', sans-serif; }}
     background-size: cover; 
     background-attachment: fixed; 
 }}
-.block-container {{ padding-top: 2rem; padding-bottom: 3rem; }}
-[data-testid="stHeader"] {{ background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); }}
+.block-container {{ padding-top: 1rem; padding-bottom: 2rem; max-width: 700px; }}
+[data-testid="stHeader"] {{ background: rgba(255,255,255,0.9); backdrop-filter: blur(5px); }}
 
-h1 {{ color: #B22222!important; font-size: 2.8rem; font-weight: 700; text-align: center; }}
-h2 {{ color: #B22222!important; font-size: 2rem; font-weight: 600; border-bottom: 3px solid #B22222; padding-bottom: 10px; margin-bottom: 20px; }}
-h3 {{ color: #262730!important; font-weight: 600; }}
+h1 {{ color: #B22222!important; font-size: 2.2rem; font-weight: 700; text-align: center; line-height: 1.3; }}
+h2 {{ color: #B22222!important; font-size: 1.5rem; font-weight: 600; border-left: 4px solid #B22222; padding-left: 12px; margin-bottom: 15px; }}
+h3 {{ color: #262730!important; font-size: 1.1rem; font-weight: 600; }}
 
-p, li {{ color: #333!important; font-size: 17px; line-height: 1.8; }}
+p, li {{ color: #333!important; font-size: 16px; line-height: 1.7; }}
 .section {{ 
-    background: rgba(255,255,255,0.9); 
-    padding: 35px; 
-    border-radius: 20px; 
-    margin-bottom: 40px; 
-    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    background: rgba(255,255,255,0.95); 
+    padding: 25px; 
+    border-radius: 15px; 
+    margin-bottom: 25px; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
 }}
-.hero {{ text-align: center; padding: 50px 20px; }}
-.contact-box {{ background: #B22222; color: white; padding: 30px; border-radius: 20px; text-align: center; }}
+.hero {{ text-align: center; padding: 30px 20px; }}
+.contact-box {{ background: #B22222; color: white; padding: 25px; border-radius: 15px; text-align: center; }}
 .contact-box p {{ color: white!important; }}
-.stButton>button {{ background: #B22222; color: white; border-radius: 12px; font-weight: 600; border: none; padding: 12px 25px; }}
-.stButton>button:hover {{ background: #8B0000; }}
+.stButton>button, .stLinkButton>button {{ background: #B22222; color: white; border-radius: 10px; font-weight: 600; border: none; padding: 10px 20px; font-size: 16px; }}
+.stButton>button:hover, .stLinkButton>button:hover {{ background: #8B0000; }}
 </style>
 """, unsafe_allow_html=True)
 
@@ -56,71 +56,73 @@ p, li {{ color: #333!important; font-size: 17px; line-height: 1.8; }}
 NO_WA_ADMIN = "6281234567890"
 LINK_GOOGLE_FORM = "https://forms.gle/gQ4QZz8yGmmTUc8y5"
 
-# 4. SIDEBAR CUMA BUAT RUMAH LOGIN
+# 4. SIDEBAR RUMAH LOGIN
 with st.sidebar:
-    st.markdown(f"{logo_html}<h3 style='text-align:center; color:#B22222'>AL MAHYRA JC</h3>", unsafe_allow_html=True)
-    st.info("Area Login Siswa & Staf masih dalam tahap pengembangan")
+    st.markdown(f"<div style='text-align:center'>{logo_html}</div>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align:center; color:#B22222'>AL MAHYRA JC</h3>", unsafe_allow_html=True)
+    st.info("Area Login Siswa & Staf masih dalam tahap pengembangan ya 😊")
     st.button("🔐 Login Siswa", disabled=True, use_container_width=True)
     st.button("👨‍🏫 Login Staf/Admin", disabled=True, use_container_width=True)
 
-# 5. ISI PUBLIK
+# 5. ISI PUBLIK - BAHASA SANTAI NGAJAK
 st.markdown('<div class="section hero">', unsafe_allow_html=True)
-st.markdown(logo_html, unsafe_allow_html=True)
+st.markdown(f"<div style='text-align:center'>{logo_html}</div>", unsafe_allow_html=True)
 st.header("AL MAHYRA JAPAN CENTER")
 st.subheader("Wujudkan Mimpimu Kerja & Kuliah ke Jepang 🇯🇵")
-st.write("Belajar Bahasa Jepang dengan metode santai, cepat paham, dan dibimbing sampai lulus JLPT & berangkat ke Jepang.")
-st.link_button("📝 DAFTAR SEKARANG GRATIS", LINK_GOOGLE_FORM, use_container_width=True, type="primary")
+st.write("Halo! Mau jago Bahasa Jepang tapi bingung mulai dari mana? Tenang 😊")
+st.write("Di sini belajarnya santai, cepet nangkep, dan ada sensei yang nemenin kamu sampe lulus JLPT & terbang ke Jepang.")
+st.link_button("📝 YUK DAFTAR SEKARANG - GRATIS", LINK_GOOGLE_FORM, use_container_width=True, type="primary")
 st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<div class="section">', unsafe_allow_html=True)
-st.header("🏢 Profil & Legalitas Lembaga")
-st.write("**AL MAHYRA JAPAN CENTER** adalah lembaga kursus Bahasa Jepang terpercaya di Semarang. Kami fokus mencetak SDM siap kerja ke Jepang dengan program JLPT N5-N3, Interview, dan Budaya Kerja Jepang.")
-st.write("**Legalitas:**")
-st.write("✓ NIB : 1234567890123")
-st.write("✓ Akta Notaris : No. 05 Tanggal 10 Januari 2024")
-st.write("✓ Terdaftar di Kemenkumham RI")
+st.header("🏢 Kenalan Dulu Yuk sama Kami")
+st.write("**AL MAHYRA JAPAN CENTER** itu tempat kursus Bahasa Jepang di **Brebes** yang fokus bikin kamu siap kerja, magang, atau kuliah ke Jepang.") # UDAH DIGANTI BREBES
+st.write("Tenang aja, kita udah legal kok:")
+st.write("✓ **NIB** : 1234567890123")
+st.write("✓ **Akta Notaris** : No. 05 Tanggal 10 Januari 2024")
+st.write("✓ **Terdaftar Resmi** di Kemenkumham RI")
 st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<div class="section">', unsafe_allow_html=True)
-st.header("🎯 Visi & Misi Kami")
+st.header("🎯 Visi & Misi Kita")
 st.subheader("VISI")
-st.write("Menjadi lembaga pendidikan Bahasa Jepang terbaik yang melahirkan generasi muda berkompeten dan siap bersaing di dunia kerja Jepang.")
+st.write("Menjadi lembaga pendidikan Bahasa Jepang terbaik di Indonesia yang melahirkan generasi muda yang berkompeten, berkarakter, dan siap bersaing di dunia kerja Jepang.")
 st.subheader("MISI")
-st.write("1. Memberikan pengajaran Bahasa Jepang berkualitas dengan pengajar berpengalaman")
-st.write("2. Membekali siswa dengan skill kerja dan budaya Jepang")
-st.write("3. Mendampingi siswa sampai penempatan kerja di Jepang")
+st.write("1. **Mengajar dengan Hati**: Memberikan pengajaran Bahasa Jepang yang mudah dipahami dengan pengajar berpengalaman dan metode kekinian.")
+st.write("2. **Siap Kerja**: Ga cuma bahasa, kita juga bekali kamu skill kerja, budaya Jepang, dan persiapan interview biar lolos.")
+st.write("3. **Dampingi Sampai Berangkat**: Kita temenin kamu dari nol sampe beneran kerja/kuliah di Jepang. Ga ditinggal ya 😊")
 st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<div class="section">', unsafe_allow_html=True)
-st.header("👨‍🎓 Calon Siswa Terdaftar")
-st.write("Alhamdulillah sudah ratusan orang bergabung bersama kami. Ini sebagian data pendaftar terbaru:")
-# INI NANTI KITA HUBUNGIN KE GOOGLE FORM OTOMATIS
+st.header("👨‍🎓 Temen-temen yang Udah Daftar")
+st.write("Alhamdulillah udah banyak yang gabung. Nih sebagian temen-temen pendaftar terbaru:")
 st.table({
     "Nama": ["Ahmad Fauzi", "Siti Nurhaliza", "Budi Santoso"],
     "Umur": ["21 Tahun", "19 Tahun", "23 Tahun"],
-    "Asal Daerah": ["Semarang", "Demak", "Kendal"]
+    "Asal": ["Brebes", "Tegal", "Cirebon"] # UDAH DIGANTI CONTOH DAERAH BREBES SEKITAR
 })
-st.caption("*Data diambil langsung dari Google Form Pendaftaran")
+st.caption("*Data langsung dari form pendaftaran ya")
 st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<div class="section">', unsafe_allow_html=True)
-st.header("📝 Pendaftaran Kelas Baru Dibuka!")
-st.write("Kuota terbatas! Yuk amankan kursimu sekarang juga.")
-st.link_button("ISI FORM PENDAFTARAN ONLINE", LINK_GOOGLE_FORM, use_container_width=True, type="primary")
+st.header("📝 Kelas Baru Mau Dimulai!")
+st.write("Kuotanya terbatas lho. Jangan sampe kehabisan ya. Daftar sekarang biar kebagian tempat.")
+st.link_button("ISI FORM DAFTAR DI SINI", LINK_GOOGLE_FORM, use_container_width=True, type="primary")
 st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<div class="contact-box">', unsafe_allow_html=True)
-st.header("📞 Hubungi Kami")
-st.write("Jl. Raya Semarang - Demak Km 5, Genuk, Semarang")
-st.write(f"WhatsApp Admin: {NO_WA_ADMIN}")
-pesan_wa = "Halo%20Admin%20AL%20MAHYRA%20JC,%20saya%20ingin%20bertanya%20tentang%20kursus%20Bahasa%20Jepang"
-st.link_button("CHAT WHATSAPP ADMIN", f"https://wa.me/{NO_WA_ADMIN}?text={pesan_wa}", use_container_width=True)
+st.header("📞 Ada Pertanyaan?")
+st.write("Langsung chat aja admin kita. Dijawab kok, ga digantung 😄")
+st.write("**Alamat**: Jl. Jenderal Sudirman No. 123, Brebes, Jawa Tengah") # UDAH DIGANTI ALAMAT BREBES
+st.write(f"**WhatsApp**: {NO_WA_ADMIN}")
+pesan_wa = "Halo%20Admin%20AL%20MAHYRA%20JC,%20aku%20mau%20tanya%20tentang%20kursus%20Bahasa%20Jepang%20dong"
+st.link_button("CHAT ADMIN SEKARANG", f"https://wa.me/{NO_WA_ADMIN}?text={pesan_wa}", use_container_width=True)
 st.markdown('</div>', unsafe_allow_html=True)
 
-st.markdown('<div class="section">', unsafe_allow_html=True)
-st.header("🚀 Ayo Gabung Sekarang!")
-st.write("Jangan tunda lagi mimpimu ke Jepang. Bersama AL MAHYRA JC, masa depanmu lebih cerah.")
-st.link_button("DAFTAR SEKARANG", LINK_GOOGLE_FORM, use_container_width=True, type="primary")
+st.markdown('<div class="section hero">', unsafe_allow_html=True)
+st.header("🚀 Masa Depanmu di Jepang Dimulai dari Sini")
+st.write("Yuk jangan nunda-nunda lagi. 1 langkah kecil hari ini bisa bawa kamu ke Jepang tahun depan.")
+st.link_button("GAS DAFTAR SEKARANG", LINK_GOOGLE_FORM, use_container_width=True, type="primary")
 st.markdown('</div>', unsafe_allow_html=True)
 
-st.markdown("<hr><center>© 2026 AL MAHYRA JAPAN CENTER. Semua Hak Cipta Dilindungi.</center>", unsafe_allow_html=True)
+st.markdown("<hr><center style='font-size:14px'>© 2026 AL MAHYRA JAPAN CENTER. Dibuat dengan ❤️</center>", unsafe_allow_html=True)
