@@ -1,3 +1,10 @@
+import streamlit as st
+
+st.set_page_config(page_title="ALMAHYRA JAPAN CENTER", layout="wide")
+
+st.sidebar.title("ALMAHYRA JC")
+menu = st.sidebar.selectbox("Menu", ["Dashboard"])
+
 if menu == "Dashboard":
     st.header("Profil ALMAHYRA JAPAN CENTER")
     
@@ -8,7 +15,7 @@ if menu == "Dashboard":
     st.info("“Menjadi lembaga kursus Bahasa Jepang yang terpercaya dan berkualitas dalam membentuk generasi yang kompeten, berkarakter, dan siap meraih masa depan melalui penguasaan Bahasa Jepang.”")
     
     st.subheader("Misi")
-    st.write("1. Menyelenggarakan pembelajaran Bahasa Jepang yang berkualitas, sistematis, dan mudah dipahami, mulai dari tingkat dasar hingga tingkat lanjutan.")
+    st.write("1. Menyelenggarakan pembelajaran Bahasa Jepang yang berkualitas, sistematis, dan mudah dipahami.")
     st.write("2. Meningkatkan kemampuan berbahasa Jepang secara seimbang: membaca, menulis, mendengar, dan berbicara.")
     st.write("3. Membentuk peserta didik yang disiplin, percaya diri, bertanggung jawab, mandiri, dan memiliki etika yang baik.")
     st.write("4. Mengenalkan budaya, etika, dan kehidupan masyarakat Jepang.")
