@@ -34,7 +34,7 @@ st.markdown(f"""
 h1, h2, h3 {{
     color: #B22222;
     font-weight: 800;
-    text-shadow: 1px 1px 2px rgba(255,255,255,0.8); /* KASIH BAYANGAN BIAR KEBACA */
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.8); /
 }}
 p, li {{
     color: #111; 
