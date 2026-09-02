@@ -84,7 +84,7 @@ elif menu == "Pendaftaran":
     
     # FORM GOOGLE KAMU
     components.iframe(
-        "https://docs.google.com/forms/d/e/fxVaphmsYLKhRF9x6/viewform?embedded=true", 
+        "https://docs.google.com/forms/d/e/1FAIpQLSfHERE_NANTI_ID_KAMU/viewform?embedded=true", 
         height=800, 
         width=700
     )
