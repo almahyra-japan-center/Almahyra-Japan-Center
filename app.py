@@ -97,21 +97,13 @@ elif menu == "Pendaftaran":
 
 elif menu == "Pendaftaran":
     st.header("📝 Pendaftaran AL MAHYRA JC")
-    st.write("Isi data kamu di bawah ini ya. Nanti admin akan hubungi")
+    st.write("Isi formulir di bawah ini. Data otomatis masuk ke Google Sheet")
     
     st.link_button(
-        "📋 KLIK UNTUK ISI FORM PENDAFTARAN", 
+        "📋 KLIK DISINI UNTUK DAFTAR", 
         "https://forms.gle/gQ4QZz8yGmmTUc8y5", 
         type="primary",
         use_container_width=True
     )
     
-    st.markdown("---")
-    pesan_wa = "Halo Admin AL MAHYRA JC, saya baru saja mengisi formulir pendaftaran online."
-    link_wa = f"https://wa.me/{NO_WA_ADMIN}?text={pesan_wa}"
-    st.link_button(
-        "📲 KONFIRMASI VIA WA SETELAH ISI FORM", 
-        link_wa, 
-        type="primary",
-        use_container_width=True
-    )
+    st.info("Setelah isi form, silakan konfirmasi ke WA Admin")
