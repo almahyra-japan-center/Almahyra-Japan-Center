@@ -23,7 +23,7 @@ st.markdown(f"""
     background-attachment: fixed;
 }}
 .block-container {{
-    background-color: rgba(255, 255, 255, 0.85); /* INI YG DIRUBAH JADI 0.85 */
+    background-color: rgba(255, 255, 255, 0.85); /* INI YG DIRUBAH JADI 0.60*/
     backdrop-filter: blur(5px); /* KASIH EFEK KACA BLUR */
     padding: 3rem;
     border-radius: 20px;
