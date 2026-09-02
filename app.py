@@ -6,11 +6,10 @@ NAMA_LOGO = "logo.png"
 
 st.sidebar.title("🇯🇵 AL MAHYRA JC")
 try:
-    st.sidebar.image(NAMA_LOGO, use_container_width=True) # <-- yg bener ini
+    st.sidebar.image(NAMA_LOGO, use_container_width=True)
 except:
-    pass # kalau logo error, di skip aja
-
-menu = st.sidebar.selectbox("Pilih Menu", ["Beranda", "Profil", "Visi & Misi", "Kontak"])
+    pass 
+menu = st.sidebar.selectbox("Pilih Menu", ["Beranda", "Profil", "Jadwal & Biaya", "Visi & Misi", "Kontak"])
 
 if menu == "Beranda":
     try:
@@ -20,8 +19,8 @@ if menu == "Beranda":
     st.title("AL MAHYRA JAPAN CENTER")
     st.subheader("Lembaga Kursus Bahasa Jepang")
     st.markdown("### Yuk belajar bahasa jepang dari dasar bersama kami!")
-    st.write("Bergabunglah jadi keluarga besar kami dan wujudkan mimpimu")
-    st.success("Pendaftaran dibuka setiap awal bulan!")
+    st.write("Bergabunglah jadi keluarga besar kami dan wujudkan mimpimu ke Jepang")
+    st.success("🔥 Pendaftaran Gelombang Oktober 2026 Dibuka!")
     st.link_button("💬 Chat Admin WA", "https://wa.me/6287816094321")
 
 elif menu == "Profil":
@@ -31,6 +30,39 @@ elif menu == "Profil":
     except:
         pass
     st.write("AL MAHYRA JAPAN CENTER adalah lembaga kursus Bahasa Jepang yang fokus mengajarkan dari tingkat dasar N5 hingga tingkat lanjutan N1 dengan metode mudah, sistematis, dan menyenangkan.")
+    st.write("Kami berlokasi di Desa Karangsari, Kec. Bulakamba, Kab. Brebes")
+
+elif menu == "Jadwal & Biaya":
+    st.header("📅 Jadwal & Biaya Kursus")
+    st.info("Fokus: JLPT N5 - N1 | Kerja ke Jepang | Kuliah ke Jepang")
+    
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.subheader("KELAS REGULER")
+        st.write("**Durasi:** 4 Bulan / Level")
+        st.write("**Pertemuan:** 3x Seminggu, 2 Jam")
+        st.write("**Jam:** Pagi 08.00-10.00 | Sore 15.00-17.00 | Malam 19.00-21.00")
+        st.success("**Biaya:** Rp 800.000 / Level")
+        st.write("Sudah termasuk: Modul, Seragam, Ujian Internal")
+    
+    with col2:
+        st.subheader("KELAS INTENSIF MAGANG/TG")
+        st.write("**Durasi:** 6 Bulan N4-N3")
+        st.write("**Pertemuan:** 5x Seminggu, 3 Jam")
+        st.write("**Jam:** 08.00-11.00")
+        st.success("**Biaya:** Rp 1.500.000 / Paket")
+        st.write("Bonus: Bimbingan Dokumen + Interview")
+    
+    st.divider()
+    st.subheader("🎁 Fasilitas")
+    st.write("✅ Pengajar Bersertifikat JLPT N1")
+    st.write("✅ Kelas Max 15 Orang")
+    st.write("✅ Simulasi Ujian JLPT Gratis")
+    st.write("✅ Bimbingan sampai Berangkat ke Jepang")
+    
+    st.warning("**Catatan:** Biaya pendaftaran awal Rp 200.000")
+    st.link_button("💬 Tanya Jadwal Terdekat", "https://wa.me/6287816094321")
 
 elif menu == "Visi & Misi":
     st.header("Visi & Misi")
@@ -40,7 +72,6 @@ elif menu == "Visi & Misi":
     st.write("1. Menyelenggarakan pembelajaran Bahasa Jepang yang sistematis dan menyenangkan")
     st.write("2. Membekali peserta dengan kemampuan bahasa untuk studi, kerja, dan budaya Jepang")
     st.write("3. Menumbuhkan semangat disiplin, kerja keras, dan rasa tanggung jawab")
-    st.write("4. Menjalin kerja sama dengan lembaga di Jepang")
 
 elif menu == "Kontak":
     st.header("Informasi Kontak")
