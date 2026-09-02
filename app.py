@@ -29,48 +29,52 @@ st.markdown(f"""
     background-attachment: fixed;
 }}
 
-/* HILANGKAN PADDING BAWAAN STREAMLIT */
+/* HAPUS PADDING BAWAAN */
 .block-container {{
     background: transparent;
-    padding: 0 !important; /* HAPUS PADDING */
-    max-width: 100% !important; /* FULL WIDTH */
+    padding: 0 !important;
+    max-width: 100% !important;
 }}
 
-/* SEMBUNYIKAN HEADER BAWAAN */
 [data-testid="stHeader"] {{
     display: none;
 }}
 
-/* BAR LOGO FULL LEBAR */
+/* BAR LOGO FULL */
 .logo-bar {{
     position: sticky;
     top: 0;
-    width: 100vw; /* 100% LEBAR LAYAR */
-    margin-left: calc(-50vw + 50%); /* TRIK BIAR FULL MELEWATI CONTAINER */
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
     background: white;
-    padding: 25px 0; /* ATAS BAWAH LEBIH TEBAL */
+    padding: 30px 0; /* TEBELIN LAGI */
     text-align: center;
     z-index: 9999;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
 }}
 .logo-bar img {{
-    height: 160px; /* LOGO GEDE BANGET */
+    height: 250px; /* GEDEIN JADI 250PX!!! */
     width: auto;
+    max-width: 90%; /* BIAR GA KELEBARAN DI HP */
 }}
 
-/* KONTEN KASIH PADDING LAGI BIAR GA MEPET */
+/* KONTEN DI TENGAH LAGI */
 .content-wrapper {{
-    padding: 2rem 4rem; /* KIRI KANAN 4REM */
+    padding: 2rem 3rem;
+    max-width: 900px; /* DIBATASI BIAR DI TENGAH */
+    margin: 0 auto; /* INI KUNCINYA BIAR TENGAH */
+    text-align: left; /* TULISAN TETEP RATA KIRI */
 }}
 
 h1, h2, h3 {{
     color: #B22222;
     font-weight: 900;
     text-shadow: 2px 2px 6px rgba(255,255,255,0.9);
+    text-align: center; /* JUDUL DI TENGAH */
 }}
 p, li {{
     color: #111; 
-    font-size: 17px;
+    font-size: 18px; /* GEDEIN DIKIT */
     font-weight: 600;
     line-height: 1.8;
     text-shadow: 1px 1px 3px rgba(255,255,255,0.8);
@@ -87,7 +91,7 @@ p, li {{
 """, unsafe_allow_html=True)
 
 
-# TAMPILIN BAR LOGO FULL
+# BAR LOGO
 if logo_base64:
     st.markdown(f'<div class="logo-bar"><img src="{logo_base64}"></div>', unsafe_allow_html=True)
 
@@ -95,7 +99,6 @@ if logo_base64:
 NO_WA_ADMIN = "6281234567890"
 LINK_GOOGLE_FORM = "https://forms.gle/gQ4QZz8yGmmTUc8y5"
 
-# BUNGKUS KONTEN BIAR ADA JARAK KIRI KANAN
 st.markdown('<div class="content-wrapper">', unsafe_allow_html=True)
 
 with st.sidebar:
@@ -130,4 +133,4 @@ if menu == "Beranda":
     pesan_wa = "Halo%20Admin%20AL%20MAHYRA%20JC,%20saya%20ingin%20bertanya..."
     st.markdown(f'<a href="https://wa.me/{NO_WA_ADMIN}?text={pesan_wa}" target="_blank"><button style="background-color:#25D366;color:white;padding:14px 20px;border:none;border-radius:8px;width:100%;font-size:16px;cursor:pointer;">CHAT ADMIN VIA WHATSAPP</button></a>', unsafe_allow_html=True)
 
-st.markdown('</div>', unsafe_allow_html=True) # TUTUP WRAPPER
+st.markdown('</div>', unsafe_allow_html=True)
