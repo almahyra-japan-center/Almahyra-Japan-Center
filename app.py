@@ -3,20 +3,19 @@ import base64
 
 st.set_page_config(page_title="AL MAHYRA JAPAN CENTER", page_icon="🎌", layout="wide")
 
-# FUNGSI BUAT BACA GAMBAR BACKGROUND
+# BAGIAN BUAT BACA GAMBAR BACKGROUND
 def get_base64_of_bin_file(bin_file):
     with open(bin_file, 'rb') as f:
         data = f.read()
     return base64.b64encode(data).decode()
 
-# BACA GAMBAR "Latar belakang.jpg" YANG UDAH KAMU UPLOAD
 try:
     bin_str = get_base64_of_bin_file('Latar belakang.jpg') 
     bg_image = f"url(data:image/jpg;base64,{bin_str})"
 except:
-    bg_image = "linear-gradient(180deg, #FFF5F5 0%, #ffffff 100%)" # cadangan kalau gagal
+    bg_image = "linear-gradient(180deg, #FFF5F5 0%, #ffffff 100%)"
 
-# CSS BUAT BACKGROUND + BOX PUTIH
+# CSS BUAT DESAIN JEPANG
 st.markdown(f"""
 <style>
 .stApp {{
@@ -25,7 +24,6 @@ st.markdown(f"""
     background-position: center;
     background-attachment: fixed;
 }}
-/* Biar kontennya ada box putih transparan biar kebaca */
 .block-container {{
     background-color: rgba(255, 255, 255, 0.92);
     padding: 2rem;
@@ -33,19 +31,20 @@ st.markdown(f"""
     box-shadow: 0 4px 20px rgba(0,0,0,0.1);
 }}
 h1, h2, h3 {{
-    color: #B22222; /* merah jepang */
+    color: #B22222;
 }}
 [data-testid="stSidebar"] {{
     background: linear-gradient(180deg, #B22222 0%, #8B0000 100%);
 }}
 [data-testid="stSidebar"] * {{
     color: white;
+    font-weight: bold;
 }}
 </style>
 """, unsafe_allow_html=True)
 
-NO_WA_ADMIN = "6281234567890"  # GANTI
-LINK_GOOGLE_FORM = "https://forms.gle/gQ4QZz8yGmmTUc8y5"  # GANTI
+NO_WA_ADMIN = "6281234567890"  # GANTI NOMOR WA KAMU
+LINK_GOOGLE_FORM = "https://forms.gle/gQ4QZz8yGmmTUc8y5"  # GANTI LINK FORM KAMU
 
 with st.sidebar:
     st.title("🎌 AL MAHYRA JC")
@@ -102,3 +101,4 @@ elif menu == "Kontak":
     st.header("📞 Hubungi Kami")
     st.write(f"**WhatsApp Admin**: {NO_WA_ADMIN}")
     st.write("**Alamat**: Brebes, Jawa Tengah, Indonesia")
+    st.write("**Jam Operasional**: Senin - Sabtu, 09.00 - 17.00 WIB")
