@@ -193,3 +193,18 @@ else:
                             st.error("Kode Salah! Minta kode yg terbaru ke Staf")
                 else:
                     st.warning("Masukkan kode dulu")
+
+st.markdown(f"""
+<style>
+.stApp {{ background-image: {bg_image}; background-size: cover; background-attachment: fixed; }}
+.block-container {{ background: transparent; padding-top: 6rem!important; padding-bottom: 3rem!important; max-width: 100%!important; }}
+[data-testid="stHeader"] {{ background: white; height: 100px; position: fixed; }}
+[data-testid="stHeader"] img {{ height: 80px!important; }}
+h1 {{ color: #B22222!important; font-size: 2.5rem; text-align: center; }}
+h2 {{ color: #262730!important; font-weight: 700; border-left: 4px solid #B22222; padding-left: 10px; }}
+.kode-box {{ background: #B22222; color: white; font-size: 48px; font-weight: bold; text-align: center; padding: 20px; border-radius: 15px; letter-spacing: 10px; margin: 20px 0; }}
+[data-testid="stSidebar"] {{ background: #B22222; }}
+[data-testid="stSidebar"] * {{ color: white; font-weight: bold; }}
+.section {{ margin-bottom: 60px; padding: 20px; background: rgba(255,255,255,0.8); border-radius: 15px; }}
+</style>
+""", unsafe_allow_html=True)
