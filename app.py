@@ -8,7 +8,7 @@ st.set_page_config(page_title="AL MAHYRA JAPAN CENTER", page_icon="🎌", layout
 # 1. KONEK DATABASE SEDERHANA
 conn = sqlite3.connect('almahyra.db', check_same_thread=False)
 c = conn.cursor()
-c.execute('''CREATE TABLE IF NOT EXISTS users 
+c.execute('''CREATE TABLE IF NOT EXISTS users
              (username TEXT PRIMARY KEY, password TEXT, role TEXT, nama TEXT)''')
 # Akun contoh. Nanti bisa dihapus
 c.execute("INSERT OR IGNORE INTO users VALUES ('admin','admin123','ADMIN','Admin ALMAHYRA')")
@@ -48,12 +48,22 @@ h1, h2 {{ color: #262730!important; }} p {{ color: #31333F!important; }}
 if logo_base64:
     st.logo(logo_base64, link=None)
 
-# 2. FUNGSI LOGIN
+NO_WA_ADMIN = "6281234567890"
+LINK_GOOGLE_FORM = "https://forms.gle/gQ4QZz8yGmmTUc8y5"
+
+# 2. SET SESSION STATE AWAL BIAR GA ERROR
+if 'logged_in' not in st.session_state:
+    st.session_state['logged_in'] = False
+    st.session_state['role'] = "PUBLIK" # INI KUNCINYA BIAR GA KEYERROR
+    st.session_state['nama'] = "Tamu"
+
+# 3. FUNGSI LOGIN
 def login():
     st.title("🔐 Login AL MAHYRA JC")
+    st.write("Contoh: admin/admin123 | staf/staf123 | murid/murid123")
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
-    if st.button("Login"):
+    if st.button("Login", use_container_width=True, type="primary"):
         c.execute("SELECT * FROM users WHERE username=? AND password=?", (username, password))
         user = c.fetchone()
         if user:
@@ -61,19 +71,20 @@ def login():
             st.session_state['username'] = user[0]
             st.session_state['role'] = user[2]
             st.session_state['nama'] = user[3]
+            st.success(f"Selamat datang {user[3]}!")
             st.rerun()
         else:
             st.error("Username atau Password salah")
 
-# 3. SIDEBAR DINAMIS SESUAI ROLE
+# 4. SIDEBAR DINAMIS SESUAI ROLE - UDAH AMAN
 def sidebar():
-    role = st.session_state['role']
+    role = st.session_state['role'] # SEKARANG UDAH PASTI ADA
     nama = st.session_state['nama']
-    
+
     with st.sidebar:
         st.title(f"🎌 Halo, {nama}")
         st.caption(f"Role: {role}")
-        
+
         if role == "ADMIN":
             menu = st.radio("Menu Admin", ["📊 Dashboard", "👨‍🎓 Manajemen Siswa", "💰 Manajemen Keuangan", "📚 Manajemen Materi", "🚪 Logout"])
         elif role == "STAF":
@@ -82,38 +93,48 @@ def sidebar():
             menu = st.radio("Menu Murid", ["📅 Jadwal Kelas", "📚 Materi", "✅ Absen QR", "📝 Ujian Online", "💳 Bayar SPP", "🚪 Logout"])
         else: # PUBLIK
             menu = st.radio("Menu", ["🏠 Profil Lembaga", "📚 Program", "📝 Pendaftaran", "📞 Kontak", "🔐 Login"])
-        
+
         if menu == "🚪 Logout":
-            for key in st.session_state.keys():
-                del st.session_state[key]
+            st.session_state['logged_in'] = False
+            st.session_state['role'] = "PUBLIK"
+            st.session_state['nama'] = "Tamu"
             st.rerun()
         return menu
 
-# 4. LOGIKA UTAMA
-if 'logged_in' not in st.session_state:
-    st.session_state['logged_in'] = False
+# 5. LOGIKA UTAMA
+menu = sidebar()
 
 if not st.session_state['logged_in']:
-    menu = sidebar() # Menu Publik
     if menu == "🔐 Login":
         login()
-    else:
-        # ISI MENU PUBLIK KAMU YG LAMA DI SINI
+    elif menu == "🏠 Profil Lembaga":
         st.header("🏠 Profil Lembaga")
-        st.write("Ini halaman publik. Visi, Misi, Legalitas, Foto Gedung")
+        st.write("**VISI** Menjadi lembaga kursus Bahasa Jepang terpercaya...")
+        st.write("**MISI** 1. Pembelajaran Berkualitas...")
+        st.divider()
+        st.write("**Legalitas**: SK/NIB akan ditampilkan di sini")
+    elif menu == "📚 Program":
+        st.header("📚 Program Kami")
+    elif menu == "📝 Pendaftaran":
+        st.header("📝 Pendaftaran")
+        st.link_button("DAFTAR SEKARANG", LINK_GOOGLE_FORM, use_container_width=True)
+    elif menu == "📞 Kontak":
+        st.header("📞 Kontak")
 else:
-    menu = sidebar() # Menu sesuai role
     role = st.session_state['role']
-    
+
     if role == "ADMIN":
         if menu == "📊 Dashboard": st.header("📊 Dashboard Admin - Grafik & Ringkasan")
         if menu == "👨‍🎓 Manajemen Siswa": st.header("👨‍🎓 Manajemen Siswa - Tambah/Edit/Hapus")
         if menu == "💰 Manajemen Keuangan": st.header("💰 Manajemen Keuangan - Paling Rahasia")
-    
+        if menu == "📚 Manajemen Materi": st.header("📚 Upload Materi & Loker")
+
     if role == "STAF":
         if menu == "📅 Generate QR Absen": st.header("📅 Generate QR Absen")
         if menu == "👨‍🎓 Data Siswa": st.header("👨‍🎓 Lihat Data Siswa")
-    
+        if menu == "💵 Lihat Kas": st.header("💵 Lihat Total Kas")
+        if menu == "📢 Pengumuman": st.header("📢 Buat Pengumuman")
+
     if role == "MURID":
         if menu == "📅 Jadwal Kelas": st.header("📅 Jadwal Kelas Kamu")
         if menu == "📚 Materi": st.header("📚 Materi Pelajaran PDF/Video")
