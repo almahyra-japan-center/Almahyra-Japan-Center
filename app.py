@@ -29,27 +29,35 @@ st.markdown(f"""
     background-attachment: fixed;
 }}
 
-/* BAR LOGO PUTIH PANJANG */
+/* SEMBUNYIKAN HEADER BAWAAN STREAMLIT BIAR GA KECEPIT */
+[data-testid="stHeader"] {{
+    display: none;
+}}
+
+/* BAR LOGO PUTIH YANG BENER */
 .logo-bar {{
-    position: sticky; /* DIA NEMPEL PAS SCROLL */
+    position: sticky;
     top: 0;
     width: 100%;
     background: white;
-    padding: 15px 0;
+    padding: 20px 0; /* ATAS BAWAH DIKASIH JARAK */
     text-align: center;
     z-index: 9999;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    margin: -1rem -1rem 2rem -1rem; /* BIAR FULL KE KIRI KANAN */
+    margin-bottom: 2rem; /* KASIH JARAK KE BAWAH */
+    border-radius: 0 0 12px 12px; /* BAWAHNYA DIBUAT LENGKUNG DIKIT */
 }}
 .logo-bar img {{
-    height: 80px; /* ATUR TINGGI LOGO */
+    height: 120px; /* LOGO DIGEDEIN */
     width: auto;
 }}
 
-/* KONTEN TANPA BOX - BIAR BACKGROUND KELIATAN */
+/* KONTEN ADA PADDING KIRI KANAN */
 .block-container {{
     background: transparent;
-    padding: 1rem 3rem;
+    padding: 0rem 3rem 2rem 3rem; /* KIRI KAN 3REM */
+    max-width: 1200px; /* DI BATASIN BIAR GA KELEBARAN */
+    margin: 0 auto; /* DI TENGAHIN */
 }}
 
 h1, h2, h3 {{
