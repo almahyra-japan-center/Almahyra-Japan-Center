@@ -1,60 +1,47 @@
 import streamlit as st
 
-st.set_page_config(
-    page_title="AL MAHYRA JAPAN CENTER",
-    page_icon="🎌",
-    layout="wide"
-)
+st.set_page_config(page_title="AL MAHYRA JAPAN CENTER", page_icon="🎌", layout="wide")
 
-# === DATA KAMU ===
-NO_WA_ADMIN = "6281234567890"  # GANTI KE NOMOR KAMU
-LINK_GOOGLE_FORM = "https://forms.gle/gQ4QZz8yGmmTUc8y5"  # GANTI KE LINK FORM KAMU
-# =================
+NO_WA_ADMIN = "6281234567890"  # GANTI
+LINK_GOOGLE_FORM = "https://forms.gle/gQ4QZz8yGmmTUc8y5"  # GANTI
 
-# MENU KIRI
 with st.sidebar:
     st.title("🎌 AL MAHYRA JC")
     menu = st.radio("Menu", ["Beranda", "Program", "Pendaftaran", "Kontak"])
 
-# ISI KANAN
 if menu == "Beranda":
-    
-    # 1. LOGO KAMU - INI SUDAH BENER
     st.image("logo.png", use_container_width=True)
     
-    # 2. SAMBUTAN HANGAT
     st.header("Selamat Datang! 👋")
     st.write("Terima kasih sudah berkunjung ke website resmi kami.")
     
-    # 3. AJAKAN SINGKAT
     st.subheader("Wujudkan Mimpimu Bekerja & Kuliah ke Jepang Bersama Kami")
     st.write("Belajar Bahasa Jepang dengan metode santai, cepat paham, dan dibimbing sampai lulus JLPT.")
     st.divider()
 
-    # 4. PROFIL LEMBAGA
     st.subheader("🏢 Profil Lembaga")
-    st.write("**AL MAHYRA JAPAN CENTER** adalah lembaga kursus Bahasa Jepang yang berfokus pada persiapan kerja, magang, dan kuliah ke Jepang. Kami berlokasi di Semarang dan juga membuka kelas online untuk seluruh Indonesia.")
+    st.write("**AL MAHYRA JAPAN CENTER** adalah lembaga kursus Bahasa Jepang yang berfokus pada persiapan kerja, magang, dan kuliah ke Jepang. Kami berlokasi di **Brebes, Jawa Tengah** dan juga membuka kelas online untuk seluruh Indonesia.")
     
-    # 5. VISI MISI
-    col1, col2 = st.columns(2)
-    with col1:
-        st.markdown("**🎯 Visi**")
-        st.write("Menjadi pusat kursus Bahasa Jepang terpercaya yang melahirkan SDM siap kerja di Jepang.")
-    with col2:
-        st.markdown("**🚀 Misi**")
-        st.write("1. Memberi pengajaran berkualitas\n2. Membimbing sampai lulus JLPT\n3. Menyalurkan ke perusahaan Jepang")
+    st.subheader("🎯 Visi & Misi")
+    st.markdown("**VISI**")
+    st.write("Menjadi lembaga kursus Bahasa Jepang terpercaya yang membentuk generasi kompeten, berkarakter, dan siap meraih masa depan di Jepang.")
+    
+    st.markdown("**MISI**")
+    st.write("1. **Pembelajaran Berkualitas**: Sistematis dari dasar sampai lanjutan untuk kerja & kuliah")
+    st.write("2. **4 Kemampuan Seimbang**: Membaca, menulis, mendengar, dan berbicara")
+    st.write("3. **Bentuk Karakter**: Disiplin, percaya diri, bertanggung jawab, dan beretika")
+    st.write("4. **Kenalkan Budaya Jepang**: Etika dan kehidupan masyarakat Jepang")
+    st.write("5. **Siap Karier & Studi**: Dukung pendidikan, kerja, dan peluang di Jepang")
+    st.write("6. **Lingkungan Nyaman**: Belajar aktif, interaktif, dan menyenangkan")
+    st.write("7. **Pendampingan Penuh**: Bimbingan & motivasi sampai capai cita-cita")
     
     st.divider()
-
-    # 6. ALAMAT KECIL
     st.caption("📍 Alamat: Brebes, Jawa Tengah, Indonesia")
 
-    # 7. PENDAFTARAN
     st.subheader("📝 Pendaftaran Dibuka!")
     st.markdown(f'<a href="{LINK_GOOGLE_FORM}" target="_blank"><button style="background-color:#FF4B4B;color:white;padding:14px 20px;border:none;border-radius:8px;width:100%;font-size:16px;cursor:pointer;">KLIK UNTUK DAFTAR ONLINE</button></a>', unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
     
-    # 8. KONTAK
     st.subheader("📞 Hubungi Admin")
     pesan_wa = "Halo%20Admin%20AL%20MAHYRA%20JC,%20saya%20ingin%20bertanya..."
     st.markdown(f'<a href="https://wa.me/{NO_WA_ADMIN}?text={pesan_wa}" target="_blank"><button style="background-color:#25D366;color:white;padding:14px 20px;border:none;border-radius:8px;width:100%;font-size:16px;cursor:pointer;">CHAT ADMIN VIA WHATSAPP</button></a>', unsafe_allow_html=True)
@@ -67,7 +54,6 @@ elif menu == "Program":
 
 elif menu == "Pendaftaran":
     st.header("📝 Form Pendaftaran")
-    st.write("Silahkan isi formulir online di bawah ini:")
     st.markdown(f'<a href="{LINK_GOOGLE_FORM}" target="_blank"><button style="background-color:#FF4B4B;color:white;padding:14px 20px;border:none;border-radius:8px;width:100%;font-size:16px;">BUKA GOOGLE FORM</button></a>', unsafe_allow_html=True)
 
 elif menu == "Kontak":
