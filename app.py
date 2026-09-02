@@ -97,15 +97,26 @@ elif menu == "Pendaftaran":
 
 elif menu == "Pendaftaran":
     st.header("📝 Form Pendaftaran Online")
-    st.write("Klik tombol di bawah untuk isi form. Data otomatis masuk ke Google Sheet")
+    st.write("Klik tombol di bawah untuk mengisi formulir. Data otomatis masuk ke Google Sheet")
     
-    # TOMBOL BUKA FORM
-    st.link_button("📋 BUKA FORM PENDAFTARAN", "https://docs.google.com/forms/d/e/1lmj8cdMnlTgmICYuRXuhdHJ4JTA_j1AQMBaali/viewform", type="primary", use_container_width=True)
+    col1, col2 = st.columns(2)
     
-    st.markdown("---")
-    st.write("Setelah submit form, klik tombol di bawah untuk konfirmasi ke WA Admin")
+    with col1:
+        st.link_button(
+            label="📋 ISI FORM PENDAFTARAN", 
+            url="https://docs.google.com/forms/d/e/5yow8K2YMXgdnEtp7/viewform", 
+            type="primary",
+            use_container_width=True
+        )
     
-    # TOMBOL WA
-    pesan_wa = "Halo Admin AL MAHYRA JC, saya baru saja mengisi formulir pendaftaran online."
-    link_wa = f"https://wa.me/{NO_WA_ADMIN}?text={pesan_wa}"
-    st.link_button("📲 KONFIRMASI VIA WA ADMIN", link_wa, type="primary", use_container_width=True)
+    with col2:
+        pesan_wa = "Halo Admin AL MAHYRA JC, saya baru saja mengisi formulir pendaftaran online. Mohon dicek ya."
+        link_wa = f"https://wa.me/{NO_WA_ADMIN}?text={pesan_wa}"
+        st.link_button(
+            label="📲 KONFIRMASI KE WA ADMIN", 
+            url=link_wa, 
+            type="primary",
+            use_container_width=True
+        )
+    
+    st.success("Alur: 1. Isi Form → 2. Klik Konfirmasi WA → 3. Admin akan hubungi kamu")
