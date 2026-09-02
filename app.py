@@ -2,6 +2,26 @@ import streamlit as st
 
 st.set_page_config(page_title="AL MAHYRA JAPAN CENTER", page_icon="🎌", layout="wide")
 
+# CSS BUAT BACKGROUND JEPANG
+st.markdown("""
+<style>
+.stApp {
+    background: linear-gradient(180deg, #ffffff 0%, #FFF5F5 100%);
+    background-image: 
+        url("https://www.transparenttextures.com/patterns/asanoha.png"); /* motif asanoha jepang */
+}
+h1, h2, h3 {
+    color: #B22222; /* merah jepang */
+}
+[data-testid="stSidebar"] {
+    background-color: #B22222;
+}
+[data-testid="stSidebar"] * {
+    color: white;
+}
+</style>
+""", unsafe_allow_html=True)
+
 NO_WA_ADMIN = "6281234567890"  # GANTI
 LINK_GOOGLE_FORM = "https://forms.gle/gQ4QZz8yGmmTUc8y5"  # GANTI
 
@@ -39,7 +59,7 @@ if menu == "Beranda":
     st.caption("📍 Alamat: Brebes, Jawa Tengah, Indonesia")
 
     st.subheader("📝 Pendaftaran Dibuka!")
-    st.markdown(f'<a href="{LINK_GOOGLE_FORM}" target="_blank"><button style="background-color:#FF4B4B;color:white;padding:14px 20px;border:none;border-radius:8px;width:100%;font-size:16px;cursor:pointer;">KLIK UNTUK DAFTAR ONLINE</button></a>', unsafe_allow_html=True)
+    st.markdown(f'<a href="{LINK_GOOGLE_FORM}" target="_blank"><button style="background-color:#B22222;color:white;padding:14px 20px;border:none;border-radius:8px;width:100%;font-size:16px;cursor:pointer;">KLIK UNTUK DAFTAR ONLINE</button></a>', unsafe_allow_html=True)
     st.markdown("<br>", unsafe_allow_html=True)
     
     st.subheader("📞 Hubungi Admin")
@@ -54,10 +74,9 @@ elif menu == "Program":
 
 elif menu == "Pendaftaran":
     st.header("📝 Form Pendaftaran")
-    st.markdown(f'<a href="{LINK_GOOGLE_FORM}" target="_blank"><button style="background-color:#FF4B4B;color:white;padding:14px 20px;border:none;border-radius:8px;width:100%;font-size:16px;">BUKA GOOGLE FORM</button></a>', unsafe_allow_html=True)
+    st.markdown(f'<a href="{LINK_GOOGLE_FORM}" target="_blank"><button style="background-color:#B22222;color:white;padding:14px 20px;border:none;border-radius:8px;width:100%;font-size:16px;">BUKA GOOGLE FORM</button></a>', unsafe_allow_html=True)
 
 elif menu == "Kontak":
     st.header("📞 Hubungi Kami")
     st.write(f"**WhatsApp Admin**: {NO_WA_ADMIN}")
     st.write("**Alamat**: Brebes, Jawa Tengah, Indonesia")
-    st.write("**Jam Operasional**: Senin - Sabtu, 09.00 - 17.00 WIB")
