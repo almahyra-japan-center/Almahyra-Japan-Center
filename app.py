@@ -23,24 +23,25 @@ st.markdown(f"""
     background-attachment: fixed;
 }}
 .block-container {{
-    background-color: rgba(255, 255, 255, 0.85); /* INI YG DIRUBAH JADI 0.60*/
-    backdrop-filter: blur(5px); /* KASIH EFEK KACA BLUR */
+    background-color: rgba(255, 255, 255, 0.75); /* DARI 0.85 JADI 0.75 */
+    backdrop-filter: blur(4px); /* blur dikurangin dikit */
     padding: 3rem;
     border-radius: 20px;
     box-shadow: 0 8px 32px rgba(0,0,0,0.25);
     margin-top: 1rem;
     margin-bottom: 1rem;
+    border: 1px solid rgba(255,255,255,0.5); /* KASIH GARIS PUTIH TIPIS */
 }}
 h1, h2, h3 {{
     color: #B22222;
     font-weight: 800;
-    text-shadow: 1px 1px 2px rgba(255,255,255,0.8); /
+    text-shadow: 2px 2px 4px rgba(255,255,255,0.9); /* BAYANGAN LEBIH TEBAL */
 }}
 p, li {{
-    color: #111; 
+    color: #000; /* HITAM PEKAT BIAR KEBACA */
     font-size: 16px;
     line-height: 1.8;
-    font-weight: 500;
+    font-weight: 600;
 }}
 [data-testid="stSidebar"] {{
     background: linear-gradient(180deg, #B22222 0%, #8B0000 100%);
