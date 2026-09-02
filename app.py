@@ -82,9 +82,8 @@ elif menu == "Pendaftaran":
     st.header("📝 Form Pendaftaran Online")
     st.write("Isi data di bawah ini. Otomatis masuk ke Google Sheet")
     
-    # FORM GOOGLE KAMU
     components.iframe(
-        "https://docs.google.com/forms/d/e/1FAIpQLSfHERE_NANTI_ID_KAMU/viewform?embedded=true", 
+        "https://docs.google.com/forms/d/e/fxVaphmsYLKhRF9x6/viewform?embedded=true", 
         height=800, 
         width=700
     )
@@ -92,7 +91,6 @@ elif menu == "Pendaftaran":
     st.markdown("---")
     st.write("Setelah submit form, klik tombol di bawah untuk konfirmasi ke WA Admin")
     
-    # TOMBOL WA
     pesan_wa = "Halo Admin AL MAHYRA JC, saya baru saja mengisi formulir pendaftaran online."
     link_wa = f"https://wa.me/{NO_WA_ADMIN}?text={pesan_wa}"
     st.link_button("📲 KONFIRMASI VIA WA ADMIN", link_wa, type="primary")
