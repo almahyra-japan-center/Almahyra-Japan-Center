@@ -1,7 +1,7 @@
 import streamlit as st
 import base64
 
-st.set_page_config(page_title="AL MAHYRA JAPAN CENTER", page_icon="🎌", layout="centered")
+st.set_page_config(page_title="ALMAHYRA JAPAN CENTER", page_icon="🎌", layout="centered")
 
 # 1. BACKGROUND + LOGO
 def get_base64(bin_file):
@@ -12,13 +12,13 @@ def get_base64(bin_file):
     except:
         return ""
 
-bg = get_base64('Background.jpg') # PASTIIN NAMA FILE NYA BENER ADA 'd'
+bg = get_base64('Background.jpg') 
 logo = get_base64('logo.png')
 
 bg_css = f"url(data:image/jpg;base64,{bg})" if bg else "#FFF5F5"
-logo_html = f'<img src="data:image/png;base64,{logo}" width="120">' if logo else ""
+logo_html = f'<img src="data:image/png;base64,{logo}" width="180">' if logo else "" # LOGO DIBESARIN JADI 180px
 
-# 2. CSS BAHASA SANTAI + TEKS STANDAR
+# 2. CSS FIX BUG + RAPIH
 st.markdown(f"""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
@@ -30,7 +30,7 @@ html, body, [class*="st-"] {{ font-family: 'Poppins', sans-serif; }}
     background-attachment: fixed; 
 }}
 .block-container {{ padding-top: 1rem; padding-bottom: 2rem; max-width: 700px; }}
-[data-testid="stHeader"] {{ background: rgba(255,255,255,0.9); backdrop-filter: blur(5px); }}
+header {{ visibility: hidden; }} /* INI BUAT HILANGIN "double_arrow_right" DI ATAS */
 
 h1 {{ color: #B22222!important; font-size: 2.2rem; font-weight: 700; text-align: center; line-height: 1.3; }}
 h2 {{ color: #B22222!important; font-size: 1.5rem; font-weight: 600; border-left: 4px solid #B22222; padding-left: 12px; margin-bottom: 15px; }}
@@ -44,10 +44,10 @@ p, li {{ color: #333!important; font-size: 16px; line-height: 1.7; }}
     margin-bottom: 25px; 
     box-shadow: 0 4px 15px rgba(0,0,0,0.06);
 }}
-.hero {{ text-align: center; padding: 30px 20px; }}
+.hero {{ text-align: center; padding: 20px 20px; }}
 .contact-box {{ background: #B22222; color: white; padding: 25px; border-radius: 15px; text-align: center; }}
 .contact-box p {{ color: white!important; }}
-.stButton>button, .stLinkButton>button {{ background: #B22222; color: white; border-radius: 10px; font-weight: 600; border: none; padding: 10px 20px; font-size: 16px; }}
+.stButton>button, .stLinkButton>button {{ background: #B22222; color: white; border-radius: 10px; font-weight: 600; border: none; padding: 12px 20px; font-size: 16px; width: 100%; }}
 .stButton>button:hover, .stLinkButton>button:hover {{ background: #8B0000; }}
 </style>
 """, unsafe_allow_html=True)
@@ -66,17 +66,17 @@ with st.sidebar:
 
 # 5. ISI PUBLIK - BAHASA SANTAI NGAJAK
 st.markdown('<div class="section hero">', unsafe_allow_html=True)
-st.markdown(f"<div style='text-align:center'>{logo_html}</div>", unsafe_allow_html=True)
+st.markdown(f"<div style='text-align:center; margin-bottom:20px'>{logo_html}</div>", unsafe_allow_html=True) # LOGO GEDE DI TENGAH
 st.header("AL MAHYRA JAPAN CENTER")
 st.subheader("Wujudkan Mimpimu Kerja & Kuliah ke Jepang 🇯🇵")
 st.write("Halo! Mau jago Bahasa Jepang tapi bingung mulai dari mana? Tenang 😊")
 st.write("Di sini belajarnya santai, cepet nangkep, dan ada sensei yang nemenin kamu sampe lulus JLPT & terbang ke Jepang.")
-st.link_button("📝 YUK DAFTAR SEKARANG - GRATIS", LINK_GOOGLE_FORM, use_container_width=True, type="primary")
+st.link_button("YUK DAFTAR SEKARANG - GRATIS", LINK_GOOGLE_FORM, use_container_width=True, type="primary") # EMOJI DIHAPUS BIAR GA ERROR
 st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<div class="section">', unsafe_allow_html=True)
 st.header("🏢 Kenalan Dulu Yuk sama Kami")
-st.write("**AL MAHYRA JAPAN CENTER** itu tempat kursus Bahasa Jepang di **Brebes** yang fokus bikin kamu siap kerja, magang, atau kuliah ke Jepang.") # UDAH DIGANTI BREBES
+st.write("**AL MAHYRA JAPAN CENTER** itu tempat kursus Bahasa Jepang di **Brebes** yang fokus bikin kamu siap kerja, magang, atau kuliah ke Jepang.")
 st.write("Tenang aja, kita udah legal kok:")
 st.write("✓ **NIB** : 1234567890123")
 st.write("✓ **Akta Notaris** : No. 05 Tanggal 10 Januari 2024")
@@ -99,7 +99,7 @@ st.write("Alhamdulillah udah banyak yang gabung. Nih sebagian temen-temen pendaf
 st.table({
     "Nama": ["Ahmad Fauzi", "Siti Nurhaliza", "Budi Santoso"],
     "Umur": ["21 Tahun", "19 Tahun", "23 Tahun"],
-    "Asal": ["Brebes", "Tegal", "Cirebon"] # UDAH DIGANTI CONTOH DAERAH BREBES SEKITAR
+    "Asal": ["Brebes", "Tegal", "Cirebon"]
 })
 st.caption("*Data langsung dari form pendaftaran ya")
 st.markdown('</div>', unsafe_allow_html=True)
@@ -113,7 +113,7 @@ st.markdown('</div>', unsafe_allow_html=True)
 st.markdown('<div class="contact-box">', unsafe_allow_html=True)
 st.header("📞 Ada Pertanyaan?")
 st.write("Langsung chat aja admin kita. Dijawab kok, ga digantung 😄")
-st.write("**Alamat**: Jl. Jenderal Sudirman No. 123, Brebes, Jawa Tengah") # UDAH DIGANTI ALAMAT BREBES
+st.write("**Alamat**: Jl. Jenderal Sudirman No. 123, Brebes, Jawa Tengah")
 st.write(f"**WhatsApp**: {NO_WA_ADMIN}")
 pesan_wa = "Halo%20Admin%20AL%20MAHYRA%20JC,%20aku%20mau%20tanya%20tentang%20kursus%20Bahasa%20Jepang%20dong"
 st.link_button("CHAT ADMIN SEKARANG", f"https://wa.me/{NO_WA_ADMIN}?text={pesan_wa}", use_container_width=True)
