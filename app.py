@@ -1,50 +1,58 @@
 import streamlit as st
+import base64
 
 st.set_page_config(page_title="AL MAHYRA JAPAN CENTER", page_icon="🎌", layout="wide")
 
-# CSS BUAT BACKGROUND + BOX YANG LEBIH JELAS
-st.markdown("""
+# BACA FILE BAGROUND.JPG
+def get_base64_of_bin_file(bin_file):
+    with open(bin_file, 'rb') as f:
+        data = f.read()
+    return base64.b64encode(data).decode()
+
+try:
+    bin_str = get_base64_of_bin_file('Baground.jpg')  # <-- INI NAMA FILE KAMU
+    bg_image = f"url(data:image/jpg;base64,{bin_str})"
+except:
+    bg_image = "linear-gradient(180deg, #FFF5F5 0%, #ffffff 100%)"
+
+# CSS BOX PUTIH SOLID BIAR JELAS
+st.markdown(f"""
 <style>
-.stApp {
-    background-image: url("https://i.imgur.com/8QZkL3P.jpg");
+.stApp {{
+    background-image: {bg_image};
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-}
-
-/* INI KUNCINYA BIAR TULISAN JELAS */
-.block-container {
-    background-color: rgba(255, 255, 255, 0.96); /* 96% putih */
-    backdrop-filter: blur(8px); /* efek blur di belakang box */
-    padding: 2.5rem;
+}}
+.block-container {{
+    background-color: white; /* 100% putih biar kebaca */
+    padding: 3rem;
     border-radius: 20px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
-    border: 1px solid rgba(255,255,255,0.3);
-}
-
-h1, h2, h3 {
-    color: #B22222; /* merah jepang */
-    font-weight: bold;
-}
-p, li {
-    color: #333; /* abu tua biar kebaca */
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}}
+h1, h2, h3 {{
+    color: #B22222;
+    font-weight: 800;
+}}
+p, li {{
+    color: #000; 
     font-size: 16px;
-    line-height: 1.7;
-}
-
-[data-testid="stSidebar"] {
+    line-height: 1.8;
+}}
+[data-testid="stSidebar"] {{
     background: linear-gradient(180deg, #B22222 0%, #8B0000 100%);
-}
-[data-testid="stSidebar"] * {
+}}
+[data-testid="stSidebar"] * {{
     color: white;
     font-weight: bold;
-}
+}}
 </style>
 """, unsafe_allow_html=True)
 
-
-NO_WA_ADMIN = "6281234567890"  # GANTI
-LINK_GOOGLE_FORM = "https://forms.gle/gQ4QZz8yGmmTUc8y5"  # GANTI
+NO_WA_ADMIN = "6281234567890"
+LINK_GOOGLE_FORM = "https://forms.gle/gQ4QZz8yGmmTUc8y5"
 
 with st.sidebar:
     st.title("🎌 AL MAHYRA JC")
