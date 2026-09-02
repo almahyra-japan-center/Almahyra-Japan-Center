@@ -95,13 +95,17 @@ elif menu == "Pendaftaran":
     link_wa = f"https://wa.me/{NO_WA_ADMIN}?text={pesan_wa}"
     st.link_button("📲 KONFIRMASI VIA WA ADMIN", link_wa, type="primary")
 
-elif menu == "Kontak":
-    st.header("Informasi Kontak")
-    try:
-        st.image(NAMA_LOGO, width=120)
-    except:
-        pass
-    st.write("📍 **Alamat**: Desa Karangsari RT 005/01, Kec. Bulakamba, Kab. Brebes")
-    st.write("📞 **WhatsApp Admin**: 0878-1609-4321")
-    st.write("📅 **Pendaftaran**: Dibuka setiap awal bulan")
-    st.link_button("💬 Chat Sekarang", f"https://wa.me/{NO_WA_ADMIN}")
+elif menu == "Pendaftaran":
+    st.header("📝 Form Pendaftaran Online")
+    st.write("Klik tombol di bawah untuk isi form. Data otomatis masuk ke Google Sheet")
+    
+    # TOMBOL BUKA FORM
+    st.link_button("📋 BUKA FORM PENDAFTARAN", "https://docs.google.com/forms/d/e/1lmj8cdMnlTgmICYuRXuhdHJ4JTA_j1AQMBaali/viewform", type="primary", use_container_width=True)
+    
+    st.markdown("---")
+    st.write("Setelah submit form, klik tombol di bawah untuk konfirmasi ke WA Admin")
+    
+    # TOMBOL WA
+    pesan_wa = "Halo Admin AL MAHYRA JC, saya baru saja mengisi formulir pendaftaran online."
+    link_wa = f"https://wa.me/{NO_WA_ADMIN}?text={pesan_wa}"
+    st.link_button("📲 KONFIRMASI VIA WA ADMIN", link_wa, type="primary", use_container_width=True)
