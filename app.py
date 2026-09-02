@@ -17,10 +17,8 @@ c.execute('''CREATE TABLE IF NOT EXISTS users
 c.execute('''CREATE TABLE IF NOT EXISTS absensi
              (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, nama TEXT,
               waktu TEXT, kelas TEXT, kode TEXT, tanggal TEXT)''')
-# TABEL BARU UNTUK SIMPAN KODE PER KELAS
 c.execute('''CREATE TABLE IF NOT EXISTS kode_absen
              (kelas TEXT PRIMARY KEY, kode TEXT, waktu_generate TEXT)''')
-# DATA AWAL
 c.execute("INSERT OR IGNORE INTO users VALUES ('admin','admin123','ADMIN','Admin ALMAHYRA')")
 c.execute("INSERT OR IGNORE INTO users VALUES ('staf1','staf123','STAF','Bpk. Guru')")
 c.execute("INSERT OR IGNORE INTO users VALUES ('murid1','murid123','MURID','Ahmad Siswa')")
@@ -43,18 +41,19 @@ try:
 except:
     logo_base64 = ""
 
+# CSS UDAH FIX BISA SCROLL
 st.markdown(f"""
 <style>
 .stApp {{ background-image: {bg_image}; background-size: cover; background-attachment: fixed; }}
-.block-container {{ background: transparent; padding-top: 120px!important; padding-left: 2.5rem!important; max-width: 800px!important; }}
-[data-testid="stHeader"] {{ background: white; height: 100px; }}
+.block-container {{ background: transparent; padding-top: 6rem!important; padding-bottom: 3rem!important; max-width: 100%!important; }}
+[data-testid="stHeader"] {{ background: white; height: 100px; position: fixed; top: 0; width: 100%; z-index: 999; }}
 [data-testid="stHeader"] img {{ height: 80px!important; }}
 h1 {{ color: #B22222!important; font-size: 2.5rem; text-align: center; }}
 h2 {{ color: #262730!important; font-weight: 700; border-left: 4px solid #B22222; padding-left: 10px; }}
 .kode-box {{ background: #B22222; color: white; font-size: 48px; font-weight: bold; text-align: center; padding: 20px; border-radius: 15px; letter-spacing: 10px; margin: 20px 0; }}
 [data-testid="stSidebar"] {{ background: #B22222; }}
 [data-testid="stSidebar"] * {{ color: white; font-weight: bold; }}
-.section {{ margin-bottom: 60px; }}
+.section {{ margin-bottom: 60px; padding: 20px; background: rgba(255,255,255,0.85); border-radius: 15px; }}
 </style>
 """, unsafe_allow_html=True)
 
@@ -64,13 +63,11 @@ if logo_base64:
 NO_WA_ADMIN = "6281234567890"
 LINK_GOOGLE_FORM = "https://forms.gle/gQ4QZz8yGmmTUc8y5"
 
-# 2. SET SESSION STATE AWAL
 if 'logged_in' not in st.session_state:
     st.session_state['logged_in'] = False
     st.session_state['role'] = "PUBLIK"
     st.session_state['nama'] = "Tamu"
 
-# 3. FUNGSI LOGIN
 def login(role_login):
     st.subheader(f"🔐 Login Area {role_login}")
     username = st.text_input("Username", key=f"user_{role_login}")
@@ -88,7 +85,6 @@ def login(role_login):
         else:
             st.error("Username atau Password salah")
 
-# 4. FUNGSI GENERATE KODE 6 DIGIT
 def generate_kode(kelas):
     kode_baru = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
     waktu = datetime.now().strftime("%H:%M:%S")
@@ -96,7 +92,6 @@ def generate_kode(kelas):
     conn.commit()
     return kode_baru, waktu
 
-# 5. SIDEBAR
 def sidebar():
     with st.sidebar:
         st.title("🎌 AL MAHYRA JC")
@@ -123,10 +118,8 @@ def sidebar():
             return menu
     return None
 
-# 6. LOGIKA UTAMA
 menu_internal = sidebar()
 
-# ===== BAGIAN 1: PUBLIK =====
 if not st.session_state['logged_in']:
     st.markdown('<div class="section">', unsafe_allow_html=True)
     st.header("Selamat Datang di AL MAHYRA JC 👋")
@@ -134,53 +127,54 @@ if not st.session_state['logged_in']:
     st.link_button("📝 DAFTAR SEKARANG", LINK_GOOGLE_FORM, use_container_width=True, type="primary")
     st.markdown('</div>', unsafe_allow_html=True)
 
-# ===== BAGIAN 2: INTERNAL =====
+    st.markdown('<div class="section">', unsafe_allow_html=True)
+    st.header("🏢 Profil Lembaga")
+    st.write("**AL MAHYRA JAPAN CENTER** adalah lembaga kursus Bahasa Jepang terpercaya di Semarang. Kami fokus mencetak SDM siap kerja ke Jepang dengan program JLPT N5-N3, Interview, dan Budaya Kerja Jepang.")
+    st.markdown('</div>', unsafe_allow_html=True)
+
+    st.markdown('<div class="section">', unsafe_allow_html=True)
+    st.header("📝 Pendaftaran Dibuka!")
+    st.write("Isi form di bawah ini untuk daftar kelas baru")
+    st.link_button("ISI FORM PENDAFTARAN ONLINE", LINK_GOOGLE_FORM, use_container_width=True, type="primary")
+    st.markdown('</div>', unsafe_allow_html=True)
+
 else:
     role = st.session_state['role']
     st.title(f"Dashboard {role}")
 
-    # MENU STAF & ADMIN
     if role == "STAF" or role == "ADMIN":
         if menu_internal == "📅 Generate Kode":
             st.header("📅 Generate Kode Absen")
             kelas = st.selectbox("Pilih Kelas", ["N5 Pagi", "N5 Sore", "N4 Pagi", "N4 Sore"])
-
-            # CEK KODE YG UDAH ADA DI DB
             data_kode = c.execute("SELECT * FROM kode_absen WHERE kelas=?", (kelas,)).fetchone()
             if data_kode:
                 st.markdown(f'<div class="kode-box">{data_kode[1]}</div>', unsafe_allow_html=True)
                 st.info(f"Kode Aktif untuk {kelas}. Digenerate jam: {data_kode[2]}")
             else:
                 st.warning("Belum ada kode untuk kelas ini. Silakan generate dulu")
-
             if st.button("GENERATE KODE BARU", use_container_width=True, type="primary"):
                 kode_baru, waktu = generate_kode(kelas)
                 st.success(f"Kode baru {kode_baru} berhasil dibuat!")
-                st.rerun() # refresh biar langsung muncul
+                st.rerun()
 
         if menu_internal == "📊 Rekap Absen":
             st.header("📊 Rekap Absensi")
-            data = c.execute("SELECT tanggal, waktu, kelas, nama, username FROM absensi ORDER BY tanggal DESC, waktu DESC").fetchall()
+            data = c.execute("SELECT tanggal, waktu, kelas, nama, username, kode FROM absensi ORDER BY tanggal DESC, waktu DESC").fetchall()
             st.dataframe(data, use_container_width=True)
 
-    # MENU MURID
     if role == "MURID":
         if menu_internal == "✅ Input Kode Absen":
             st.header("✅ Input Kode Absensi Mandiri")
             st.write("Minta KODE 6 digit ke Staf, lalu masukkan di bawah ini")
-
             kelas_murid = st.selectbox("Pilih Kelas Anda", ["N5 Pagi", "N5 Sore", "N4 Pagi", "N4 Sore"])
             kode_input = st.text_input("Masukkan Kode dari Staf", placeholder="Contoh: A7B9C1").upper()
-
             if st.button("ABSEN SEKARANG", use_container_width=True, type="primary"):
                 if kode_input:
                     today = datetime.now().strftime("%Y-%m-%d")
-                    # CEK UDAH ABSEN BELUM
                     cek = c.execute("SELECT * FROM absensi WHERE username=? AND tanggal=?", (st.session_state['username'], today)).fetchone()
                     if cek:
                         st.error("Kamu sudah absen hari ini!")
                     else:
-                        # CEK KODENYA BENER APA GA
                         data_kode = c.execute("SELECT kode FROM kode_absen WHERE kelas=?", (kelas_murid,)).fetchone()
                         if data_kode and data_kode[0] == kode_input:
                             waktu = datetime.now().strftime("%H:%M:%S")
@@ -193,18 +187,3 @@ else:
                             st.error("Kode Salah! Minta kode yg terbaru ke Staf")
                 else:
                     st.warning("Masukkan kode dulu")
-
-st.markdown(f"""
-<style>
-.stApp {{ background-image: {bg_image}; background-size: cover; background-attachment: fixed; }}
-.block-container {{ background: transparent; padding-top: 6rem!important; padding-bottom: 3rem!important; max-width: 100%!important; }}
-[data-testid="stHeader"] {{ background: white; height: 100px; position: fixed; }}
-[data-testid="stHeader"] img {{ height: 80px!important; }}
-h1 {{ color: #B22222!important; font-size: 2.5rem; text-align: center; }}
-h2 {{ color: #262730!important; font-weight: 700; border-left: 4px solid #B22222; padding-left: 10px; }}
-.kode-box {{ background: #B22222; color: white; font-size: 48px; font-weight: bold; text-align: center; padding: 20px; border-radius: 15px; letter-spacing: 10px; margin: 20px 0; }}
-[data-testid="stSidebar"] {{ background: #B22222; }}
-[data-testid="stSidebar"] * {{ color: white; font-weight: bold; }}
-.section {{ margin-bottom: 60px; padding: 20px; background: rgba(255,255,255,0.8); border-radius: 15px; }}
-</style>
-""", unsafe_allow_html=True)
