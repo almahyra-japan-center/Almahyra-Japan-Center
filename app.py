@@ -1,8 +1,20 @@
 import streamlit as st
+import sqlite3
 import base64
 import os
 
 st.set_page_config(page_title="AL MAHYRA JAPAN CENTER", page_icon="🎌", layout="wide")
+
+# 1. KONEK DATABASE SEDERHANA
+conn = sqlite3.connect('almahyra.db', check_same_thread=False)
+c = conn.cursor()
+c.execute('''CREATE TABLE IF NOT EXISTS users 
+             (username TEXT PRIMARY KEY, password TEXT, role TEXT, nama TEXT)''')
+# Akun contoh. Nanti bisa dihapus
+c.execute("INSERT OR IGNORE INTO users VALUES ('admin','admin123','ADMIN','Admin ALMAHYRA')")
+c.execute("INSERT OR IGNORE INTO users VALUES ('staf','staf123','STAF','Bpk. Guru')")
+c.execute("INSERT OR IGNORE INTO users VALUES ('murid','murid123','MURID','Ahmad Siswa')")
+conn.commit()
 
 def get_base64_of_bin_file(bin_file):
     with open(bin_file, 'rb') as f:
@@ -15,7 +27,6 @@ try:
 except:
     bg_image = "linear-gradient(180deg, #FFF5F5 0%, #ffffff 100%)"
 
-# LOGO BASE64 BUAT HEADER
 try:
     logo_bin_str = get_base64_of_bin_file('logo.png')
     logo_base64 = f"data:image/png;base64,{logo_bin_str}"
@@ -24,158 +35,88 @@ except:
 
 st.markdown(f"""
 <style>
-.stApp {{
-    background-image: {bg_image};
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-}}
-
-/* GA USAH PAKAI BOX PUTIH */
-.block-container {{
-    background: transparent;
-    padding-top: 120px !important; /* KASIH JARAK BUAT HEADER LOGO */
-    padding-left: 2.5rem !important; /* KASIH JARAK DARI SIDEBAR */
-    padding-right: 2rem !important;
-    max-width: 750px !important; /* BIAR PANJANG KE BAWAH */
-}}
-
-/* HEADER PUTIH BUAT LOGO */
-[data-testid="stHeader"] {{
-    background: white;
-    height: 100px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}}
-
-/* GEDEIN LOGO DI HEADER */
-[data-testid="stHeader"] img {{
-    height: 80px !important;
-    width: auto !important;
-}}
-
-/* TEXT PERSIS KAYAK DI FOTO - HITAM ABU */
-h1 {{ 
-    color: #262730 !important; /* HITAM ABU */
-    font-weight: 700;
-    font-size: 2rem;
-    text-shadow: none; /* HAPUS SHADOW */
-    text-align: left;
-}}
-h2 {{ 
-    color: #262730 !important; /* HITAM ABU */
-    font-weight: 700;
-    font-size: 1.5rem;
-    text-shadow: none;
-    text-align: left;
-    line-height: 1.4;
-}}
-p, li {{
-    color: #31333F !important; /* ABU GELAP */
-    font-size: 16px; /* NORMAL */
-    font-weight: 400;
-    text-shadow: none; /* HAPUS SHADOW */
-    text-align: left;
-    line-height: 1.7;
-}}
-
-/* SIDEBAR MERAH */
-[data-testid="stSidebar"] {{
-    background: #B22222;
-}}
-[data-testid="stSidebar"] * {{
-    color: white;
-    font-weight: bold;
-}}
+.stApp {{ background-image: {bg_image}; background-size: cover; background-attachment: fixed; }}
+.block-container {{ background: rgba(255,255,255,0.9); padding: 2rem!important; max-width: 800px!important; margin: 2rem auto!important; border-radius: 12px; }}
+[data-testid="stHeader"] {{ background: white; height: 100px; }}
+[data-testid="stHeader"] img {{ height: 80px!important; }}
+h1, h2 {{ color: #262730!important; }} p {{ color: #31333F!important; }}
+[data-testid="stSidebar"] {{ background: #B22222; }}
+[data-testid="stSidebar"] * {{ color: white; font-weight: bold; }}
 </style>
 """, unsafe_allow_html=True)
 
-# LOGO DI HEADER BAWAAN STREAMLIT
 if logo_base64:
     st.logo(logo_base64, link=None)
 
-NO_WA_ADMIN = "6281234567890"
-LINK_GOOGLE_FORM = "https://forms.gle/gQ4QZz8yGmmTUc8y5"
+# 2. FUNGSI LOGIN
+def login():
+    st.title("🔐 Login AL MAHYRA JC")
+    username = st.text_input("Username")
+    password = st.text_input("Password", type="password")
+    if st.button("Login"):
+        c.execute("SELECT * FROM users WHERE username=? AND password=?", (username, password))
+        user = c.fetchone()
+        if user:
+            st.session_state['logged_in'] = True
+            st.session_state['username'] = user[0]
+            st.session_state['role'] = user[2]
+            st.session_state['nama'] = user[3]
+            st.rerun()
+        else:
+            st.error("Username atau Password salah")
 
-# ================== INI BAGIAN SIDEBAR BARU ==================
-with st.sidebar:
-    st.title("🎌 AL MAHYRA JC")
+# 3. SIDEBAR DINAMIS SESUAI ROLE
+def sidebar():
+    role = st.session_state['role']
+    nama = st.session_state['nama']
     
-    # 1. MENU UTAMA
-    menu = st.radio("Menu", ["🏠 Beranda", "📚 Program", "📝 Pendaftaran", "📞 Kontak"])
-    
-    st.divider()
-    
-    # 2. INFO CEPAT
-    st.subheader("📌 Info Cepat")
-    st.markdown("**📍 Alamat**")
-    st.caption("Brebes, Jawa Tengah, Indonesia")
-    st.markdown("**⏰ Jam Operasional**")
-    st.caption("Senin - Sabtu: 08.00 - 17.00")
-    
-    st.divider()
-    
-    # 3. TOMBOL AKSI CEPAT
-    st.link_button("📝 Daftar Sekarang", LINK_GOOGLE_FORM, use_container_width=True, type="primary")
-    st.link_button("💬 Chat via WhatsApp", f"https://wa.me/{NO_WA_ADMIN}", use_container_width=True)
-    
-    st.divider()
-    
-    # 4. FOOTER
-    st.caption("© 2026 AL MAHYRA JAPAN CENTER")
-    st.caption("Lembaga Kursus Bahasa Jepang Terpercaya")
-# ================== SELESAI SIDEBAR ==================
+    with st.sidebar:
+        st.title(f"🎌 Halo, {nama}")
+        st.caption(f"Role: {role}")
+        
+        if role == "ADMIN":
+            menu = st.radio("Menu Admin", ["📊 Dashboard", "👨‍🎓 Manajemen Siswa", "💰 Manajemen Keuangan", "📚 Manajemen Materi", "🚪 Logout"])
+        elif role == "STAF":
+            menu = st.radio("Menu Staf", ["📅 Generate QR Absen", "👨‍🎓 Data Siswa", "💵 Lihat Kas", "📢 Pengumuman", "🚪 Logout"])
+        elif role == "MURID":
+            menu = st.radio("Menu Murid", ["📅 Jadwal Kelas", "📚 Materi", "✅ Absen QR", "📝 Ujian Online", "💳 Bayar SPP", "🚪 Logout"])
+        else: # PUBLIK
+            menu = st.radio("Menu", ["🏠 Profil Lembaga", "📚 Program", "📝 Pendaftaran", "📞 Kontak", "🔐 Login"])
+        
+        if menu == "🚪 Logout":
+            for key in st.session_state.keys():
+                del st.session_state[key]
+            st.rerun()
+        return menu
 
-# ================== INI BAGIAN ISI KANAN ==================
-if menu == "🏠 Beranda":
-    st.header("Selamat Datang! 👋")
-    st.write("Terima kasih sudah berkunjung ke website resmi kami.")
-    st.subheader("Wujudkan Mimpimu Bekerja & Kuliah ke Jepang Bersama Kami")
-    st.write("Belajar Bahasa Jepang dengan metode santai, cepat paham, dan dibimbing sampai lulus JLPT.")
-    st.divider()
-    st.subheader("🏢 Profil Lembaga")
-    st.write("**AL MAHYRA JAPAN CENTER** adalah lembaga kursus Bahasa Jepang yang berfokus pada persiapan kerja, magang, dan kuliah ke Jepang. Kami berlokasi di **Brebes, Jawa Tengah** dan juga membuka kelas online untuk seluruh Indonesia.")
-    st.subheader("🎯 Visi & Misi")
-    st.markdown("**VISI**")
-    st.write("Menjadi lembaga kursus Bahasa Jepang terpercaya yang membentuk generasi kompeten, berkarakter, dan siap meraih masa depan di Jepang.")
-    st.markdown("**MISI**")
-    st.write("1. **Pembelajaran Berkualitas**: Sistematis dari dasar sampai lanjutan untuk kerja & kuliah")
-    st.write("2. **4 Kemampuan Seimbang**: Membaca, menulis, mendengar, dan berbicara")
-    st.write("3. **Bentuk Karakter**: Disiplin, percaya diri, bertanggung jawab, dan beretika")
-    st.write("4. **Kenalkan Budaya Jepang**: Etika dan kehidupan masyarakat Jepang")
-    st.write("5. **Siap Karier & Studi**: Dukung pendidikan, kerja, dan peluang di Jepang")
-    st.write("6. **Lingkungan Nyaman**: Belajar aktif, interaktif, dan menyenangkan")
-    st.write("7. **Pendampingan Penuh**: Bimbingan & motivasi sampai capai cita-cita")
-    st.divider()
-    st.caption("📍 Alamat: Brebes, Jawa Tengah, Indonesia")
-    st.subheader("📝 Pendaftaran Dibuka!")
-    st.markdown(f'<a href="{LINK_GOOGLE_FORM}" target="_blank"><button style="background-color:#B22222;color:white;padding:14px 20px;border:none;border-radius:8px;width:100%;font-size:16px;cursor:pointer;">KLIK UNTUK DAFTAR ONLINE</button></a>', unsafe_allow_html=True)
-    st.markdown("<br>", unsafe_allow_html=True)
-    st.subheader("📞 Hubungi Admin")
-    pesan_wa = "Halo%20Admin%20AL%20MAHYRA%20JC,%20saya%20ingin%20bertanya..."
-    st.markdown(f'<a href="https://wa.me/{NO_WA_ADMIN}?text={pesan_wa}" target="_blank"><button style="background-color:#25D366;color:white;padding:14px 20px;border:none;border-radius:8px;width:100%;font-size:16px;cursor:pointer;">CHAT ADMIN VIA WHATSAPP</button></a>', unsafe_allow_html=True)
+# 4. LOGIKA UTAMA
+if 'logged_in' not in st.session_state:
+    st.session_state['logged_in'] = False
 
-elif menu == "📚 Program":
-    st.header("📚 Program Kami")
-    st.write("Kami memiliki beberapa program unggulan untuk mempersiapkan kamu ke Jepang:")
-    st.subheader("1. Program Kerja ke Jepang - TG / SSW")
-    st.write("Persiapan Bahasa Jepang + Skill + Tes JLPT & SSW. Didampingi sampai berangkat.")
-    st.subheader("2. Program Magang Jepang")
-    st.write("Bimbingan intensif untuk lolos seleksi magang ke Jepang.")
-    st.subheader("3. Program Kuliah / Sekolah ke Jepang")
-    st.write("Persiapan JLPT, EJU, dan urus dokumen kuliah di Jepang.")
-
-elif menu == "📝 Pendaftaran":
-    st.header("📝 Formulir Pendaftaran")
-    st.write("Silakan isi formulir pendaftaran online kami melalui link di bawah ini:")
-    st.markdown(f'<a href="{LINK_GOOGLE_FORM}" target="_blank"><button style="background-color:#B22222;color:white;padding:20px;border:none;border-radius:8px;width:100%;font-size:18px;cursor:pointer;">KLIK DISINI UNTUK DAFTAR</button></a>', unsafe_allow_html=True)
-
-elif menu == "📞 Kontak":
-    st.header("📞 Hubungi Kami")
-    st.write("Ada pertanyaan? Langsung hubungi admin kami:")
-    st.subheader("Admin AL MAHYRA JC")
-    st.write(f"WhatsApp: {NO_WA_ADMIN}")
-    st.markdown(f'<a href="https://wa.me/{NO_WA_ADMIN}" target="_blank"><button style="background-color:#25D366;color:white;padding:14px 20px;border:none;border-radius:8px;width:100%;font-size:16px;cursor:pointer;">CHAT SEKARANG</button></a>', unsafe_allow_html=True)
-    st.divider()
-    st.write("**Alamat:** Brebes, Jawa Tengah, Indonesia")
-    st.write("**Email:** almahyra.jc@gmail.com")
-# ================== SELESAI ISI KANAN ==================
+if not st.session_state['logged_in']:
+    menu = sidebar() # Menu Publik
+    if menu == "🔐 Login":
+        login()
+    else:
+        # ISI MENU PUBLIK KAMU YG LAMA DI SINI
+        st.header("🏠 Profil Lembaga")
+        st.write("Ini halaman publik. Visi, Misi, Legalitas, Foto Gedung")
+else:
+    menu = sidebar() # Menu sesuai role
+    role = st.session_state['role']
+    
+    if role == "ADMIN":
+        if menu == "📊 Dashboard": st.header("📊 Dashboard Admin - Grafik & Ringkasan")
+        if menu == "👨‍🎓 Manajemen Siswa": st.header("👨‍🎓 Manajemen Siswa - Tambah/Edit/Hapus")
+        if menu == "💰 Manajemen Keuangan": st.header("💰 Manajemen Keuangan - Paling Rahasia")
+    
+    if role == "STAF":
+        if menu == "📅 Generate QR Absen": st.header("📅 Generate QR Absen")
+        if menu == "👨‍🎓 Data Siswa": st.header("👨‍🎓 Lihat Data Siswa")
+    
+    if role == "MURID":
+        if menu == "📅 Jadwal Kelas": st.header("📅 Jadwal Kelas Kamu")
+        if menu == "📚 Materi": st.header("📚 Materi Pelajaran PDF/Video")
+        if menu == "✅ Absen QR": st.header("✅ Scan QR Absensi Mandiri")
+        if menu == "📝 Ujian Online": st.header("📝 Simulasi Ujian JLPT")
+        if menu == "💳 Bayar SPP": st.header("💳 Liat Tagihan & Upload Bukti")
