@@ -30,7 +30,7 @@ def get_base64_of_bin_file(bin_file):
     return base64.b64encode(data).decode()
 
 try:
-    bin_str = get_base64_of_bin_file('Background.jpg') # UDAH DIBENERIN ADA 'd'
+    bin_str = get_base64_of_bin_file('Background.jpg')
     bg_image = f"url(data:image/jpg;base64,{bin_str})"
 except:
     bg_image = "linear-gradient(180deg, #FFF5F5 0%, #ffffff 100%)"
@@ -41,7 +41,7 @@ try:
 except:
     logo_base64 = ""
 
-# CSS UDAH FIX BISA SCROLL
+# CSS UDAH FIX WARNA & LAYOUT
 st.markdown(f"""
 <style>
 .stApp {{ background-image: {bg_image}; background-size: cover; background-attachment: fixed; }}
@@ -50,10 +50,12 @@ st.markdown(f"""
 [data-testid="stHeader"] img {{ height: 80px!important; }}
 h1 {{ color: #B22222!important; font-size: 2.5rem; text-align: center; }}
 h2 {{ color: #262730!important; font-weight: 700; border-left: 4px solid #B22222; padding-left: 10px; }}
+p, label, div[data-testid="stTextInput"] label {{ color: #262730!important; }} /* INI BIKIN TEXT JADI HITAM BIAR KEBACA */
 .kode-box {{ background: #B22222; color: white; font-size: 48px; font-weight: bold; text-align: center; padding: 20px; border-radius: 15px; letter-spacing: 10px; margin: 20px 0; }}
 [data-testid="stSidebar"] {{ background: #B22222; }}
 [data-testid="stSidebar"] * {{ color: white; font-weight: bold; }}
-.section {{ margin-bottom: 60px; padding: 20px; background: rgba(255,255,255,0.85); border-radius: 15px; }}
+.section {{ margin-bottom: 40px; padding: 25px; background: rgba(255,255,255,0.9); border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }}
+.contact-box {{ background: #B22222; color: white; padding: 20px; border-radius: 10px; text-align: center; }}
 </style>
 """, unsafe_allow_html=True)
 
@@ -108,7 +110,7 @@ def sidebar():
             if role == "ADMIN" or role == "STAF":
                 menu = st.radio("Menu Staf/Admin", ["📅 Generate Kode", "📊 Rekap Absen"])
             elif role == "MURID":
-                menu = st.radio("Menu Murid", ["📅 Jadwal", "✅ Input Kode Absen"]) # MENU JADWAL UDAH ADA ISINYA
+                menu = st.radio("Menu Murid", ["📅 Jadwal", "✅ Input Kode Absen"])
             st.divider()
             if st.button("🚪 Logout", use_container_width=True):
                 st.session_state['logged_in'] = False
@@ -138,6 +140,13 @@ if not st.session_state['logged_in']:
     st.link_button("ISI FORM PENDAFTARAN ONLINE", LINK_GOOGLE_FORM, use_container_width=True, type="primary")
     st.markdown('</div>', unsafe_allow_html=True)
 
+    # INI KOTAK KONTAK YG HILANG TADI UDAH AKU BALIKIN
+    st.markdown('<div class="contact-box">', unsafe_allow_html=True)
+    st.header("📞 Hubungi Kami")
+    st.write("Jl. Raya Semarang - Demak Km 5, Semarang")
+    st.write(f"WhatsApp Admin: {NO_WA_ADMIN}")
+    st.markdown('</div>', unsafe_allow_html=True)
+
 else:
     role = st.session_state['role']
     st.title(f"Dashboard {role}")
@@ -163,7 +172,7 @@ else:
             st.dataframe(data, use_container_width=True)
 
     if role == "MURID":
-        if menu_internal == "📅 Jadwal": # INI UDAH AKU ISI
+        if menu_internal == "📅 Jadwal":
             st.header("📅 Jadwal Kelas Anda")
             st.info("Jadwal bisa berubah. Hubungi staf jika ada perubahan")
             st.table({
