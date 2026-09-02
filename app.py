@@ -52,21 +52,22 @@ with st.sidebar:
     st.button("🔐 Login Siswa", disabled=True, use_container_width=True)
     st.button("👨‍🏫 Login Staf/Admin", disabled=True, use_container_width=True)
 
-# 5. ISI PUBLIK - BAHASA SANTAI + MENJEMBATANI
+# 5. ISI PUBLIK - FOKUS BAHASA JEPANG AJA
 st.markdown('<div class="section hero">', unsafe_allow_html=True)
 st.markdown(f"<div style='text-align:center; margin-bottom:20px'>{logo_html}</div>", unsafe_allow_html=True)
 st.header("AL MAHYRA JAPAN CENTER")
-st.subheader("Langkah Pertama ke Jepang Dimulai dari Bahasa 🇯🇵") # UDAH DIGANTI
-st.write("Halo! Punya mimpi mau kerja, magang, atau kuliah ke Jepang?") 
-st.write("Nah, syarat utamanya pasti bisa Bahasa Jepang dulu dong 😊")
-st.write("Yuk mulai dari sini. Belajarnya santai, materi gampang dipahami, dan ada sensei yang siap nemenin kamu sampe lulus JLPT.")
-st.link_button("YUK MULAI BELAJAR BARENG KAMI", LINK_GOOGLE_FORM, use_container_width=True, type="primary") # TOMBOL DIUBAH
+st.subheader("Belajar Bahasa Jepang, Santai Tapi Pasti 🇯🇵") # FOKUS BAHASA
+st.write("Halo! Pengen bisa Bahasa Jepang tapi bingung mulainya dari mana?") 
+st.write("Sini gabung bareng kita 😊 Di AL MAHYRA belajarnya asik, materinya gampang, dan ada sensei yang sabar nemenin kamu.")
+st.write("Mau buat hobi, nonton anime tanpa subtitle, atau persiapan ujian JLPT? Bisa banget!")
+st.link_button("YUK DAFTAR KELAS BAHASA JEPANG", LINK_GOOGLE_FORM, use_container_width=True, type="primary")
 st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<div class="section">', unsafe_allow_html=True)
 st.header("🏢 Kenalan Dulu Yuk sama Kami")
-st.write("**AL MAHYRA JAPAN CENTER** itu lembaga kursus Bahasa Jepang di **Brebes**. Tugas kita cuma 1: **nemenin kamu jago Bahasa Jepang**.")
-st.write("Soal mau kerja, magang, atau kuliah nanti, kita siap jadi jembatan dan ngasih info sebisa kita ya. Tapi keputusan dan rejeki tetap ditangan kamu 🙏")
+st.write("**AL MAHYRA JAPAN CENTER** itu lembaga kursus Bahasa Jepang di **Brebes**.")
+st.write("Fokus kita cuma satu: **Bikin kamu jago Bahasa Jepang dari nol sampe lancar**.")
+st.write("Metodenya? Santai, banyak praktek ngomong, dan ga ngebosenin deh pokoknya.")
 st.write("Tenang aja, kita udah legal kok:")
 st.write("✓ **NIB** : 1234567890123")
 st.write("✓ **Akta Notaris** : No. 05 Tanggal 10 Januari 2024")
@@ -76,16 +77,16 @@ st.markdown('</div>', unsafe_allow_html=True)
 st.markdown('<div class="section">', unsafe_allow_html=True)
 st.header("🎯 Visi & Misi Kita")
 st.subheader("VISI")
-st.write("Menjadi tempat belajar Bahasa Jepang yang nyaman, supaya teman-teman lebih siap meraih mimpi berkarir atau kuliah ke Jepang.")
+st.write("Menjadi tempat kursus Bahasa Jepang ternyaman di Brebes, yang bikin belajar jadi semangat dan hasilnya nyata.")
 st.subheader("MISI")
-st.write("1. **Belajar Santai tapi Serius**: Ngajarin Bahasa Jepang dari nol dengan cara yang mudah dan menyenangkan.")
-st.write("2. **Bekali Skill**: Ga cuma bahasa, kita juga sharing tentang budaya dan etika kerja di Jepang biar kamu lebih siap.")
-st.write("3. **Jadi Teman Belajar**: Kita dampingi proses belajarmu. Semangat bareng-bareng ya 😊")
+st.write("1. **Mengajar dengan Cara Asik**: Bikin Bahasa Jepang yang susah jadi gampang dan seru.")
+st.write("2. **Guru yang Sabar**: Sensei kita siap bimbing kamu sampe bener-bener paham.")
+st.write("3. **Komunitas Belajar**: Biar belajarnya ga sendirian, ada temen buat latihan bareng.")
 st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<div class="section">', unsafe_allow_html=True)
-st.header("👨‍🎓 Temen-temen yang Udah Gabung Belajar")
-st.write("Alhamdulillah udah banyak yang mulai langkah pertamanya bareng kita:")
+st.header("👨‍🎓 Temen-temen yang Udah Gabung")
+st.write("Yuk liat temen-temen yang udah mulai belajar bareng kita:")
 st.table({
     "Nama": ["Ahmad Fauzi", "Siti Nurhaliza", "Budi Santoso"],
     "Umur": ["21 Tahun", "19 Tahun", "23 Tahun"],
@@ -96,13 +97,13 @@ st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<div class="section">', unsafe_allow_html=True)
 st.header("📝 Kelas Baru Buka Lho!")
-st.write("Daripada nunggu lama, mending mulai dari sekarang. Kuota terbatas ya.")
-st.link_button("DAFTAR KELAS BAHASA JEPANG", LINK_GOOGLE_FORM, use_container_width=True, type="primary")
+st.write("Kuotanya terbatas. Jangan sampe ketinggalan ya.")
+st.link_button("DAFTAR SEKARANG", LINK_GOOGLE_FORM, use_container_width=True, type="primary")
 st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<div class="contact-box">', unsafe_allow_html=True)
 st.header("📞 Mau Tanya-tanya Dulu?")
-st.write("Boleh banget! Chat admin kita aja. Sharing santai dulu juga boleh 😄")
+st.write("Chat admin kita aja. Konsultasi gratis kok 😄")
 st.write("**Alamat**: Jl. Jenderal Sudirman No. 123, Brebes, Jawa Tengah")
 st.write(f"**WhatsApp**: {NO_WA_ADMIN}")
 pesan_wa = "Halo%20Admin%20AL%20MAHYRA%20JC,%20aku%20mau%20tanya%20tentang%20kursus%20Bahasa%20Jepang%20dong"
@@ -110,9 +111,9 @@ st.link_button("CHAT ADMIN", f"https://wa.me/{NO_WA_ADMIN}?text={pesan_wa}", use
 st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<div class="section hero">', unsafe_allow_html=True)
-st.header("🚀 Siap Mulai Belajar?")
-st.write("Ingat, 1000 langkah dimulai dari langkah pertama. Langkah pertamamu ke Jepang ya belajar bahasanya dulu.")
-st.link_button("GAS BELAJAR SEKARANG", LINK_GOOGLE_FORM, use_container_width=True, type="primary")
+st.header("🚀 Yuk Mulai Sekarang!")
+st.write("Bahasa Jepang itu gampang kalau ada temennya. Dan temennya ya kita 😊")
+st.link_button("GAS IKUT KELAS", LINK_GOOGLE_FORM, use_container_width=True, type="primary")
 st.markdown('</div>', unsafe_allow_html=True)
 
-st.markdown("<hr><center style='font-size:14px'>© 2026 AL MAHYRA JAPAN CENTER. Fokus di Bahasa Jepang 🙏</center>", unsafe_allow_html=True)
+st.markdown("<hr><center style='font-size:14px'>© 2026 AL MAHYRA JAPAN CENTER. Lembaga Kursus Bahasa Jepang</center>", unsafe_allow_html=True)
