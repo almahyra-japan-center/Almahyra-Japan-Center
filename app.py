@@ -14,9 +14,10 @@ try:
 except:
     bg_image = "linear-gradient(180deg, #FFF5F5 0%, #ffffff 100%)"
 
+# GANTI KE LOGO BARU
 try:
-    logo_bin_str = get_base64_of_bin_file('logo.png')
-    logo_base64 = f"data:image/png;base64,{logo_bin_str}"
+    logo_bin_str = get_base64_of_bin_file('IMG-20260902-WA0358.jpg')
+    logo_base64 = f"data:image/jpg;base64,{logo_bin_str}"
 except:
     logo_base64 = ""
 
@@ -39,43 +40,43 @@ st.markdown(f"""
     display: none;
 }}
 
-/* BAR LOGO PUTIH NORMAL AJA */
+/* BAR LOGO PUTIH */
 .logo-bar {{
     position: sticky;
     top: 0;
     width: 100vw;
     margin-left: calc(-50vw + 50%);
     background: white;
-    padding: 20px 0; /* NORMAL */
+    padding: 15px 0; /* SEDENG */
     text-align: center;
     z-index: 9999;
     box-shadow: 0 4px 20px rgba(0,0,0,0.15);
 }}
 .logo-bar img {{
-    height: 400px; /* GAMBAR LOGONYA DIGEDEIN 400PX */
+    height: 180px; /* LOGO GEDE TAPI GA KELEBARAN */
     width: auto;
-    max-width: 95%;
+    max-width: 90%;
 }}
 
 /* KONTEN KECIL DI TENGAH */
 .content-wrapper {{
-    padding: 2rem 1rem; /* KIRI KAN DISEMPITIN */
-    max-width: 700px; /* LEBIH SEMPIT LAGI */
+    padding: 2rem 1rem;
+    max-width: 700px;
     margin: 0 auto;
-    text-align: center; /* SEMUA DI TENGAH */
+    text-align: center;
 }}
 
 h1, h2, h3 {{
     color: #B22222;
-    font-weight: 700; /* DIKECILIN DARI 900 */
-    font-size: 1.4rem; /* DIKECILIN */
+    font-weight: 700;
+    font-size: 1.4rem;
     text-shadow: 1px 1px 3px rgba(255,255,255,0.9);
     margin-bottom: 1rem;
 }}
 p, li {{
     color: #222; 
-    font-size: 15px; /* KECIL */
-    font-weight: 400; /* NORMAL */
+    font-size: 15px;
+    font-weight: 400;
     line-height: 1.6;
     text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
     margin-bottom: 0.8rem;
