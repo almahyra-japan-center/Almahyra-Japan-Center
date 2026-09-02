@@ -2,14 +2,22 @@ import streamlit as st
 import sqlite3
 import base64
 import os
+import qrcode
+import io
+import time
+from datetime import datetime
+from PIL import Image
 
 st.set_page_config(page_title="AL MAHYRA JAPAN CENTER", page_icon="🎌", layout="wide")
 
-# 1. KONEK DATABASE
+# 1. KONEK DATABASE + TABEL ABSEN
 conn = sqlite3.connect('almahyra.db', check_same_thread=False)
 c = conn.cursor()
 c.execute('''CREATE TABLE IF NOT EXISTS users
              (username TEXT PRIMARY KEY, password TEXT, role TEXT, nama TEXT)''')
+c.execute('''CREATE TABLE IF NOT EXISTS absensi
+             (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, nama TEXT,
+              waktu TEXT, kelas TEXT, token TEXT, tanggal TEXT)''')
 c.execute("INSERT OR IGNORE INTO users VALUES ('admin','admin123','ADMIN','Admin ALMAHYRA')")
 c.execute("INSERT OR IGNORE INTO users VALUES ('staf1','staf123','STAF','Bpk. Guru')")
 c.execute("INSERT OR IGNORE INTO users VALUES ('murid1','murid123','MURID','Ahmad Siswa')")
@@ -77,24 +85,28 @@ def login(role_login):
         else:
             st.error("Username atau Password salah")
 
-# 4. SIDEBAR HANYA ADA 2 PILIHAN LOGIN
+# 4. FUNGSI GENERATE QR
+def generate_qr(kelas):
+    token = f"ALMAHYRA-{kelas}-{int(time.time())}" # token ganti tiap detik
+    qr = qrcode.QRCode(version=1, box_size=10, border=5)
+    qr.add_data(token)
+    qr.make(fit=True)
+    img = qr.make_image(fill_color="black", back_color="white")
+    buf = io.BytesIO()
+    img.save(buf)
+    return buf.getvalue(), token
+
+# 5. SIDEBAR
 def sidebar():
     with st.sidebar:
         st.title("🎌 AL MAHYRA JC")
 
         if not st.session_state['logged_in']:
             st.info("Silakan login untuk akses area khusus")
-
             tab1, tab2 = st.tabs(["👨‍🎓 Login Siswa", "👨‍🏫 Login Staf"])
 
-            with tab1:
-                login("MURID")
-                st.caption("Contoh: murid1 / murid123")
-
-            with tab2:
-                login("STAF")
-                st.caption("Contoh: staf1 / staf123")
-                st.caption("Contoh Admin: admin / admin123")
+            with tab1: login("MURID"); st.caption("Contoh: murid1 / murid123")
+            with tab2: login("STAF"); st.caption("Contoh: staf1 / staf123 | admin / admin123")
 
         else:
             st.success(f"Halo, {st.session_state['nama']}")
@@ -103,11 +115,11 @@ def sidebar():
 
             role = st.session_state['role']
             if role == "ADMIN" or role == "STAF":
-                menu = st.radio("Menu Staf/Admin", ["📅 Generate QR", "👨‍🎓 Data Siswa", "💰 Keuangan"])
+                menu = st.radio("Menu Staf/Admin", ["📅 Generate QR", "📊 Rekap Absen", "👨‍🎓 Data Siswa"])
                 if role == "ADMIN":
-                    menu = st.radio("Menu Admin", ["📊 Dashboard", "👨‍🎓 Manajemen Siswa", "💰 Keuangan"])
+                    menu = st.radio("Menu Admin", ["📊 Dashboard", "📅 Generate QR", "📊 Rekap Absen", "👨‍🎓 Manajemen Siswa"])
             elif role == "MURID":
-                menu = st.radio("Menu Murid", ["📅 Jadwal", "📚 Materi", "✅ Absen QR", "📝 Ujian"])
+                menu = st.radio("Menu Murid", ["📅 Jadwal", "📚 Materi", "✅ Scan QR Absen", "📝 Ujian"])
 
             st.divider()
             if st.button("🚪 Logout", use_container_width=True):
@@ -118,57 +130,74 @@ def sidebar():
             return menu
     return None
 
-# 5. LOGIKA UTAMA
+# 6. LOGIKA UTAMA
 menu_internal = sidebar()
 
-# ===== BAGIAN 1: PUBLIK - 1 HALAMAN SCROLL =====
+# ===== BAGIAN 1: PUBLIK =====
 if not st.session_state['logged_in']:
     st.markdown('<div class="section">', unsafe_allow_html=True)
     st.header("Selamat Datang di AL MAHYRA JC 👋")
     st.subheader("Wujudkan Mimpimu Bekerja & Kuliah ke Jepang Bersama Kami")
-    st.write("Belajar Bahasa Jepang dengan metode santai, cepat paham, dan dibimbing sampai lulus JLPT & berangkat ke Jepang.")
     st.link_button("📝 DAFTAR SEKARANG", LINK_GOOGLE_FORM, use_container_width=True, type="primary")
     st.markdown('</div>', unsafe_allow_html=True)
-
     st.markdown('<div class="section">', unsafe_allow_html=True)
     st.header("🏢 Profil Lembaga")
-    st.write("**AL MAHYRA JAPAN CENTER** adalah lembaga kursus Bahasa Jepang yang berfokus pada persiapan kerja, magang, dan kuliah ke Jepang.")
+    st.write("**AL MAHYRA JAPAN CENTER** adalah lembaga kursus Bahasa Jepang...")
     st.markdown('</div>', unsafe_allow_html=True)
-
-    st.markdown('<div class="section">', unsafe_allow_html=True)
-    st.header("🎯 Visi & Misi")
-    st.subheader("VISI")
-    st.write("Menjadi lembaga kursus Bahasa Jepang terpercaya...")
-    st.markdown('</div>', unsafe_allow_html=True)
-
     st.markdown('<div class="section">', unsafe_allow_html=True)
     st.header("📝 Pendaftaran Dibuka!")
     st.link_button("ISI FORM PENDAFTARAN ONLINE", LINK_GOOGLE_FORM, use_container_width=True, type="primary")
     st.markdown('</div>', unsafe_allow_html=True)
 
-    st.markdown('<div class="section">', unsafe_allow_html=True)
-    st.header("📞 Hubungi Kami")
-    pesan_wa = "Halo%20Admin%20AL%20MAHYRA%20JC,%20saya%20ingin%20bertanya..."
-    st.link_button("CHAT WHATSAPP", f"https://wa.me/{NO_WA_ADMIN}?text={pesan_wa}", use_container_width=True)
-    st.markdown('</div>', unsafe_allow_html=True)
-
-# ===== BAGIAN 2: INTERNAL - SETELAH LOGIN =====
+# ===== BAGIAN 2: INTERNAL =====
 else:
     role = st.session_state['role']
     st.title(f"Dashboard {role}")
 
-    if role == "ADMIN":
-        if menu_internal == "📊 Dashboard": st.header("📊 Dashboard Admin")
-        if menu_internal == "👨‍🎓 Manajemen Siswa": st.header("👨‍🎓 Manajemen Siswa")
-        if menu_internal == "💰 Keuangan": st.header("💰 Manajemen Keuangan")
+    # MENU STAF & ADMIN
+    if role == "STAF" or role == "ADMIN":
+        if menu_internal == "📅 Generate QR":
+            st.header("📅 Generate QR Absen")
+            kelas = st.selectbox("Pilih Kelas", ["N5 Pagi", "N5 Sore", "N4 Pagi", "N4 Sore"])
 
-    if role == "STAF":
-        if menu_internal == "📅 Generate QR": st.header("📅 Generate QR Absen")
-        if menu_internal == "👨‍🎓 Data Siswa": st.header("👨‍🎓 Data Siswa")
-        if menu_internal == "💰 Keuangan": st.header("💰 Lihat Total Kas")
+            if st.button("GENERATE QR SEKARANG", use_container_width=True, type="primary"):
+                img_bytes, token = generate_qr(kelas)
+                st.session_state['qr_token'] = token
+                st.session_state['qr_kelas'] = kelas
+                st.session_state['qr_time'] = datetime.now().strftime("%H:%M:%S")
 
+            if 'qr_token' in st.session_state:
+                st.image(Image.open(io.BytesIO(img_bytes)), width=300)
+                st.success(f"QR untuk kelas {st.session_state['qr_kelas']} berhasil dibuat!")
+                st.info(f"Token: {st.session_state['qr_token']}")
+                st.warning("QR ini valid. Suruh murid scan sekarang. Token ganti tiap kali generate baru")
+
+        if menu_internal == "📊 Rekap Absen":
+            st.header("📊 Rekap Absensi")
+            data = c.execute("SELECT * FROM absensi ORDER BY tanggal DESC, waktu DESC").fetchall()
+            st.dataframe(data, use_container_width=True)
+
+    # MENU MURID
     if role == "MURID":
-        if menu_internal == "📅 Jadwal": st.header("📅 Jadwal Kelas Kamu")
-        if menu_internal == "📚 Materi": st.header("📚 Materi Pelajaran")
-        if menu_internal == "✅ Absen QR": st.header("✅ Scan QR Absensi")
-        if menu_internal == "📝 Ujian": st.header("📝 Ujian Online JLPT")
+        if menu_internal == "✅ Scan QR Absen":
+            st.header("✅ Scan QR Absensi Mandiri")
+            st.write("Minta QR ke Staf, lalu scan di bawah ini")
+
+            token_input = st.text_input("Masukkan Kode QR dari Staf", placeholder="Tempel token QR di sini")
+
+            if st.button("ABSEN SEKARANG", use_container_width=True, type="primary"):
+                if token_input:
+                    # Cek udah absen hari ini belum
+                    today = datetime.now().strftime("%Y-%m-%d")
+                    cek = c.execute("SELECT * FROM absensi WHERE username=? AND tanggal=?", (st.session_state['username'], today)).fetchone()
+                    if cek:
+                        st.error("Kamu sudah absen hari ini!")
+                    else:
+                        waktu = datetime.now().strftime("%H:%M:%S")
+                        c.execute("INSERT INTO absensi (username, nama, waktu, kelas, token, tanggal) VALUES (?,?,?,?,?,?)",
+                                  (st.session_state['username'], st.session_state['nama'], waktu, "N5 Pagi", token_input, today))
+                        conn.commit()
+                        st.success(f"Absen Berhasil! Jam {waktu}")
+                        st.balloons()
+                else:
+                    st.warning("Masukkan kode QR dulu")
