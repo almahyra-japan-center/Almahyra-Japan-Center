@@ -29,7 +29,6 @@ st.markdown(f"""
     background-attachment: fixed;
 }}
 
-/* HAPUS PADDING BAWAAN */
 .block-container {{
     background: transparent;
     padding: 0 !important;
@@ -47,36 +46,44 @@ st.markdown(f"""
     width: 100vw;
     margin-left: calc(-50vw + 50%);
     background: white;
-    padding: 30px 0; /* TEBELIN LAGI */
+    padding: 40px 0; /* DITEBELIN LAGI */
     text-align: center;
     z-index: 9999;
     box-shadow: 0 4px 20px rgba(0,0,0,0.15);
 }}
 .logo-bar img {{
-    height: 250px; /* GEDEIN JADI 250PX!!! */
+    height: 350px; /* GEDEIN JADI 350PX!!! */
     width: auto;
-    max-width: 90%; /* BIAR GA KELEBARAN DI HP */
+    max-width: 90%;
 }}
 
-/* KONTEN DI TENGAH LAGI */
+/* KONTEN DI TENGAH + KECIL */
 .content-wrapper {{
-    padding: 2rem 3rem;
-    max-width: 900px; /* DIBATASI BIAR DI TENGAH */
-    margin: 0 auto; /* INI KUNCINYA BIAR TENGAH */
-    text-align: left; /* TULISAN TETEP RATA KIRI */
+    padding: 3rem 2rem; /* KIRI KANAN DIKASIH JARAK 2REM */
+    max-width: 800px; /* DIKECILIN BIAR GA NEMPEL BATAS */
+    margin: 0 auto;
+    text-align: left;
 }}
 
-h1, h2, h3 {{
+h1 {{
     color: #B22222;
     font-weight: 900;
+    font-size: 2rem; /* DIKECILIN DARI SEBELUMNYA */
     text-shadow: 2px 2px 6px rgba(255,255,255,0.9);
-    text-align: center; /* JUDUL DI TENGAH */
+    text-align: center;
+}}
+h2, h3 {{
+    color: #B22222;
+    font-weight: 900;
+    font-size: 1.5rem; /* DIKECILIN */
+    text-shadow: 2px 2px 6px rgba(255,255,255,0.9);
+    text-align: center;
 }}
 p, li {{
     color: #111; 
-    font-size: 18px; /* GEDEIN DIKIT */
-    font-weight: 600;
-    line-height: 1.8;
+    font-size: 16px; /* DIKECILIN JADI 16PX */
+    font-weight: 500; /* DIKECILIN DARI 600 */
+    line-height: 1.7;
     text-shadow: 1px 1px 3px rgba(255,255,255,0.8);
 }}
 
@@ -91,7 +98,6 @@ p, li {{
 """, unsafe_allow_html=True)
 
 
-# BAR LOGO
 if logo_base64:
     st.markdown(f'<div class="logo-bar"><img src="{logo_base64}"></div>', unsafe_allow_html=True)
 
