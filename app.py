@@ -1,5 +1,6 @@
 import streamlit as st
 import base64
+import os
 
 st.set_page_config(page_title="AL MAHYRA JAPAN CENTER", page_icon="🎌", layout="wide")
 
@@ -14,6 +15,13 @@ try:
 except:
     bg_image = "linear-gradient(180deg, #FFF5F5 0%, #ffffff 100%)"
 
+# LOGO BASE64 BUAT HEADER
+try:
+    logo_bin_str = get_base64_of_bin_file('logo.png')
+    logo_base64 = f"data:image/png;base64,{logo_bin_str}"
+except:
+    logo_base64 = ""
+
 st.markdown(f"""
 <style>
 .stApp {{
@@ -23,28 +31,51 @@ st.markdown(f"""
     background-attachment: fixed;
 }}
 
-/* GA USAH PAKAI BOX PUTIH SAMA SEKALI */
+/* GA USAH PAKAI BOX PUTIH */
 .block-container {{
     background: transparent;
-    padding-top: 150px; /* KASIH JARAK BUAT LOGO */
+    padding-top: 120px !important; /* KASIH JARAK BUAT HEADER LOGO */
+    padding-left: 2.5rem !important; /* KASIH JARAK DARI SIDEBAR */
+    padding-right: 2rem !important;
+    max-width: 750px !important; /* BIAR PANJANG KE BAWAH */
 }}
 
-/* LOGO STICKY DI ATAS */
+/* HEADER PUTIH BUAT LOGO */
 [data-testid="stHeader"] {{
-    background: rgba(255,255,255,0.9);
-    backdrop-filter: blur(8px);
+    background: white;
+    height: 100px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }}
 
-h1, h2, h3 {{
-    color: #B22222;
-    font-weight: 900;
-    text-shadow: 2px 2px 5px white;
+/* GEDEIN LOGO DI HEADER */
+[data-testid="stHeader"] img {{
+    height: 80px !important;
+    width: auto !important;
+}}
+
+/* TEXT PERSIS KAYAK DI FOTO - HITAM ABU */
+h1 {{ 
+    color: #262730 !important; /* HITAM ABU */
+    font-weight: 700;
+    font-size: 2rem;
+    text-shadow: none; /* HAPUS SHADOW */
+    text-align: left;
+}}
+h2 {{ 
+    color: #262730 !important; /* HITAM ABU */
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-shadow: none;
+    text-align: left;
+    line-height: 1.4;
 }}
 p, li {{
-    color: #111; 
-    font-size: 17px;
-    font-weight: 600;
-    text-shadow: 1px 1px 3px white;
+    color: #31333F !important; /* ABU GELAP */
+    font-size: 16px; /* NORMAL */
+    font-weight: 400;
+    text-shadow: none; /* HAPUS SHADOW */
+    text-align: left;
+    line-height: 1.7;
 }}
 
 [data-testid="stSidebar"] {{
@@ -58,7 +89,8 @@ p, li {{
 """, unsafe_allow_html=True)
 
 # LOGO DI HEADER BAWAAN STREAMLIT
-st.logo("logo.png")
+if logo_base64:
+    st.logo(logo_base64, link=None)
 
 NO_WA_ADMIN = "6281234567890"
 LINK_GOOGLE_FORM = "https://forms.gle/gQ4QZz8yGmmTUc8y5"
