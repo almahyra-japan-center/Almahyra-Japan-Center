@@ -2,7 +2,7 @@ import streamlit as st
 
 st.set_page_config(page_title="AL MAHYRA JAPAN CENTER", page_icon="🎌", layout="wide")
 
-# CSS BUAT BACKGROUND LANGSUNG DARI INTERNET - PASTI MUNCUL
+# CSS BUAT BACKGROUND + BOX YANG LEBIH JELAS
 st.markdown("""
 <style>
 .stApp {
@@ -11,15 +11,27 @@ st.markdown("""
     background-position: center;
     background-attachment: fixed;
 }
+
+/* INI KUNCINYA BIAR TULISAN JELAS */
 .block-container {
-    background-color: rgba(255, 255, 255, 0.92);
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    background-color: rgba(255, 255, 255, 0.96); /* 96% putih */
+    backdrop-filter: blur(8px); /* efek blur di belakang box */
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
 }
+
 h1, h2, h3 {
-    color: #B22222;
+    color: #B22222; /* merah jepang */
+    font-weight: bold;
 }
+p, li {
+    color: #333; /* abu tua biar kebaca */
+    font-size: 16px;
+    line-height: 1.7;
+}
+
 [data-testid="stSidebar"] {
     background: linear-gradient(180deg, #B22222 0%, #8B0000 100%);
 }
@@ -29,6 +41,7 @@ h1, h2, h3 {
 }
 </style>
 """, unsafe_allow_html=True)
+
 
 NO_WA_ADMIN = "6281234567890"  # GANTI
 LINK_GOOGLE_FORM = "https://forms.gle/gQ4QZz8yGmmTUc8y5"  # GANTI
@@ -65,18 +78,3 @@ if menu == "Beranda":
     st.subheader("📞 Hubungi Admin")
     pesan_wa = "Halo%20Admin%20AL%20MAHYRA%20JC,%20saya%20ingin%20bertanya..."
     st.markdown(f'<a href="https://wa.me/{NO_WA_ADMIN}?text={pesan_wa}" target="_blank"><button style="background-color:#25D366;color:white;padding:14px 20px;border:none;border-radius:8px;width:100%;font-size:16px;cursor:pointer;">CHAT ADMIN VIA WHATSAPP</button></a>', unsafe_allow_html=True)
-
-elif menu == "Program":
-    st.header("📚 Program Kami")
-    st.write("1. **Kelas Reguler N5 - N1**: 3x seminggu")
-    st.write("2. **Kelas Privat**: Fleksibel sesuai jadwal")
-    st.write("3. **Program Kerja/TG**: Persiapan SSW + Interview")
-
-elif menu == "Pendaftaran":
-    st.header("📝 Form Pendaftaran")
-    st.markdown(f'<a href="{LINK_GOOGLE_FORM}" target="_blank"><button style="background-color:#B22222;color:white;padding:14px 20px;border:none;border-radius:8px;width:100%;font-size:16px;">BUKA GOOGLE FORM</button></a>', unsafe_allow_html=True)
-
-elif menu == "Kontak":
-    st.header("📞 Hubungi Kami")
-    st.write(f"**WhatsApp Admin**: {NO_WA_ADMIN}")
-    st.write("**Alamat**: Brebes, Jawa Tengah, Indonesia")
