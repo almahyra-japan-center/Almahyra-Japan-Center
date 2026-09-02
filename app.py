@@ -1,7 +1,11 @@
 import streamlit as st
 import base64
 
-st.set_page_config(page_title="AL MAHYRA JAPAN CENTER", page_icon="🎌", layout="wide")
+st.set_page_config(
+    page_title="AL MAHYRA JAPAN CENTER", 
+    page_icon="🎌", 
+    layout="wide"
+)
 
 def get_base64_of_bin_file(bin_file):
     with open(bin_file, 'rb') as f:
@@ -23,16 +27,9 @@ st.markdown(f"""
     background-attachment: fixed;
 }}
 
-/* GA USAH PAKAI BOX PUTIH SAMA SEKALI */
+/* GA ADA BOX PUTIH */
 .block-container {{
     background: transparent;
-    padding-top: 150px; /* KASIH JARAK BUAT LOGO */
-}}
-
-/* LOGO STICKY DI ATAS */
-[data-testid="stHeader"] {{
-    background: rgba(255,255,255,0.9);
-    backdrop-filter: blur(8px);
 }}
 
 h1, h2, h3 {{
@@ -57,8 +54,8 @@ p, li {{
 </style>
 """, unsafe_allow_html=True)
 
-# LOGO DI HEADER BAWAAN STREAMLIT
-st.logo("logo.png")
+# INI KUNCINYA - LOGO DI POJOK KIRI ATAS
+st.logo("logo.png", icon_image="logo.png")
 
 NO_WA_ADMIN = "6281234567890"
 LINK_GOOGLE_FORM = "https://forms.gle/gQ4QZz8yGmmTUc8y5"
