@@ -3,7 +3,7 @@ import os
 
 st.set_page_config(page_title="AL MAHYRA JAPAN CENTER", layout="wide")
 
-NAMA_LOGO = "IMG-20260902-WA0000.jpg"
+NAMA_LOGO = "logo.png"  # <-- INI UDAH SAMA KAYAK DI GITHUB
 logo_ada = os.path.exists(NAMA_LOGO)
 
 st.sidebar.title("🇯🇵 AL MAHYRA JC")
@@ -16,7 +16,7 @@ if menu == "Beranda":
         st.image(NAMA_LOGO, width=250)
     st.title("AL MAHYRA JAPAN CENTER")
     st.subheader("Lembaga Kursus Bahasa Jepang")
-    st.markdown("### Yuk belajar bahasa jepang dari dasar bersama kami !")
+    st.markdown("### Yuk belajar bahasa jepang dari dasar bersama kami!")
     st.write("Bergabunglah jadi keluarga besar kami dan wujudkan mimpimu")
     st.success("Pendaftaran dibuka setiap awal bulan!")
     st.link_button("💬 Chat Admin WA", "https://wa.me/6287816094321")
@@ -35,7 +35,6 @@ elif menu == "Visi & Misi":
     st.write("1. Menyelenggarakan pembelajaran Bahasa Jepang yang sistematis dan menyenangkan")
     st.write("2. Membekali peserta dengan kemampuan bahasa untuk studi, kerja, dan budaya Jepang")
     st.write("3. Menumbuhkan semangat disiplin, kerja keras, dan rasa tanggung jawab")
-    st.write("4. Menjalin kerja sama dengan lembaga di Jepang")
 
 elif menu == "Kontak":
     st.header("Informasi Kontak")
@@ -43,5 +42,5 @@ elif menu == "Kontak":
         st.image(NAMA_LOGO, width=120)
     st.write("📍 **Alamat**: Desa Karangsari RT 005/01, Kec. Bulakamba, Kab. Brebes")
     st.write("📞 **WhatsApp Admin**: 0878-1609-4321")
-    st.write("📅 **Pendaftaran**: Dibuka setiap awal bulan")
     st.link_button("💬 Chat Sekarang", "https://wa.me/6287816094321")
+    
