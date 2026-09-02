@@ -29,30 +29,30 @@ st.markdown(f"""
     background-attachment: fixed;
 }}
 
-/* CONTAINER TRANSPARAN BANGET */
+/* CONTAINER MULAI DARI BAWAH HEADER */
 .block-container {{
-    background-color: rgba(255, 255, 255, 0.08);
+    background-color: rgba(255, 255, 255, 0.05); /* HAMPIR TRANSPARAN TOTAL */
     backdrop-filter: blur(10px);
     padding: 2rem;
-    padding-top: 250px; /* INI PENTING! KASIH JARAK SEBESAR LOGO */
+    padding-top: 180px; /* SESUAIKAN DENGAN TINGGI LOGO */
 }}
 
-/* LOGO GEDE FIXED DI ATAS */
-.fixed-logo {{
+/* HEADER FIXED PENUH */
+.header-fixed {{
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
+    z-index: 9999;
+    background: rgba(255,255,255,0.95); /* PUTIH TAPI TEMBUS 5% */
+    backdrop-filter: blur(5px);
+    padding: 20px 0;
     text-align: center;
-    z-index: 9999; /* PALING DEPAN */
-    background: rgba(255,255,255,0.85); /* KASIH BACKGROUND PUTIH TIPIS */
-    backdrop-filter: blur(8px);
-    padding: 15px 0;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }}
-.fixed-logo img {{
-    width: 220px; /* GEDEIN LOGO */
-    height: auto;
+.header-fixed img {{
+    height: 100px; /* ATUR TINGGI LOGO DISINI */
+    width: auto;
 }}
 
 h1, h2, h3 {{
@@ -69,9 +69,9 @@ p, li {{
 }}
 
 [data-testid="stSidebar"] {{
-    background: rgba(178, 34, 34, 0.9);
+    background: rgba(178, 34, 34, 0.95);
     backdrop-filter: blur(10px);
-    z-index: 10000; /* SIDEBAR PALING DEPAN */
+    z-index: 10000;
 }}
 [data-testid="stSidebar"] * {{
     color: white;
@@ -80,9 +80,9 @@ p, li {{
 </style>
 """, unsafe_allow_html=True)
 
-# TAMPILIN LOGO FIXED
+# HEADER FIXED
 if logo_base64:
-    st.markdown(f'<div class="fixed-logo"><img src="{logo_base64}"></div>', unsafe_allow_html=True)
+    st.markdown(f'<div class="header-fixed"><img src="{logo_base64}"></div>', unsafe_allow_html=True)
 
 
 NO_WA_ADMIN = "6281234567890"
