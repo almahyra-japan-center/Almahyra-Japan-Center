@@ -29,35 +29,38 @@ st.markdown(f"""
     background-attachment: fixed;
 }}
 
-/* SEMBUNYIKAN HEADER BAWAAN STREAMLIT BIAR GA KECEPIT */
+/* HILANGKAN PADDING BAWAAN STREAMLIT */
+.block-container {{
+    background: transparent;
+    padding: 0 !important; /* HAPUS PADDING */
+    max-width: 100% !important; /* FULL WIDTH */
+}}
+
+/* SEMBUNYIKAN HEADER BAWAAN */
 [data-testid="stHeader"] {{
     display: none;
 }}
 
-/* BAR LOGO PUTIH YANG BENER */
+/* BAR LOGO FULL LEBAR */
 .logo-bar {{
     position: sticky;
     top: 0;
-    width: 100%;
+    width: 100vw; /* 100% LEBAR LAYAR */
+    margin-left: calc(-50vw + 50%); /* TRIK BIAR FULL MELEWATI CONTAINER */
     background: white;
-    padding: 20px 0; /* ATAS BAWAH DIKASIH JARAK */
+    padding: 25px 0; /* ATAS BAWAH LEBIH TEBAL */
     text-align: center;
     z-index: 9999;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    margin-bottom: 2rem; /* KASIH JARAK KE BAWAH */
-    border-radius: 0 0 12px 12px; /* BAWAHNYA DIBUAT LENGKUNG DIKIT */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
 }}
 .logo-bar img {{
-    height: 120px; /* LOGO DIGEDEIN */
+    height: 160px; /* LOGO GEDE BANGET */
     width: auto;
 }}
 
-/* KONTEN ADA PADDING KIRI KANAN */
-.block-container {{
-    background: transparent;
-    padding: 0rem 3rem 2rem 3rem; /* KIRI KAN 3REM */
-    max-width: 1200px; /* DI BATASIN BIAR GA KELEBARAN */
-    margin: 0 auto; /* DI TENGAHIN */
+/* KONTEN KASIH PADDING LAGI BIAR GA MEPET */
+.content-wrapper {{
+    padding: 2rem 4rem; /* KIRI KANAN 4REM */
 }}
 
 h1, h2, h3 {{
@@ -84,13 +87,16 @@ p, li {{
 """, unsafe_allow_html=True)
 
 
-# TAMPILIN BAR LOGO
+# TAMPILIN BAR LOGO FULL
 if logo_base64:
     st.markdown(f'<div class="logo-bar"><img src="{logo_base64}"></div>', unsafe_allow_html=True)
 
 
 NO_WA_ADMIN = "6281234567890"
 LINK_GOOGLE_FORM = "https://forms.gle/gQ4QZz8yGmmTUc8y5"
+
+# BUNGKUS KONTEN BIAR ADA JARAK KIRI KANAN
+st.markdown('<div class="content-wrapper">', unsafe_allow_html=True)
 
 with st.sidebar:
     st.title("🎌 AL MAHYRA JC")
@@ -123,3 +129,5 @@ if menu == "Beranda":
     st.subheader("📞 Hubungi Admin")
     pesan_wa = "Halo%20Admin%20AL%20MAHYRA%20JC,%20saya%20ingin%20bertanya..."
     st.markdown(f'<a href="https://wa.me/{NO_WA_ADMIN}?text={pesan_wa}" target="_blank"><button style="background-color:#25D366;color:white;padding:14px 20px;border:none;border-radius:8px;width:100%;font-size:16px;cursor:pointer;">CHAT ADMIN VIA WHATSAPP</button></a>', unsafe_allow_html=True)
+
+st.markdown('</div>', unsafe_allow_html=True) # TUTUP WRAPPER
