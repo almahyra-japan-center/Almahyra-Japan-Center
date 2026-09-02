@@ -78,6 +78,7 @@ p, li {{
     line-height: 1.7;
 }}
 
+/* SIDEBAR MERAH */
 [data-testid="stSidebar"] {{
     background: #B22222;
 }}
@@ -95,11 +96,37 @@ if logo_base64:
 NO_WA_ADMIN = "6281234567890"
 LINK_GOOGLE_FORM = "https://forms.gle/gQ4QZz8yGmmTUc8y5"
 
+# ================== INI BAGIAN SIDEBAR BARU ==================
 with st.sidebar:
     st.title("🎌 AL MAHYRA JC")
-    menu = st.radio("Menu", ["Beranda", "Program", "Pendaftaran", "Kontak"])
+    
+    # 1. MENU UTAMA
+    menu = st.radio("Menu", ["🏠 Beranda", "📚 Program", "📝 Pendaftaran", "📞 Kontak"])
+    
+    st.divider()
+    
+    # 2. INFO CEPAT
+    st.subheader("📌 Info Cepat")
+    st.markdown("**📍 Alamat**")
+    st.caption("Brebes, Jawa Tengah, Indonesia")
+    st.markdown("**⏰ Jam Operasional**")
+    st.caption("Senin - Sabtu: 08.00 - 17.00")
+    
+    st.divider()
+    
+    # 3. TOMBOL AKSI CEPAT
+    st.link_button("📝 Daftar Sekarang", LINK_GOOGLE_FORM, use_container_width=True, type="primary")
+    st.link_button("💬 Chat via WhatsApp", f"https://wa.me/{NO_WA_ADMIN}", use_container_width=True)
+    
+    st.divider()
+    
+    # 4. FOOTER
+    st.caption("© 2026 AL MAHYRA JAPAN CENTER")
+    st.caption("Lembaga Kursus Bahasa Jepang Terpercaya")
+# ================== SELESAI SIDEBAR ==================
 
-if menu == "Beranda":
+# ================== INI BAGIAN ISI KANAN ==================
+if menu == "🏠 Beranda":
     st.header("Selamat Datang! 👋")
     st.write("Terima kasih sudah berkunjung ke website resmi kami.")
     st.subheader("Wujudkan Mimpimu Bekerja & Kuliah ke Jepang Bersama Kami")
@@ -126,3 +153,29 @@ if menu == "Beranda":
     st.subheader("📞 Hubungi Admin")
     pesan_wa = "Halo%20Admin%20AL%20MAHYRA%20JC,%20saya%20ingin%20bertanya..."
     st.markdown(f'<a href="https://wa.me/{NO_WA_ADMIN}?text={pesan_wa}" target="_blank"><button style="background-color:#25D366;color:white;padding:14px 20px;border:none;border-radius:8px;width:100%;font-size:16px;cursor:pointer;">CHAT ADMIN VIA WHATSAPP</button></a>', unsafe_allow_html=True)
+
+elif menu == "📚 Program":
+    st.header("📚 Program Kami")
+    st.write("Kami memiliki beberapa program unggulan untuk mempersiapkan kamu ke Jepang:")
+    st.subheader("1. Program Kerja ke Jepang - TG / SSW")
+    st.write("Persiapan Bahasa Jepang + Skill + Tes JLPT & SSW. Didampingi sampai berangkat.")
+    st.subheader("2. Program Magang Jepang")
+    st.write("Bimbingan intensif untuk lolos seleksi magang ke Jepang.")
+    st.subheader("3. Program Kuliah / Sekolah ke Jepang")
+    st.write("Persiapan JLPT, EJU, dan urus dokumen kuliah di Jepang.")
+
+elif menu == "📝 Pendaftaran":
+    st.header("📝 Formulir Pendaftaran")
+    st.write("Silakan isi formulir pendaftaran online kami melalui link di bawah ini:")
+    st.markdown(f'<a href="{LINK_GOOGLE_FORM}" target="_blank"><button style="background-color:#B22222;color:white;padding:20px;border:none;border-radius:8px;width:100%;font-size:18px;cursor:pointer;">KLIK DISINI UNTUK DAFTAR</button></a>', unsafe_allow_html=True)
+
+elif menu == "📞 Kontak":
+    st.header("📞 Hubungi Kami")
+    st.write("Ada pertanyaan? Langsung hubungi admin kami:")
+    st.subheader("Admin AL MAHYRA JC")
+    st.write(f"WhatsApp: {NO_WA_ADMIN}")
+    st.markdown(f'<a href="https://wa.me/{NO_WA_ADMIN}" target="_blank"><button style="background-color:#25D366;color:white;padding:14px 20px;border:none;border-radius:8px;width:100%;font-size:16px;cursor:pointer;">CHAT SEKARANG</button></a>', unsafe_allow_html=True)
+    st.divider()
+    st.write("**Alamat:** Brebes, Jawa Tengah, Indonesia")
+    st.write("**Email:** almahyra.jc@gmail.com")
+# ================== SELESAI ISI KANAN ==================
