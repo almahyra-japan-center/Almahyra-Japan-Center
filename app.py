@@ -22,43 +22,46 @@ st.markdown(f"""
     background-position: center;
     background-attachment: fixed;
 }}
-/* BOX UTAMA LEBIH TIPIS */
+
+/* HAPUS SEMUA BOX PUTIH - CUMA KASIH BLUR AJA */
 .block-container {{
-    background-color: rgba(255, 255, 255, 0.60); /* 60% AJA */
-    backdrop-filter: blur(3px);
-    padding: 2.5rem;
-    border-radius: 20px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.20);
+    background-color: rgba(255, 255, 255, 0.20); /* CUMA 20% PUTIH */
+    backdrop-filter: blur(10px); /* BLUR NYA DIKUATIN */
+    padding: 2rem;
+    border-radius: 0px; /* GA ADA BULAT2 */
+    box-shadow: none; /* GA ADA BAYANGAN */
 }}
 
-/* KASIH BOX KE SETIAP SECTION BIAR TETEP KEBACA */
-div[data-testid="stVerticalBlock"] > div {{
-    background-color: rgba(255, 255, 255, 0.85);
-    padding: 1.5rem;
-    border-radius: 12px;
-    margin-bottom: 1rem;
-}}
-
+/* TULISAN DIKASIH BAYANGAN PUTIH BIAR KEBACA DI ATAS GAMBAR */
 h1, h2, h3 {{
     color: #B22222;
     font-weight: 800;
-    text-shadow: 2px 2px 5px rgba(255,255,255,1);
+    text-shadow: 2px 2px 8px rgba(255,255,255,0.9);
 }}
 p, li {{
     color: #000; 
-    font-size: 16px;
-    line-height: 1.8;
-    font-weight: 600;
+    font-size: 17px;
+    line-height: 1.9;
+    font-weight: 700;
+    text-shadow: 1px 1px 4px rgba(255,255,255,0.8);
 }}
+
 [data-testid="stSidebar"] {{
-    background: linear-gradient(180deg, #B22222 0%, #8B0000 100%);
+    background: rgba(178, 34, 34, 0.9); /* SIDEBAR TRANSPARAN DIKIT */
+    backdrop-filter: blur(10px);
 }}
 [data-testid="stSidebar"] * {{
     color: white;
     font-weight: bold;
 }}
+
+/* TOMBOL BIAR TETEP JELAS */
+button {{
+    backdrop-filter: blur(0px) !important;
+}}
 </style>
 """, unsafe_allow_html=True)
+
 
 NO_WA_ADMIN = "6281234567890"
 LINK_GOOGLE_FORM = "https://forms.gle/gQ4QZz8yGmmTUc8y5"
