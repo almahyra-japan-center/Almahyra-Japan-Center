@@ -3,19 +3,17 @@ import base64
 
 st.set_page_config(page_title="AL MAHYRA JAPAN CENTER", page_icon="🎌", layout="wide")
 
-# BACA FILE BAGROUND.JPG
 def get_base64_of_bin_file(bin_file):
     with open(bin_file, 'rb') as f:
         data = f.read()
     return base64.b64encode(data).decode()
 
 try:
-    bin_str = get_base64_of_bin_file('Baground.jpg')  # <-- INI NAMA FILE KAMU
+    bin_str = get_base64_of_bin_file('Baground.jpg')
     bg_image = f"url(data:image/jpg;base64,{bin_str})"
 except:
     bg_image = "linear-gradient(180deg, #FFF5F5 0%, #ffffff 100%)"
 
-# CSS BOX PUTIH SOLID BIAR JELAS
 st.markdown(f"""
 <style>
 .stApp {{
@@ -25,7 +23,8 @@ st.markdown(f"""
     background-attachment: fixed;
 }}
 .block-container {{
-    background-color: white; /* 100% putih biar kebaca */
+    background-color: rgba(255, 255, 255, 0.85); /* INI YG DIRUBAH JADI 0.85 */
+    backdrop-filter: blur(5px); /* KASIH EFEK KACA BLUR */
     padding: 3rem;
     border-radius: 20px;
     box-shadow: 0 8px 32px rgba(0,0,0,0.25);
@@ -35,11 +34,13 @@ st.markdown(f"""
 h1, h2, h3 {{
     color: #B22222;
     font-weight: 800;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.8); /* KASIH BAYANGAN BIAR KEBACA */
 }}
 p, li {{
-    color: #000; 
+    color: #111; 
     font-size: 16px;
     line-height: 1.8;
+    font-weight: 500;
 }}
 [data-testid="stSidebar"] {{
     background: linear-gradient(180deg, #B22222 0%, #8B0000 100%);
