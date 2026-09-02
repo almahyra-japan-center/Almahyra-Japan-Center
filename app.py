@@ -9,7 +9,7 @@ try:
     st.sidebar.image(NAMA_LOGO, use_container_width=True)
 except:
     pass 
-menu = st.sidebar.selectbox("Pilih Menu", ["Beranda", "Profil", "Jadwal & Biaya", "Visi & Misi", "Kontak"])
+menu = st.sidebar.selectbox("Pilih Menu", ["Beranda", "Profil", "Jadwal & Biaya", "Pendaftaran", "Visi & Misi", "Kontak"])
 
 if menu == "Beranda":
     try:
@@ -63,6 +63,25 @@ elif menu == "Jadwal & Biaya":
     
     st.warning("**Catatan:** Biaya pendaftaran awal Rp 200.000")
     st.link_button("💬 Tanya Jadwal Terdekat", "https://wa.me/6287816094321")
+
+elif menu == "Pendaftaran":
+    st.header("📝 Form Pendaftaran Online")
+    st.write("Isi data di bawah ini. Nanti langsung diarahkan ke WA Admin ya")
+    
+    nama = st.text_input("Nama Lengkap")
+    umur = st.number_input("Umur", min_value=15, max_value=40, value=18)
+    kelas = st.selectbox("Pilih Program", ["Kelas Reguler N5-N4", "Kelas Intensif Magang/TG N4-N3"])
+    alamat = st.text_area("Alamat Domisili")
+    
+    # bikin pesan otomatis buat WA
+    pesan_wa = f"Halo Admin AL MAHYRA JC%0A%0ASaya mau daftar:%0ANama: {nama}%0AUmur: {umur}%0AProgram: {kelas}%0AAlamat: {alamat}"
+    link_wa = f"https://wa.me/6287816094321?text={pesan_wa}"
+    
+    if nama != "":
+        st.link_button("📲 KIRIM PENDAFTARAN VIA WA", link_wa, type="primary")
+    else:
+        st.button("📲 KIRIM PENDAFTARAN VIA WA", disabled=True)
+        st.info("Isi Nama dulu ya kak")
 
 elif menu == "Visi & Misi":
     st.header("Visi & Misi")
