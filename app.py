@@ -39,44 +39,59 @@ st.markdown(f"""
 
 .block-container {{
     background: transparent;
-    padding-top: 1rem !important;
-    padding-left: 2rem !important; /* KASIH SPACE DARI MERAH */
-    padding-right: 2rem !important;
-    max-width: 900px !important;
+    padding-top: 2rem !important;
+    padding-left: 2.5rem !important; /* KASIH JARAK DARI MERAH */
+    padding-right: 2.5rem !important;
+    max-width: 750px !important; /* LEBIH SEMPIT BIAR PANJANG KE BAWAH */
     margin: 0 auto !important;
 }}
 
 [data-testid="stHeader"] {{ display: none; }}
 
-/* BAR PUTIH BUAT LOGO - GEDEIN */
+/* BAR PUTIH BUAT LOGO */
 .logo-bar {{
     position: sticky;
     top: 0;
     width: 100vw;
     margin-left: calc(-50vw + 50%);
     background: white;
-    padding: 20px 0;
+    padding: 18px 0;
     text-align: center;
     z-index: 9999;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }}
 .logo-bar img {{
-    height: 180px; /* LOGO DIGEDEIN LAGI */
+    height: 160px; /* SEDENG KAYAK DI FOTO */
     width: auto;
 }}
 
-/* TEXT DIKECILIN KAYAK DI VIDEO */
-h1 {{ font-size: 1.8rem; color: #B22222; font-weight: 700; text-align: left; margin-bottom: 0.5rem; }} /* "Selamat Datang" */
-h2 {{ font-size: 1.4rem; color: #333; font-weight: 600; text-align: left; margin-bottom: 1rem; }} /* "Wujudkan Mimpimu" */
-h3 {{ font-size: 1.2rem; color: #B22222; font-weight: 600; }}
-p, li {{ 
-    color: #222; 
-    font-size: 15px; /* KECILIN LAGI */
+/* UKURAN TEXT PERSIS KAYAK DI GAMBAR MERAH */
+h1 {{ 
+    font-size: 2rem; 
+    color: #262730; /* ABU-ABU GELAP KAYAK DI FOTO */
+    font-weight: 700; 
+    text-align: left; 
+    margin-bottom: 0.5rem;
+    text-shadow: none;
+}}
+h2 {{ 
+    font-size: 1.5rem; 
+    color: #262730; /* ABU-ABU GELAP */
+    font-weight: 700; 
+    text-align: left; 
+    line-height: 1.4;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    text-shadow: none;
+}}
+p {{ 
+    color: #262730; /* ABU-ABU GELAP */
+    font-size: 16px; /* NORMAL */
     font-weight: 400; 
-    line-height: 1.6; 
-    text-align: left; /* RATA KIRI BIAR GA MEPET */
-    text-shadow: 1px 1px 2px rgba(255,255,255,0.7); 
-    margin-bottom: 0.8rem;
+    line-height: 1.7; 
+    text-align: left;
+    text-shadow: none; /* HAPUS SHADOW BIAR JELAS */
+    margin-bottom: 1rem;
 }}
 
 [data-testid="stSidebar"] {{ background: #B22222; width: 16rem !important; }}
@@ -103,4 +118,23 @@ if menu == "Beranda":
     st.write("Belajar Bahasa Jepang dengan metode santai, cepat paham, dan dibimbing sampai lulus JLPT.")
     st.divider()
     st.subheader("🏢 Profil Lembaga")
-    st.write("**AL MAHYRA JAPAN CENTER** adalah lembaga kursus Bahasa Jepang yang berfokus pada persiapan kerja, magang, dan kuliah ke Jepang.")
+    st.write("**AL MAHYRA JAPAN CENTER** adalah lembaga kursus Bahasa Jepang yang berfokus pada persiapan kerja, magang, dan kuliah ke Jepang. Kami berlokasi di **Brebes, Jawa Tengah** dan juga membuka kelas online untuk seluruh Indonesia.")
+    st.subheader("🎯 Visi & Misi")
+    st.markdown("**VISI**")
+    st.write("Menjadi lembaga kursus Bahasa Jepang terpercaya yang membentuk generasi kompeten, berkarakter, dan siap meraih masa depan di Jepang.")
+    st.markdown("**MISI**")
+    st.write("1. **Pembelajaran Berkualitas**: Sistematis dari dasar sampai lanjutan untuk kerja & kuliah")
+    st.write("2. **4 Kemampuan Seimbang**: Membaca, menulis, mendengar, dan berbicara")
+    st.write("3. **Bentuk Karakter**: Disiplin, percaya diri, bertanggung jawab, dan beretika")
+    st.write("4. **Kenalkan Budaya Jepang**: Etika dan kehidupan masyarakat Jepang")
+    st.write("5. **Siap Karier & Studi**: Dukung pendidikan, kerja, dan peluang di Jepang")
+    st.write("6. **Lingkungan Nyaman**: Belajar aktif, interaktif, dan menyenangkan")
+    st.write("7. **Pendampingan Penuh**: Bimbingan & motivasi sampai capai cita-cita")
+    st.divider()
+    st.caption("📍 Alamat: Brebes, Jawa Tengah, Indonesia")
+    st.subheader("📝 Pendaftaran Dibuka!")
+    st.markdown(f'<a href="{LINK_GOOGLE_FORM}" target="_blank"><button style="background-color:#B22222;color:white;padding:14px 20px;border:none;border-radius:8px;width:100%;font-size:16px;cursor:pointer;">KLIK UNTUK DAFTAR ONLINE</button></a>', unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    st.subheader("📞 Hubungi Admin")
+    pesan_wa = "Halo%20Admin%20AL%20MAHYRA%20JC,%20saya%20ingin%20bertanya..."
+    st.markdown(f'<a href="https://wa.me/{NO_WA_ADMIN}?text={pesan_wa}" target="_blank"><button style="background-color:#25D366;color:white;padding:14px 20px;border:none;border-radius:8px;width:100%;font-size:16px;cursor:pointer;">CHAT ADMIN VIA WHATSAPP</button></a>', unsafe_allow_html=True)
