@@ -47,7 +47,7 @@ if menu == "Beranda":
     st.divider()
 
     # 6. ALAMAT KECIL
-    st.caption("📍 Alamat: Semarang, Jawa Tengah, Indonesia")
+    st.caption("📍 Alamat: Brebes, Jawa Tengah, Indonesia")
 
     # 7. PENDAFTARAN
     st.subheader("📝 Pendaftaran Dibuka!")
@@ -73,5 +73,5 @@ elif menu == "Pendaftaran":
 elif menu == "Kontak":
     st.header("📞 Hubungi Kami")
     st.write(f"**WhatsApp Admin**: {NO_WA_ADMIN}")
-    st.write("**Alamat**: Semarang, Jawa Tengah, Indonesia")
+    st.write("**Alamat**: Brebes, Jawa Tengah, Indonesia")
     st.write("**Jam Operasional**: Senin - Sabtu, 09.00 - 17.00 WIB")
