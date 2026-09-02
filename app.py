@@ -21,7 +21,6 @@ menu = st.sidebar.radio(
 if menu == "Beranda":
     st.header("Selamat Datang di AL MAHYRA JAPAN CENTER")
     st.write("Tempat kursus Bahasa Jepang & Persiapan Kerja ke Jepang")
-    st.image("https://placehold.co/800x300/FF0000/FFFFFF?text=AL+MAHYRA+JC", use_column_width=True)
 
 # HALAMAN PROGRAM
 elif menu == "Program":
@@ -30,30 +29,32 @@ elif menu == "Program":
     st.write("2. Program Pemagangan / TG")
     st.write("3. Kelas Persiapan JLPT & SSW")
 
-# HALAMAN PENDAFTARAN - INI YG PENTING
+# HALAMAN PENDAFTARAN - VERSI AMAN
 elif menu == "Pendaftaran":
     st.header("📝 Pendaftaran AL MAHYRA JC")
-    st.write("Klik tombol di bawah ini untuk mengisi formulir pendaftaran")
+    st.write("Klik link di bawah ini untuk mengisi formulir pendaftaran")
     
-    # TOMBOL 1: KE GOOGLE FORM
-    st.link_button(
-        label="📋 KLIK DISINI UNTUK DAFTAR", 
-        url="https://forms.gle/gQ4QZz8yGmmTUc8y5", 
-        type="primary",
-        use_container_width=True
-    )
+    # TOMBOL 1: KE GOOGLE FORM PAKE MARKDOWN
+    st.markdown("""
+    <a href="https://forms.gle/gQ4QZz8yGmmTUc8y5" target="_blank">
+        <button style="background-color:#FF4B4B;color:white;padding:14px 20px;border:none;border-radius:8px;width:100%;font-size:16px;cursor:pointer;">
+        📋 KLIK DISINI UNTUK DAFTAR
+        </button>
+    </a>
+    """, unsafe_allow_html=True)
     
-    st.markdown("---")
+    st.markdown("<br>", unsafe_allow_html=True)
     
     # TOMBOL 2: KONFIRMASI WA
     pesan_wa = "Halo Admin AL MAHYRA JC, saya baru saja mengisi formulir pendaftaran online."
     link_wa = f"https://wa.me/{NO_WA_ADMIN}?text={pesan_wa}"
-    st.link_button(
-        label="📲 KONFIRMASI VIA WA ADMIN", 
-        url=link_wa, 
-        type="primary",
-        use_container_width=True
-    )
+    st.markdown(f"""
+    <a href="{link_wa}" target="_blank">
+        <button style="background-color:#25D366;color:white;padding:14px 20px;border:none;border-radius:8px;width:100%;font-size:16px;cursor:pointer;">
+        📲 KONFIRMASI VIA WA ADMIN
+        </button>
+    </a>
+    """, unsafe_allow_html=True)
     
     st.info("Setelah isi form, jangan lupa konfirmasi ke WA Admin ya")
 
@@ -61,4 +62,4 @@ elif menu == "Pendaftaran":
 elif menu == "Kontak":
     st.header("📞 Hubungi Kami")
     st.write(f"WhatsApp Admin: {NO_WA_ADMIN}")
-    st.write("Alamat: Semarang, Jawa Tengah")
+    st.write("Alamat: Brebes, Jawa Tengah")
