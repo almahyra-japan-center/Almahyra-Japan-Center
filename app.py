@@ -18,7 +18,7 @@ with st.sidebar:
 if menu == "Beranda":
     
     # 1. LOGO
-    st.image("https://placehold.co/900x300/FF4B4B/FFFFFF?text=AL+MAHYRA+JAPAN+CENTER", use_container_width=True)
+st.image("logo.jpg", use_container_width=True)
     
     # 2. SAMBUTAN HANGAT
     st.header("Selamat Datang! 👋")
