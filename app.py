@@ -22,23 +22,30 @@ st.markdown(f"""
     background-position: center;
     background-attachment: fixed;
 }}
+/* BOX UTAMA LEBIH TIPIS */
 .block-container {{
-    background-color: rgba(255, 255, 255, 0.75); /* DARI 0.85 JADI 0.75 */
-    backdrop-filter: blur(4px); /* blur dikurangin dikit */
-    padding: 3rem;
+    background-color: rgba(255, 255, 255, 0.60); /* 60% AJA */
+    backdrop-filter: blur(3px);
+    padding: 2.5rem;
     border-radius: 20px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    border: 1px solid rgba(255,255,255,0.5); /* KASIH GARIS PUTIH TIPIS */
+    box-shadow: 0 8px 32px rgba(0,0,0,0.20);
 }}
+
+/* KASIH BOX KE SETIAP SECTION BIAR TETEP KEBACA */
+div[data-testid="stVerticalBlock"] > div {{
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+}}
+
 h1, h2, h3 {{
     color: #B22222;
     font-weight: 800;
-    text-shadow: 2px 2px 4px rgba(255,255,255,0.9); /* BAYANGAN LEBIH TEBAL */
+    text-shadow: 2px 2px 5px rgba(255,255,255,1);
 }}
 p, li {{
-    color: #000; /* HITAM PEKAT BIAR KEBACA */
+    color: #000; 
     font-size: 16px;
     line-height: 1.8;
     font-weight: 600;
