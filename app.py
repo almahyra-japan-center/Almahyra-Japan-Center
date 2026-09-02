@@ -6,19 +6,21 @@ st.set_page_config(
     layout="wide"
 )
 
-NO_WA_ADMIN = "6281234567890" 
-LINK_GOOGLE_FORM = "https://forms.gle/gQ4QZz8yGmmTUc8y5" # GANTI PUNYA KAMU
+# === DATA KAMU ===
+NO_WA_ADMIN = "6281234567890"  # GANTI KE NOMOR KAMU
+LINK_GOOGLE_FORM = "https://forms.gle/gQ4QZz8yGmmTUc8y5"  # GANTI KE LINK FORM KAMU
+# =================
 
 # MENU KIRI
 with st.sidebar:
     st.title("🎌 AL MAHYRA JC")
     menu = st.radio("Menu", ["Beranda", "Program", "Pendaftaran", "Kontak"])
 
-# ISI KANAN - HANYA UNTUK MENU BERANDA
+# ISI KANAN
 if menu == "Beranda":
     
-    # 1. LOGO
-st.image("logo.jpg", use_container_width=True)
+    # 1. LOGO KAMU - INI SUDAH BENER
+    st.image("logo.png", use_container_width=True)
     
     # 2. SAMBUTAN HANGAT
     st.header("Selamat Datang! 👋")
@@ -49,21 +51,27 @@ st.image("logo.jpg", use_container_width=True)
 
     # 7. PENDAFTARAN
     st.subheader("📝 Pendaftaran Dibuka!")
-    st.markdown(f'<a href="{LINK_GOOGLE_FORM}" target="_blank"><button style="background-color:#FF4B4B;color:white;padding:14px 20px;border:none;border-radius:8px;width:100%;font-size:16px;">KLIK UNTUK DAFTAR ONLINE</button></a>', unsafe_allow_html=True)
+    st.markdown(f'<a href="{LINK_GOOGLE_FORM}" target="_blank"><button style="background-color:#FF4B4B;color:white;padding:14px 20px;border:none;border-radius:8px;width:100%;font-size:16px;cursor:pointer;">KLIK UNTUK DAFTAR ONLINE</button></a>', unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
     
     # 8. KONTAK
     st.subheader("📞 Hubungi Admin")
-    pesan_wa = "Halo Admin AL MAHYRA JC, saya ingin bertanya..."
-    st.markdown(f'<a href="https://wa.me/{NO_WA_ADMIN}?text={pesan_wa}" target="_blank"><button style="background-color:#25D366;color:white;padding:14px 20px;border:none;border-radius:8px;width:100%;font-size:16px;">CHAT ADMIN VIA WHATSAPP</button></a>', unsafe_allow_html=True)
+    pesan_wa = "Halo%20Admin%20AL%20MAHYRA%20JC,%20saya%20ingin%20bertanya..."
+    st.markdown(f'<a href="https://wa.me/{NO_WA_ADMIN}?text={pesan_wa}" target="_blank"><button style="background-color:#25D366;color:white;padding:14px 20px;border:none;border-radius:8px;width:100%;font-size:16px;cursor:pointer;">CHAT ADMIN VIA WHATSAPP</button></a>', unsafe_allow_html=True)
 
-
-# ISI MENU LAINNYA
 elif menu == "Program":
     st.header("📚 Program Kami")
-    st.write("1. Kelas Reguler N5 - N1\n2. Kelas Privat\n3. Program Kerja/TG")
+    st.write("1. **Kelas Reguler N5 - N1**: 3x seminggu")
+    st.write("2. **Kelas Privat**: Fleksibel sesuai jadwal")
+    st.write("3. **Program Kerja/TG**: Persiapan SSW + Interview")
+
 elif menu == "Pendaftaran":
-    st.header("Form Pendaftaran")
-    st.markdown(f"[Klik disini untuk isi Google Form]({LINK_GOOGLE_FORM})")
+    st.header("📝 Form Pendaftaran")
+    st.write("Silahkan isi formulir online di bawah ini:")
+    st.markdown(f'<a href="{LINK_GOOGLE_FORM}" target="_blank"><button style="background-color:#FF4B4B;color:white;padding:14px 20px;border:none;border-radius:8px;width:100%;font-size:16px;">BUKA GOOGLE FORM</button></a>', unsafe_allow_html=True)
+
 elif menu == "Kontak":
-    st.header("Hubungi Kami")
-    st.write(f"WA: {NO_WA_ADMIN}")
+    st.header("📞 Hubungi Kami")
+    st.write(f"**WhatsApp Admin**: {NO_WA_ADMIN}")
+    st.write("**Alamat**: Semarang, Jawa Tengah, Indonesia")
+    st.write("**Jam Operasional**: Senin - Sabtu, 09.00 - 17.00 WIB")
