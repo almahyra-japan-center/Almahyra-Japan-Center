@@ -30,7 +30,7 @@ def get_base64_of_bin_file(bin_file):
     return base64.b64encode(data).decode()
 
 try:
-    bin_str = get_base64_of_bin_file('Baground.jpg')
+    bin_str = get_base64_of_bin_file('Background.jpg') # UDAH DIBENERIN ADA 'd'
     bg_image = f"url(data:image/jpg;base64,{bin_str})"
 except:
     bg_image = "linear-gradient(180deg, #FFF5F5 0%, #ffffff 100%)"
@@ -108,7 +108,7 @@ def sidebar():
             if role == "ADMIN" or role == "STAF":
                 menu = st.radio("Menu Staf/Admin", ["📅 Generate Kode", "📊 Rekap Absen"])
             elif role == "MURID":
-                menu = st.radio("Menu Murid", ["📅 Jadwal", "✅ Input Kode Absen"])
+                menu = st.radio("Menu Murid", ["📅 Jadwal", "✅ Input Kode Absen"]) # MENU JADWAL UDAH ADA ISINYA
             st.divider()
             if st.button("🚪 Logout", use_container_width=True):
                 st.session_state['logged_in'] = False
@@ -163,6 +163,15 @@ else:
             st.dataframe(data, use_container_width=True)
 
     if role == "MURID":
+        if menu_internal == "📅 Jadwal": # INI UDAH AKU ISI
+            st.header("📅 Jadwal Kelas Anda")
+            st.info("Jadwal bisa berubah. Hubungi staf jika ada perubahan")
+            st.table({
+                "Hari": ["Senin - Jumat", "Senin - Jumat", "Sabtu"],
+                "Kelas": ["N5 Pagi", "N5 Sore", "N4 Intensif"],
+                "Jam": ["08:00 - 11:00", "13:00 - 16:00", "09:00 - 15:00"]
+            })
+
         if menu_internal == "✅ Input Kode Absen":
             st.header("✅ Input Kode Absensi Mandiri")
             st.write("Minta KODE 6 digit ke Staf, lalu masukkan di bawah ini")
