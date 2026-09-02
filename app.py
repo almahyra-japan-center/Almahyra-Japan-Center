@@ -14,12 +14,6 @@ try:
 except:
     bg_image = "linear-gradient(180deg, #FFF5F5 0%, #ffffff 100%)"
 
-try:
-    logo_bin_str = get_base64_of_bin_file('logo.png')
-    logo_base64 = f"data:image/png;base64,{logo_bin_str}"
-except:
-    logo_base64 = ""
-
 st.markdown(f"""
 <style>
 .stApp {{
@@ -29,49 +23,32 @@ st.markdown(f"""
     background-attachment: fixed;
 }}
 
-/* CONTAINER MULAI DARI BAWAH HEADER */
+/* GA USAH PAKAI BOX PUTIH SAMA SEKALI */
 .block-container {{
-    background-color: rgba(255, 255, 255, 0.05); /* HAMPIR TRANSPARAN TOTAL */
-    backdrop-filter: blur(10px);
-    padding: 2rem;
-    padding-top: 180px; /* SESUAIKAN DENGAN TINGGI LOGO */
+    background: transparent;
+    padding-top: 150px; /* KASIH JARAK BUAT LOGO */
 }}
 
-/* HEADER FIXED PENUH */
-.header-fixed {{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 9999;
-    background: rgba(255,255,255,0.95); /* PUTIH TAPI TEMBUS 5% */
-    backdrop-filter: blur(5px);
-    padding: 20px 0;
-    text-align: center;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}}
-.header-fixed img {{
-    height: 100px; /* ATUR TINGGI LOGO DISINI */
-    width: auto;
+/* LOGO STICKY DI ATAS */
+[data-testid="stHeader"] {{
+    background: rgba(255,255,255,0.9);
+    backdrop-filter: blur(8px);
 }}
 
 h1, h2, h3 {{
     color: #B22222;
     font-weight: 900;
-    text-shadow: 3px 3px 10px rgba(255,255,255,1);
+    text-shadow: 2px 2px 5px white;
 }}
 p, li {{
-    color: #000; 
+    color: #111; 
     font-size: 17px;
-    line-height: 1.9;
-    font-weight: 700;
-    text-shadow: 2px 2px 6px rgba(255,255,255,0.9);
+    font-weight: 600;
+    text-shadow: 1px 1px 3px white;
 }}
 
 [data-testid="stSidebar"] {{
-    background: rgba(178, 34, 34, 0.95);
-    backdrop-filter: blur(10px);
-    z-index: 10000;
+    background: #B22222;
 }}
 [data-testid="stSidebar"] * {{
     color: white;
@@ -80,10 +57,8 @@ p, li {{
 </style>
 """, unsafe_allow_html=True)
 
-# HEADER FIXED
-if logo_base64:
-    st.markdown(f'<div class="header-fixed"><img src="{logo_base64}"></div>', unsafe_allow_html=True)
-
+# LOGO DI HEADER BAWAAN STREAMLIT
+st.logo("logo.png")
 
 NO_WA_ADMIN = "6281234567890"
 LINK_GOOGLE_FORM = "https://forms.gle/gQ4QZz8yGmmTUc8y5"
