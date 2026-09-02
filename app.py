@@ -2,22 +2,25 @@ import streamlit as st
 import sqlite3
 import base64
 import os
-import qrcode
-import io
 import time
+import random
+import string
 from datetime import datetime
-from PIL import Image
 
 st.set_page_config(page_title="AL MAHYRA JAPAN CENTER", page_icon="🎌", layout="wide")
 
-# 1. KONEK DATABASE + TABEL ABSEN
+# 1. KONEK DATABASE + BUAT 3 TABEL
 conn = sqlite3.connect('almahyra.db', check_same_thread=False)
 c = conn.cursor()
 c.execute('''CREATE TABLE IF NOT EXISTS users
              (username TEXT PRIMARY KEY, password TEXT, role TEXT, nama TEXT)''')
 c.execute('''CREATE TABLE IF NOT EXISTS absensi
              (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, nama TEXT,
-              waktu TEXT, kelas TEXT, token TEXT, tanggal TEXT)''')
+              waktu TEXT, kelas TEXT, kode TEXT, tanggal TEXT)''')
+# TABEL BARU UNTUK SIMPAN KODE PER KELAS
+c.execute('''CREATE TABLE IF NOT EXISTS kode_absen
+             (kelas TEXT PRIMARY KEY, kode TEXT, waktu_generate TEXT)''')
+# DATA AWAL
 c.execute("INSERT OR IGNORE INTO users VALUES ('admin','admin123','ADMIN','Admin ALMAHYRA')")
 c.execute("INSERT OR IGNORE INTO users VALUES ('staf1','staf123','STAF','Bpk. Guru')")
 c.execute("INSERT OR IGNORE INTO users VALUES ('murid1','murid123','MURID','Ahmad Siswa')")
@@ -48,7 +51,7 @@ st.markdown(f"""
 [data-testid="stHeader"] img {{ height: 80px!important; }}
 h1 {{ color: #B22222!important; font-size: 2.5rem; text-align: center; }}
 h2 {{ color: #262730!important; font-weight: 700; border-left: 4px solid #B22222; padding-left: 10px; }}
-p, li {{ color: #31333F!important; font-size: 16px; line-height: 1.7; }}
+.kode-box {{ background: #B22222; color: white; font-size: 48px; font-weight: bold; text-align: center; padding: 20px; border-radius: 15px; letter-spacing: 10px; margin: 20px 0; }}
 [data-testid="stSidebar"] {{ background: #B22222; }}
 [data-testid="stSidebar"] * {{ color: white; font-weight: bold; }}
 .section {{ margin-bottom: 60px; }}
@@ -67,7 +70,7 @@ if 'logged_in' not in st.session_state:
     st.session_state['role'] = "PUBLIK"
     st.session_state['nama'] = "Tamu"
 
-# 3. FUNGSI LOGIN DIPISAH 2
+# 3. FUNGSI LOGIN
 def login(role_login):
     st.subheader(f"🔐 Login Area {role_login}")
     username = st.text_input("Username", key=f"user_{role_login}")
@@ -85,42 +88,32 @@ def login(role_login):
         else:
             st.error("Username atau Password salah")
 
-# 4. FUNGSI GENERATE QR
-def generate_qr(kelas):
-    token = f"ALMAHYRA-{kelas}-{int(time.time())}" # token ganti tiap detik
-    qr = qrcode.QRCode(version=1, box_size=10, border=5)
-    qr.add_data(token)
-    qr.make(fit=True)
-    img = qr.make_image(fill_color="black", back_color="white")
-    buf = io.BytesIO()
-    img.save(buf)
-    return buf.getvalue(), token
+# 4. FUNGSI GENERATE KODE 6 DIGIT
+def generate_kode(kelas):
+    kode_baru = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
+    waktu = datetime.now().strftime("%H:%M:%S")
+    c.execute("REPLACE INTO kode_absen (kelas, kode, waktu_generate) VALUES (?,?,?)", (kelas, kode_baru, waktu))
+    conn.commit()
+    return kode_baru, waktu
 
 # 5. SIDEBAR
 def sidebar():
     with st.sidebar:
         st.title("🎌 AL MAHYRA JC")
-
         if not st.session_state['logged_in']:
             st.info("Silakan login untuk akses area khusus")
             tab1, tab2 = st.tabs(["👨‍🎓 Login Siswa", "👨‍🏫 Login Staf"])
-
             with tab1: login("MURID"); st.caption("Contoh: murid1 / murid123")
             with tab2: login("STAF"); st.caption("Contoh: staf1 / staf123 | admin / admin123")
-
         else:
             st.success(f"Halo, {st.session_state['nama']}")
             st.caption(f"Role: {st.session_state['role']}")
             st.divider()
-
             role = st.session_state['role']
             if role == "ADMIN" or role == "STAF":
-                menu = st.radio("Menu Staf/Admin", ["📅 Generate QR", "📊 Rekap Absen", "👨‍🎓 Data Siswa"])
-                if role == "ADMIN":
-                    menu = st.radio("Menu Admin", ["📊 Dashboard", "📅 Generate QR", "📊 Rekap Absen", "👨‍🎓 Manajemen Siswa"])
+                menu = st.radio("Menu Staf/Admin", ["📅 Generate Kode", "📊 Rekap Absen"])
             elif role == "MURID":
-                menu = st.radio("Menu Murid", ["📅 Jadwal", "📚 Materi", "✅ Scan QR Absen", "📝 Ujian"])
-
+                menu = st.radio("Menu Murid", ["📅 Jadwal", "✅ Input Kode Absen"])
             st.divider()
             if st.button("🚪 Logout", use_container_width=True):
                 st.session_state['logged_in'] = False
@@ -140,14 +133,6 @@ if not st.session_state['logged_in']:
     st.subheader("Wujudkan Mimpimu Bekerja & Kuliah ke Jepang Bersama Kami")
     st.link_button("📝 DAFTAR SEKARANG", LINK_GOOGLE_FORM, use_container_width=True, type="primary")
     st.markdown('</div>', unsafe_allow_html=True)
-    st.markdown('<div class="section">', unsafe_allow_html=True)
-    st.header("🏢 Profil Lembaga")
-    st.write("**AL MAHYRA JAPAN CENTER** adalah lembaga kursus Bahasa Jepang...")
-    st.markdown('</div>', unsafe_allow_html=True)
-    st.markdown('<div class="section">', unsafe_allow_html=True)
-    st.header("📝 Pendaftaran Dibuka!")
-    st.link_button("ISI FORM PENDAFTARAN ONLINE", LINK_GOOGLE_FORM, use_container_width=True, type="primary")
-    st.markdown('</div>', unsafe_allow_html=True)
 
 # ===== BAGIAN 2: INTERNAL =====
 else:
@@ -156,48 +141,55 @@ else:
 
     # MENU STAF & ADMIN
     if role == "STAF" or role == "ADMIN":
-        if menu_internal == "📅 Generate QR":
-            st.header("📅 Generate QR Absen")
+        if menu_internal == "📅 Generate Kode":
+            st.header("📅 Generate Kode Absen")
             kelas = st.selectbox("Pilih Kelas", ["N5 Pagi", "N5 Sore", "N4 Pagi", "N4 Sore"])
 
-            if st.button("GENERATE QR SEKARANG", use_container_width=True, type="primary"):
-                img_bytes, token = generate_qr(kelas)
-                st.session_state['qr_token'] = token
-                st.session_state['qr_kelas'] = kelas
-                st.session_state['qr_time'] = datetime.now().strftime("%H:%M:%S")
+            # CEK KODE YG UDAH ADA DI DB
+            data_kode = c.execute("SELECT * FROM kode_absen WHERE kelas=?", (kelas,)).fetchone()
+            if data_kode:
+                st.markdown(f'<div class="kode-box">{data_kode[1]}</div>', unsafe_allow_html=True)
+                st.info(f"Kode Aktif untuk {kelas}. Digenerate jam: {data_kode[2]}")
+            else:
+                st.warning("Belum ada kode untuk kelas ini. Silakan generate dulu")
 
-            if 'qr_token' in st.session_state:
-                st.image(Image.open(io.BytesIO(img_bytes)), width=300)
-                st.success(f"QR untuk kelas {st.session_state['qr_kelas']} berhasil dibuat!")
-                st.info(f"Token: {st.session_state['qr_token']}")
-                st.warning("QR ini valid. Suruh murid scan sekarang. Token ganti tiap kali generate baru")
+            if st.button("GENERATE KODE BARU", use_container_width=True, type="primary"):
+                kode_baru, waktu = generate_kode(kelas)
+                st.success(f"Kode baru {kode_baru} berhasil dibuat!")
+                st.rerun() # refresh biar langsung muncul
 
         if menu_internal == "📊 Rekap Absen":
             st.header("📊 Rekap Absensi")
-            data = c.execute("SELECT * FROM absensi ORDER BY tanggal DESC, waktu DESC").fetchall()
+            data = c.execute("SELECT tanggal, waktu, kelas, nama, username FROM absensi ORDER BY tanggal DESC, waktu DESC").fetchall()
             st.dataframe(data, use_container_width=True)
 
     # MENU MURID
     if role == "MURID":
-        if menu_internal == "✅ Scan QR Absen":
-            st.header("✅ Scan QR Absensi Mandiri")
-            st.write("Minta QR ke Staf, lalu scan di bawah ini")
+        if menu_internal == "✅ Input Kode Absen":
+            st.header("✅ Input Kode Absensi Mandiri")
+            st.write("Minta KODE 6 digit ke Staf, lalu masukkan di bawah ini")
 
-            token_input = st.text_input("Masukkan Kode QR dari Staf", placeholder="Tempel token QR di sini")
+            kelas_murid = st.selectbox("Pilih Kelas Anda", ["N5 Pagi", "N5 Sore", "N4 Pagi", "N4 Sore"])
+            kode_input = st.text_input("Masukkan Kode dari Staf", placeholder="Contoh: A7B9C1").upper()
 
             if st.button("ABSEN SEKARANG", use_container_width=True, type="primary"):
-                if token_input:
-                    # Cek udah absen hari ini belum
+                if kode_input:
                     today = datetime.now().strftime("%Y-%m-%d")
+                    # CEK UDAH ABSEN BELUM
                     cek = c.execute("SELECT * FROM absensi WHERE username=? AND tanggal=?", (st.session_state['username'], today)).fetchone()
                     if cek:
                         st.error("Kamu sudah absen hari ini!")
                     else:
-                        waktu = datetime.now().strftime("%H:%M:%S")
-                        c.execute("INSERT INTO absensi (username, nama, waktu, kelas, token, tanggal) VALUES (?,?,?,?,?,?)",
-                                  (st.session_state['username'], st.session_state['nama'], waktu, "N5 Pagi", token_input, today))
-                        conn.commit()
-                        st.success(f"Absen Berhasil! Jam {waktu}")
-                        st.balloons()
+                        # CEK KODENYA BENER APA GA
+                        data_kode = c.execute("SELECT kode FROM kode_absen WHERE kelas=?", (kelas_murid,)).fetchone()
+                        if data_kode and data_kode[0] == kode_input:
+                            waktu = datetime.now().strftime("%H:%M:%S")
+                            c.execute("INSERT INTO absensi (username, nama, waktu, kelas, kode, tanggal) VALUES (?,?,?,?,?,?)",
+                                      (st.session_state['username'], st.session_state['nama'], waktu, kelas_murid, kode_input, today))
+                            conn.commit()
+                            st.success(f"Absen Berhasil! Jam {waktu}")
+                            st.balloons()
+                        else:
+                            st.error("Kode Salah! Minta kode yg terbaru ke Staf")
                 else:
-                    st.warning("Masukkan kode QR dulu")
+                    st.warning("Masukkan kode dulu")
