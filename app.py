@@ -9,7 +9,7 @@ def get_base64_of_bin_file(bin_file):
         data = f.read()
     return base64.b64encode(data).decode()
 
-# BACKGROUND
+# BACKGROUND FUJI + SAKURA
 try:
     if os.path.exists('Baground.jpg'):
         bin_str = get_base64_of_bin_file('Baground.jpg')
@@ -38,12 +38,11 @@ st.markdown(f"""
 }}
 
 .block-container {{
-    background: transparent;
-    padding-top: 2rem !important;
-    padding-left: 2.5rem !important; /* KASIH JARAK DARI MERAH */
-    padding-right: 2.5rem !important;
-    max-width: 750px !important; /* LEBIH SEMPIT BIAR PANJANG KE BAWAH */
-    margin: 0 auto !important;
+    background: rgba(255, 255, 255, 0.85); /* KASIH PUTIH TRANSPARAN BIAR TEXT JELAS */
+    padding: 2rem 2.5rem !important;
+    max-width: 700px !important; /* BIAR PANJANG KE BAWAH */
+    margin: 2rem auto !important;
+    border-radius: 12px;
 }}
 
 [data-testid="stHeader"] {{ display: none; }}
@@ -55,42 +54,38 @@ st.markdown(f"""
     width: 100vw;
     margin-left: calc(-50vw + 50%);
     background: white;
-    padding: 18px 0;
+    padding: 15px 0;
     text-align: center;
     z-index: 9999;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }}
 .logo-bar img {{
-    height: 160px; /* SEDENG KAYAK DI FOTO */
+    height: 150px;
     width: auto;
 }}
 
-/* UKURAN TEXT PERSIS KAYAK DI GAMBAR MERAH */
+/* UKURAN TEXT PERSIS KAYAK DI FOTO MERAH */
 h1 {{ 
     font-size: 2rem; 
-    color: #262730; /* ABU-ABU GELAP KAYAK DI FOTO */
+    color: #262730; /* HITAM ABU KAYAK DI FOTO */
     font-weight: 700; 
     text-align: left; 
-    margin-bottom: 0.5rem;
-    text-shadow: none;
+    margin-bottom: 0.3rem;
 }}
 h2 {{ 
     font-size: 1.5rem; 
-    color: #262730; /* ABU-ABU GELAP */
+    color: #262730; /* HITAM ABU */
     font-weight: 700; 
     text-align: left; 
     line-height: 1.4;
-    margin-top: 1.5rem;
-    margin-bottom: 1rem;
-    text-shadow: none;
+    margin: 1.5rem 0 1rem 0;
 }}
 p {{ 
-    color: #262730; /* ABU-ABU GELAP */
+    color: #31333F; /* ABU GELAP */
     font-size: 16px; /* NORMAL */
     font-weight: 400; 
     line-height: 1.7; 
     text-align: left;
-    text-shadow: none; /* HAPUS SHADOW BIAR JELAS */
     margin-bottom: 1rem;
 }}
 
@@ -116,9 +111,12 @@ if menu == "Beranda":
     st.write("Terima kasih sudah berkunjung ke website resmi kami.")
     st.subheader("Wujudkan Mimpimu Bekerja & Kuliah ke Jepang Bersama Kami")
     st.write("Belajar Bahasa Jepang dengan metode santai, cepat paham, dan dibimbing sampai lulus JLPT.")
+    
     st.divider()
     st.subheader("🏢 Profil Lembaga")
-    st.write("**AL MAHYRA JAPAN CENTER** adalah lembaga kursus Bahasa Jepang yang berfokus pada persiapan kerja, magang, dan kuliah ke Jepang. Kami berlokasi di **Brebes, Jawa Tengah** dan juga membuka kelas online untuk seluruh Indonesia.")
+    st.write("**AL MAHYRA JAPAN CENTER** adalah lembaga kursus Bahasa Jepang yang berfokus pada persiapan kerja, magang, dan kuliah ke Jepang.")
+    st.write("Kami berlokasi di **Brebes, Jawa Tengah** dan juga membuka kelas online untuk seluruh Indonesia.")
+    
     st.subheader("🎯 Visi & Misi")
     st.markdown("**VISI**")
     st.write("Menjadi lembaga kursus Bahasa Jepang terpercaya yang membentuk generasi kompeten, berkarakter, dan siap meraih masa depan di Jepang.")
@@ -130,10 +128,11 @@ if menu == "Beranda":
     st.write("5. **Siap Karier & Studi**: Dukung pendidikan, kerja, dan peluang di Jepang")
     st.write("6. **Lingkungan Nyaman**: Belajar aktif, interaktif, dan menyenangkan")
     st.write("7. **Pendampingan Penuh**: Bimbingan & motivasi sampai capai cita-cita")
+    
     st.divider()
-    st.caption("📍 Alamat: Brebes, Jawa Tengah, Indonesia")
     st.subheader("📝 Pendaftaran Dibuka!")
     st.markdown(f'<a href="{LINK_GOOGLE_FORM}" target="_blank"><button style="background-color:#B22222;color:white;padding:14px 20px;border:none;border-radius:8px;width:100%;font-size:16px;cursor:pointer;">KLIK UNTUK DAFTAR ONLINE</button></a>', unsafe_allow_html=True)
+    
     st.markdown("<br>", unsafe_allow_html=True)
     st.subheader("📞 Hubungi Admin")
     pesan_wa = "Halo%20Admin%20AL%20MAHYRA%20JC,%20saya%20ingin%20bertanya..."
