@@ -14,6 +14,12 @@ try:
 except:
     bg_image = "linear-gradient(180deg, #FFF5F5 0%, #ffffff 100%)"
 
+try:
+    logo_bin_str = get_base64_of_bin_file('logo.png')
+    logo_base64 = f"data:image/png;base64,{logo_bin_str}"
+except:
+    logo_base64 = ""
+
 st.markdown(f"""
 <style>
 .stApp {{
@@ -23,44 +29,56 @@ st.markdown(f"""
     background-attachment: fixed;
 }}
 
-/* HAPUS SEMUA BOX PUTIH - CUMA KASIH BLUR AJA */
+/* BACKGROUND TRANSPARAN TIPIS */
 .block-container {{
-    background-color: rgba(255, 255, 255, 0.20); /* CUMA 20% PUTIH */
-    backdrop-filter: blur(10px); /* BLUR NYA DIKUATIN */
+    background-color: rgba(255, 255, 255, 0.10);
+    backdrop-filter: blur(12px);
     padding: 2rem;
-    border-radius: 0px; /* GA ADA BULAT2 */
-    box-shadow: none; /* GA ADA BAYANGAN */
+    padding-top: 120px; /* KASIH JARAK BIAR GA KETIMPA LOGO */
 }}
 
-/* TULISAN DIKASIH BAYANGAN PUTIH BIAR KEBACA DI ATAS GAMBAR */
+/* LOGO FIXED DI TENGAH ATAS */
+.fixed-logo {{
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    width: 150px;
+    background: rgba(255,255,255,0.7); /* KASIH KACA DI BELAKANG LOGO */
+    backdrop-filter: blur(5px);
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}}
+
 h1, h2, h3 {{
     color: #B22222;
-    font-weight: 800;
-    text-shadow: 2px 2px 8px rgba(255,255,255,0.9);
+    font-weight: 900;
+    text-shadow: 3px 3px 10px rgba(255,255,255,1);
 }}
 p, li {{
     color: #000; 
     font-size: 17px;
     line-height: 1.9;
     font-weight: 700;
-    text-shadow: 1px 1px 4px rgba(255,255,255,0.8);
+    text-shadow: 2px 2px 6px rgba(255,255,255,0.9);
 }}
 
 [data-testid="stSidebar"] {{
-    background: rgba(178, 34, 34, 0.9); /* SIDEBAR TRANSPARAN DIKIT */
+    background: rgba(178, 34, 34, 0.9);
     backdrop-filter: blur(10px);
 }}
 [data-testid="stSidebar"] * {{
     color: white;
     font-weight: bold;
 }}
-
-/* TOMBOL BIAR TETEP JELAS */
-button {{
-    backdrop-filter: blur(0px) !important;
-}}
 </style>
 """, unsafe_allow_html=True)
+
+# TAMPILIN LOGO FIXED
+if logo_base64:
+    st.markdown(f'<img src="{logo_base64}" class="fixed-logo">', unsafe_allow_html=True)
 
 
 NO_WA_ADMIN = "6281234567890"
@@ -71,8 +89,7 @@ with st.sidebar:
     menu = st.radio("Menu", ["Beranda", "Program", "Pendaftaran", "Kontak"])
 
 if menu == "Beranda":
-    st.image("logo.png", use_container_width=True)
-    st.header("Selamat Datang! 👋")
+    st.header("Selamat Datang! 👋") # HAPUS st.image("logo.png") YG LAMA
     st.write("Terima kasih sudah berkunjung ke website resmi kami.")
     st.subheader("Wujudkan Mimpimu Bekerja & Kuliah ke Jepang Bersama Kami")
     st.write("Belajar Bahasa Jepang dengan metode santai, cepat paham, dan dibimbing sampai lulus JLPT.")
