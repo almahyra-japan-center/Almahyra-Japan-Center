@@ -39,52 +39,46 @@ st.markdown(f"""
     display: none;
 }}
 
-/* BAR LOGO FULL */
+/* BAR LOGO PUTIH NORMAL AJA */
 .logo-bar {{
     position: sticky;
     top: 0;
     width: 100vw;
     margin-left: calc(-50vw + 50%);
     background: white;
-    padding: 40px 0; /* DITEBELIN LAGI */
+    padding: 20px 0; /* NORMAL */
     text-align: center;
     z-index: 9999;
     box-shadow: 0 4px 20px rgba(0,0,0,0.15);
 }}
 .logo-bar img {{
-    height: 350px; /* GEDEIN JADI 350PX!!! */
+    height: 400px; /* GAMBAR LOGONYA DIGEDEIN 400PX */
     width: auto;
-    max-width: 90%;
+    max-width: 95%;
 }}
 
-/* KONTEN DI TENGAH + KECIL */
+/* KONTEN KECIL DI TENGAH */
 .content-wrapper {{
-    padding: 3rem 2rem; /* KIRI KANAN DIKASIH JARAK 2REM */
-    max-width: 800px; /* DIKECILIN BIAR GA NEMPEL BATAS */
+    padding: 2rem 1rem; /* KIRI KAN DISEMPITIN */
+    max-width: 700px; /* LEBIH SEMPIT LAGI */
     margin: 0 auto;
-    text-align: left;
+    text-align: center; /* SEMUA DI TENGAH */
 }}
 
-h1 {{
+h1, h2, h3 {{
     color: #B22222;
-    font-weight: 900;
-    font-size: 2rem; /* DIKECILIN DARI SEBELUMNYA */
-    text-shadow: 2px 2px 6px rgba(255,255,255,0.9);
-    text-align: center;
-}}
-h2, h3 {{
-    color: #B22222;
-    font-weight: 900;
-    font-size: 1.5rem; /* DIKECILIN */
-    text-shadow: 2px 2px 6px rgba(255,255,255,0.9);
-    text-align: center;
+    font-weight: 700; /* DIKECILIN DARI 900 */
+    font-size: 1.4rem; /* DIKECILIN */
+    text-shadow: 1px 1px 3px rgba(255,255,255,0.9);
+    margin-bottom: 1rem;
 }}
 p, li {{
-    color: #111; 
-    font-size: 16px; /* DIKECILIN JADI 16PX */
-    font-weight: 500; /* DIKECILIN DARI 600 */
-    line-height: 1.7;
-    text-shadow: 1px 1px 3px rgba(255,255,255,0.8);
+    color: #222; 
+    font-size: 15px; /* KECIL */
+    font-weight: 400; /* NORMAL */
+    line-height: 1.6;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+    margin-bottom: 0.8rem;
 }}
 
 [data-testid="stSidebar"] {{
