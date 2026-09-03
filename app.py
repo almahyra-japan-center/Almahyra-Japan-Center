@@ -36,7 +36,7 @@ header {{ visibility: hidden; }}
 h1 {{ color: #D32F2F!important; font-size: 2.2rem; font-weight: 700; text-align: center; line-height: 1.3; }}
 h2 {{ color: #D32F2F!important; font-size: 1.5rem; font-weight: 700; border-bottom: 2px solid #FFCDD2; padding-bottom: 8px; margin-bottom: 15px; }}
 h3 {{ color: #333!important; font-size: 1.1rem; font-weight: 600; }}
-p, li {{ color: #111!important; font-size: 16px; line-height: 1.8; font-weight: 500; }} /* TULISAN LEBIH GELAP BIAR JELAS */
+p, li {{ color: #111!important; font-size: 16px; line-height: 1.8; font-weight: 500; }}
 
 /* INI KOTAK TIAP BAGIAN */
 .section {{ 
@@ -49,11 +49,11 @@ p, li {{ color: #111!important; font-size: 16px; line-height: 1.8; font-weight: 
 }}
 .hero {{ text-align: center; padding: 20px 20px; }}
 
-/* HAPUS KOTAK MERAH, GANTI GARIS */
+/* GARIS PEMBATAS */
 .garis {{
     height: 2px;
     background: #FFCDD2; /* GARIS PINK TIPIS */
-    margin: 0 0 30px 0; /* JARAK BAWAH 30PX */
+    margin: 0 0 30px 0;
 }}
 
 .stButton>button, .stLinkButton>button {{ background: linear-gradient(90deg, #D32F2F 0%, #E57373 100%); color: white; border-radius: 12px; font-weight: 600; border: none; padding: 12px 20px; font-size: 16px; width: 100%; transition: all 0.3s ease;}}
@@ -74,7 +74,7 @@ with st.sidebar:
     st.button("🔐 Login Siswa", disabled=True, use_container_width=True)
     st.button("👨‍🏫 Login Staf/Admin", disabled=True, use_container_width=True)
 
-# 5. ISI PUBLIK - ISI TETEP, CUMA DIBUNGKUS KOTAK + GARIS
+# 5. ISI PUBLIK - UDAH DIBUANG GARIS YG DI X
 st.markdown('<div class="section hero">', unsafe_allow_html=True)
 st.markdown(f"<div style='text-align:center; margin-bottom:20px'>{logo_html}</div>", unsafe_allow_html=True)
 st.header("AL MAHYRA JAPAN CENTER")
@@ -85,7 +85,7 @@ st.write("Mau buat hobi, nonton anime tanpa subtitle, atau persiapan ujian JLPT?
 st.link_button("YUK DAFTAR KELAS BAHASA JEPANG", LINK_GOOGLE_FORM, use_container_width=True, type="primary")
 st.markdown('</div>', unsafe_allow_html=True)
 
-st.markdown('<div class="garis"></div>', unsafe_allow_html=True) # GARIS PEMBATAS
+st.markdown('<div class="garis"></div>', unsafe_allow_html=True) # GARIS
 
 st.markdown('<div class="section">', unsafe_allow_html=True)
 st.header("🏢 Kenalan Dulu Yuk sama Kami")
@@ -98,7 +98,7 @@ st.write("✓ **Akta Notaris** : No. 05 Tanggal 10 Januari 2024")
 st.write("✓ **Terdaftar Resmi** di Kemenkumham RI")
 st.markdown('</div>', unsafe_allow_html=True)
 
-st.markdown('<div class="garis"></div>', unsafe_allow_html=True) # GARIS PEMBATAS
+st.markdown('<div class="garis"></div>', unsafe_allow_html=True) # GARIS
 
 st.markdown('<div class="section">', unsafe_allow_html=True)
 st.header("🎯 Visi & Misi Kita")
@@ -122,7 +122,7 @@ st.write("**7. Pendampingan Penuh**")
 st.write("→ Ada sensei yang siap bimbing & kasih motivasi sampai kamu capai cita-cita.")
 st.markdown('</div>', unsafe_allow_html=True)
 
-st.markdown('<div class="garis"></div>', unsafe_allow_html=True) # GARIS PEMBATAS
+st.markdown('<div class="garis"></div>', unsafe_allow_html=True) # GARIS
 
 st.markdown('<div class="section">', unsafe_allow_html=True)
 st.header("👨‍🎓 Temen-temen yang Udah Gabung")
@@ -135,17 +135,14 @@ st.table({
 st.caption("*Data langsung dari form pendaftaran ya")
 st.markdown('</div>', unsafe_allow_html=True)
 
-st.markdown('<div class="garis"></div>', unsafe_allow_html=True) # GARIS PEMBATAS
-
+# UDAH DIHAPUS GARIS YG DI X 1
 st.markdown('<div class="section">', unsafe_allow_html=True)
 st.header("📝 Kelas Baru Buka Lho!")
 st.write("Kuotanya terbatas. Jangan sampe ketinggalan ya.")
 st.link_button("DAFTAR SEKARANG", LINK_GOOGLE_FORM, use_container_width=True, type="primary")
 st.markdown('</div>', unsafe_allow_html=True)
 
-st.markdown('<div class="garis"></div>', unsafe_allow_html=True) # GARIS PEMBATAS
-
-# INI KOTAK CONTACT UDAH GA MERAH LAGI
+# UDAH DIHAPUS GARIS YG DI X 2
 st.markdown('<div class="section">', unsafe_allow_html=True)
 st.header("📞 Mau Tanya-tanya Dulu?")
 st.write("Chat admin kita aja. Konsultasi gratis kok 😄")
@@ -155,7 +152,7 @@ pesan_wa = "Halo%20Admin%20AL%20MAHYRA%20JC,%20aku%20mau%20tanya%20tentang%20kur
 st.link_button("CHAT ADMIN", f"https://wa.me/{NO_WA_ADMIN}?text={pesan_wa}", use_container_width=True)
 st.markdown('</div>', unsafe_allow_html=True)
 
-st.markdown('<div class="garis"></div>', unsafe_allow_html=True) # GARIS PEMBATAS
+st.markdown('<div class="garis"></div>', unsafe_allow_html=True) # GARIS
 
 st.markdown('<div class="section hero">', unsafe_allow_html=True)
 st.header("🚀 Yuk Mulai Sekarang!")
