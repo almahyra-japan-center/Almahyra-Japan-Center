@@ -25,15 +25,16 @@ h1 {{ color: #D32F2F!important; font-size: 2.2rem; font-weight: 700; text-align:
 h2 {{ color: #D32F2F!important; font-size: 1.5rem; font-weight: 700; border-bottom: 2px solid #FFCDD2; padding-bottom: 8px; margin-bottom: 15px; }}
 p, li {{ color: #111!important; font-size: 16px; line-height: 1.8; font-weight: 500; }}
 
+/* HANYA SECTION YANG ADA ISINYA YANG MUNCUL */
 .section {{ 
     background: rgba(255,255,255,0.95);
     padding: 25px; 
     border-radius: 18px; 
-    margin-bottom: 30px;
+    margin-bottom: 25px; /* dikecilin dikit biar rapet */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); 
 }}
 .hero {{ text-align: center; }}
-.garis {{ height: 2px; background: #FFCDD2; margin: 0 0 30px 0; }}
+.garis {{ height: 2px; background: #FFCDD2; margin: 0 0 25px 0; }}
 .stLinkButton>button {{ background: linear-gradient(90deg, #D32F2F 0%, #E57373 100%); color: white; border-radius: 12px; font-weight: 600; border: none; padding: 12px 20px; font-size: 16px; width: 100%;}}
 [data-testid="stTable"] {{ background: rgba(255,255,255,0.8); border-radius: 10px; }}
 </style>
@@ -104,14 +105,14 @@ st.table({"Nama": ["Ahmad Fauzi", "Siti Nurhaliza", "Budi Santoso"], "Umur": ["2
 st.caption("*Data langsung dari form pendaftaran ya")
 st.markdown('</div>', unsafe_allow_html=True)
 
-# DARI SINI LANGSUNG KELAS BARU. KOTAK KOSONG YG DI SILANG UDAH DIHAPUS
+# LANGSUNG KELAS BARU - GA ADA KOTAK KOSONG
 st.markdown('<div class="section">', unsafe_allow_html=True)
 st.header("📝 Kelas Baru Buka Lho!")
 st.write("Kuotanya terbatas. Jangan sampe ketinggalan ya.")
 st.link_button("DAFTAR SEKARANG", LINK_GOOGLE_FORM, use_container_width=True, type="primary")
 st.markdown('</div>', unsafe_allow_html=True)
 
-# DARI SINI LANGSUNG CONTACT. KOTAK KOSONG YG DI SILANG KE-2 UDAH DIHAPUS
+# LANGSUNG CONTACT - GA ADA KOTAK KOSONG
 st.markdown('<div class="section">', unsafe_allow_html=True)
 st.header("📞 Mau Tanya-tanya Dulu?")
 st.write("Chat admin kita aja. Konsultasi gratis kok 😄")
