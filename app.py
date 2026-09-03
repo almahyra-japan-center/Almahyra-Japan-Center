@@ -1,7 +1,7 @@
 import streamlit as st
 import base64
 
-st.set_page_config(page_title="ALMAHYRA JAPAN CENTER", page_icon="🎌", layout="centered")
+st.set_page_config(page_title="AL MAHYRA JAPAN CENTER", page_icon="🎌", layout="centered")
 
 # 1. BACKGROUND + LOGO
 def get_base64(bin_file):
@@ -12,7 +12,7 @@ def get_base64(bin_file):
     except:
         return ""
 
-bg = get_base64('Background.jpg') # GANTI FOTO INI PAKE FOTO GUNUNG FUJI / SAKURA YA SAYANG
+bg = get_base64('Background.jpg') # GANTI PAKE FOTO FUJI/SAKURA YA
 logo = get_base64('logo.png')
 
 bg_css = f"url(data:image/jpg;base64,{bg})" if bg else "linear-gradient(180deg, #FFF0F5 0%, #ffffff 100%)"
@@ -23,47 +23,21 @@ st.markdown(f"""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 html, body, [class*="st-"] {{ font-family: 'Poppins', sans-serif; }}
-
-.stApp {{ 
-    background-image: {bg_css}; 
-    background-size: cover; 
-    background-attachment: fixed; 
-    background-position: center;
-}}
+.stApp {{ background-image: {bg_css}; background-size: cover; background-attachment: fixed; background-position: center;}}
 .block-container {{ padding-top: 1rem; padding-bottom: 2rem; max-width: 720px; }}
 header {{ visibility: hidden; }}
 
 h1 {{ color: #D32F2F!important; font-size: 2.2rem; font-weight: 700; text-align: center; line-height: 1.3; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); }}
-h2 {{ color: #D32F2F!important; font-size: 1.5rem; font-weight: 600; border-bottom: 2px dashed #D32F2F; padding-bottom: 8px; margin-bottom: 15px; }} /* GARIS PUTUS2 KEJEPANGAN */
+h2 {{ color: #D32F2F!important; font-size: 1.5rem; font-weight: 600; border-bottom: 2px dashed #D32F2F; padding-bottom: 8px; margin-bottom: 15px; }}
 h3 {{ color: #333!important; font-size: 1.1rem; font-weight: 600; }}
-
 p, li {{ color: #444!important; font-size: 16px; line-height: 1.8; }}
-.section {{ 
-    background: rgba(255,255,255,0.92); 
-    padding: 25px; 
-    border-radius: 20px; 
-    margin-bottom: 25px; 
-    box-shadow: 0 8px 20px rgba(211, 47, 47, 0.1); /* SHADOW MERAH MUDA */
-    border: 1px solid rgba(211, 47, 47, 0.15);
-    transition: transform 0.3s ease; /* EFEK HIDUP */
-}}
-.section:hover {{ transform: translateY(-5px); }} /* PAS DI SCROLL NAIK DIKIT */
+.section {{ background: rgba(255,255,255,0.92); padding: 25px; border-radius: 20px; margin-bottom: 25px; box-shadow: 0 8px 20px rgba(211, 47, 47, 0.1); border: 1px solid rgba(211, 47, 47, 0.15); transition: transform 0.3s ease; }}
+.section:hover {{ transform: translateY(-5px); }}
 .hero {{ text-align: center; padding: 20px 20px; }}
-.contact-box {{ 
-    background: linear-gradient(135deg, #D32F2F 0%, #B71C1C 100%); /* GRADASI MERAH */
-    color: white; padding: 25px; border-radius: 20px; text-align: center; 
-}}
+.contact-box {{ background: linear-gradient(135deg, #D32F2F 0%, #B71C1C 100%); color: white; padding: 25px; border-radius: 20px; text-align: center; }}
 .contact-box p {{ color: white!important; }}
-.stButton>button, .stLinkButton>button {{ 
-    background: linear-gradient(90deg, #D32F2F 0%, #E57373 100%); 
-    color: white; border-radius: 12px; font-weight: 600; border: none; 
-    padding: 12px 20px; font-size: 16px; width: 100%; 
-    transition: all 0.3s ease;
-}}
-.stButton>button:hover, .stLinkButton>button:hover {{ 
-    transform: scale(1.03); /* EFEK MEMBESAR PAS DIARAHIN */
-    background: linear-gradient(90deg, #B71C1C 0%, #D32F2F 100%); 
-}}
+.stButton>button, .stLinkButton>button {{ background: linear-gradient(90deg, #D32F2F 0%, #E57373 100%); color: white; border-radius: 12px; font-weight: 600; border: none; padding: 12px 20px; font-size: 16px; width: 100%; transition: all 0.3s ease;}}
+.stButton>button:hover, .stLinkButton>button:hover {{ transform: scale(1.03); background: linear-gradient(90deg, #B71C1C 0%, #D32F2F 100%); }}
 [data-testid="stTable"] {{ border-radius: 10px; overflow: hidden; }}
 </style>
 """, unsafe_allow_html=True)
@@ -80,7 +54,7 @@ with st.sidebar:
     st.button("🔐 Login Siswa", disabled=True, use_container_width=True)
     st.button("👨‍🏫 Login Staf/Admin", disabled=True, use_container_width=True)
 
-# 5. ISI PUBLIK - FOKUS BAHASA JEPANG AJA + HIDUP
+# 5. ISI PUBLIK
 st.markdown('<div class="section hero">', unsafe_allow_html=True)
 st.markdown(f"<div style='text-align:center; margin-bottom:20px'>{logo_html}</div>", unsafe_allow_html=True)
 st.header("AL MAHYRA JAPAN CENTER")
@@ -105,11 +79,23 @@ st.markdown('</div>', unsafe_allow_html=True)
 st.markdown('<div class="section">', unsafe_allow_html=True)
 st.header("🎯 Visi & Misi Kita")
 st.subheader("VISI")
-st.write("Menjadi tempat kursus Bahasa Jepang ternyaman di Brebes, yang bikin belajar jadi semangat dan hasilnya nyata.")
+st.write("“Menjadi lembaga kursus Bahasa Jepang terpercaya yang membentuk generasi kompeten, berkarakter, dan siap meraih masa depan.”") # UDAH DIGANTI
+
 st.subheader("MISI")
-st.write("1. **Mengajar dengan Cara Asik**: Bikin Bahasa Jepang yang susah jadi gampang dan seru.")
-st.write("2. **Guru yang Sabar**: Sensei kita siap bimbing kamu sampe bener-bener paham.")
-st.write("3. **Komunitas Belajar**: Biar belajarnya ga sendirian, ada temen buat latihan bareng.")
+st.write("**1. Pembelajaran Berkualitas**") 
+st.write("→ Sistematis dari dasar sampai lanjutan, materi disusun rapi biar gampang nangkep.")
+st.write("**2. 4 Kemampuan Seimbang**") 
+st.write("→ Kita latih bareng: Membaca, Menulis, Mendengar, dan Berbicara.")
+st.write("**3. Bentuk Karakter**") 
+st.write("→ Ga cuma pinter, tapi juga Disiplin, Percaya Diri, Bertanggung Jawab, dan Beretika.")
+st.write("**4. Kenalkan Budaya Jepang**") 
+st.write("→ Biar ga kaget, kita kenalin juga etika dan kehidupan masyarakat Jepang.")
+st.write("**5. Siap Karier & Studi**") 
+st.write("→ Kita dukung kamu yang punya rencana pendidikan, kerja, atau peluang di Jepang.")
+st.write("**6. Lingkungan Nyaman**") 
+st.write("→ Belajarnya aktif, interaktif, dan pastinya menyenangkan.")
+st.write("**7. Pendampingan Penuh**") 
+st.write("→ Ada sensei yang siap bimbing & kasih motivasi sampai kamu capai cita-cita.")
 st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<div class="section">', unsafe_allow_html=True)
