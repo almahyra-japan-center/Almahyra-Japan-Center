@@ -1,7 +1,7 @@
 import streamlit as st
 import base64
 
-st.set_page_config(page_title="AL MAHYRA JAPAN CENTER", page_icon="🎌", layout="centered")
+st.set_page_config(page_title="ALMAHYRA JAPAN CENTER", page_icon="🎌", layout="centered")
 
 # 1. BACKGROUND + LOGO
 def get_base64(bin_file):
@@ -12,31 +12,59 @@ def get_base64(bin_file):
     except:
         return ""
 
-bg = get_base64('Background.jpg') 
+bg = get_base64('Background.jpg') # GANTI FOTO INI PAKE FOTO GUNUNG FUJI / SAKURA YA SAYANG
 logo = get_base64('logo.png')
 
-bg_css = f"url(data:image/jpg;base64,{bg})" if bg else "#FFF5F5"
+bg_css = f"url(data:image/jpg;base64,{bg})" if bg else "linear-gradient(180deg, #FFF0F5 0%, #ffffff 100%)"
 logo_html = f'<img src="data:image/png;base64,{logo}" width="180">' if logo else ""
 
-# 2. CSS
+# 2. CSS HIDUP + KEJEPANG-JEPANGAN
 st.markdown(f"""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 html, body, [class*="st-"] {{ font-family: 'Poppins', sans-serif; }}
-.stApp {{ background-image: {bg_css}; background-size: cover; background-attachment: fixed; }}
-.block-container {{ padding-top: 1rem; padding-bottom: 2rem; max-width: 700px; }}
+
+.stApp {{ 
+    background-image: {bg_css}; 
+    background-size: cover; 
+    background-attachment: fixed; 
+    background-position: center;
+}}
+.block-container {{ padding-top: 1rem; padding-bottom: 2rem; max-width: 720px; }}
 header {{ visibility: hidden; }}
 
-h1 {{ color: #B22222!important; font-size: 2.2rem; font-weight: 700; text-align: center; line-height: 1.3; }}
-h2 {{ color: #B22222!important; font-size: 1.5rem; font-weight: 600; border-left: 4px solid #B22222; padding-left: 12px; margin-bottom: 15px; }}
-h3 {{ color: #262730!important; font-size: 1.1rem; font-weight: 600; }}
-p, li {{ color: #333!important; font-size: 16px; line-height: 1.7; }}
-.section {{ background: rgba(255,255,255,0.95); padding: 25px; border-radius: 15px; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.06);}}
+h1 {{ color: #D32F2F!important; font-size: 2.2rem; font-weight: 700; text-align: center; line-height: 1.3; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); }}
+h2 {{ color: #D32F2F!important; font-size: 1.5rem; font-weight: 600; border-bottom: 2px dashed #D32F2F; padding-bottom: 8px; margin-bottom: 15px; }} /* GARIS PUTUS2 KEJEPANGAN */
+h3 {{ color: #333!important; font-size: 1.1rem; font-weight: 600; }}
+
+p, li {{ color: #444!important; font-size: 16px; line-height: 1.8; }}
+.section {{ 
+    background: rgba(255,255,255,0.92); 
+    padding: 25px; 
+    border-radius: 20px; 
+    margin-bottom: 25px; 
+    box-shadow: 0 8px 20px rgba(211, 47, 47, 0.1); /* SHADOW MERAH MUDA */
+    border: 1px solid rgba(211, 47, 47, 0.15);
+    transition: transform 0.3s ease; /* EFEK HIDUP */
+}}
+.section:hover {{ transform: translateY(-5px); }} /* PAS DI SCROLL NAIK DIKIT */
 .hero {{ text-align: center; padding: 20px 20px; }}
-.contact-box {{ background: #B22222; color: white; padding: 25px; border-radius: 15px; text-align: center; }}
+.contact-box {{ 
+    background: linear-gradient(135deg, #D32F2F 0%, #B71C1C 100%); /* GRADASI MERAH */
+    color: white; padding: 25px; border-radius: 20px; text-align: center; 
+}}
 .contact-box p {{ color: white!important; }}
-.stButton>button, .stLinkButton>button {{ background: #B22222; color: white; border-radius: 10px; font-weight: 600; border: none; padding: 12px 20px; font-size: 16px; width: 100%; }}
-.stButton>button:hover, .stLinkButton>button:hover {{ background: #8B0000; }}
+.stButton>button, .stLinkButton>button {{ 
+    background: linear-gradient(90deg, #D32F2F 0%, #E57373 100%); 
+    color: white; border-radius: 12px; font-weight: 600; border: none; 
+    padding: 12px 20px; font-size: 16px; width: 100%; 
+    transition: all 0.3s ease;
+}}
+.stButton>button:hover, .stLinkButton>button:hover {{ 
+    transform: scale(1.03); /* EFEK MEMBESAR PAS DIARAHIN */
+    background: linear-gradient(90deg, #B71C1C 0%, #D32F2F 100%); 
+}}
+[data-testid="stTable"] {{ border-radius: 10px; overflow: hidden; }}
 </style>
 """, unsafe_allow_html=True)
 
@@ -47,16 +75,16 @@ LINK_GOOGLE_FORM = "https://forms.gle/gQ4QZz8yGmmTUc8y5"
 # 4. SIDEBAR
 with st.sidebar:
     st.markdown(f"<div style='text-align:center'>{logo_html}</div>", unsafe_allow_html=True)
-    st.markdown("<h3 style='text-align:center; color:#B22222'>AL MAHYRA JC</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align:center; color:#D32F2F'>AL MAHYRA JC</h3>", unsafe_allow_html=True)
     st.info("Area Login Siswa & Staf masih dalam tahap pengembangan ya 😊")
     st.button("🔐 Login Siswa", disabled=True, use_container_width=True)
     st.button("👨‍🏫 Login Staf/Admin", disabled=True, use_container_width=True)
 
-# 5. ISI PUBLIK - FOKUS BAHASA JEPANG AJA
+# 5. ISI PUBLIK - FOKUS BAHASA JEPANG AJA + HIDUP
 st.markdown('<div class="section hero">', unsafe_allow_html=True)
 st.markdown(f"<div style='text-align:center; margin-bottom:20px'>{logo_html}</div>", unsafe_allow_html=True)
 st.header("AL MAHYRA JAPAN CENTER")
-st.subheader("Belajar Bahasa Jepang, Santai Tapi Pasti 🇯🇵") # FOKUS BAHASA
+st.subheader("Belajar Bahasa Jepang, Santai Tapi Pasti 🇯🇵")
 st.write("Halo! Pengen bisa Bahasa Jepang tapi bingung mulainya dari mana?") 
 st.write("Sini gabung bareng kita 😊 Di AL MAHYRA belajarnya asik, materinya gampang, dan ada sensei yang sabar nemenin kamu.")
 st.write("Mau buat hobi, nonton anime tanpa subtitle, atau persiapan ujian JLPT? Bisa banget!")
