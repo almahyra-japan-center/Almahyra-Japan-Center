@@ -1,7 +1,7 @@
 import streamlit as st
 import base64
 
-st.set_page_config(page_title="AL MAHYRA JAPAN CENTER", page_icon="🎌", layout="centered")
+st.set_page_config(page_title="ALMAHYRA JAPAN CENTER", page_icon="🎌", layout="centered")
 
 # 1. BACKGROUND + LOGO
 def get_base64(bin_file):
@@ -13,7 +13,7 @@ def get_base64(bin_file):
         st.warning(f"File {bin_file} tidak ditemukan. Cek nama file & ejaannya ya 😊")
         return ""
 
-bg = get_base64('Latar belakang.jpg') # UDAH AKU GANTI IKUTIN NAMAMU
+bg = get_base64('Latarbelakang.jpg') # UDAH AKU GANTI IKUTIN NAMAMU
 logo = get_base64('logo.png')
 
 bg_css = f"url(data:image/jpg;base64,{bg})" if bg else "linear-gradient(180deg, #FFF0F5 0%, #ffffff 100%)"
