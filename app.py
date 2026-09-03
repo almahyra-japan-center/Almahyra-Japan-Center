@@ -10,7 +10,8 @@ def get_base64(bin_file):
 
 bg = get_base64('latarbelakang_20260903_093332_0000.png') 
 logo = get_base64('logo.png')
-bg_css = f"url(data:image/png;base64,{bg})" if bg else "linear-gradient(180deg, #FFF0F5 0%, #ffffff 100%)"
+bg_css = f"url(data:image/png;base64,{bg})" if bg else ""
+
 logo_html = f'<img src="data:image/png;base64,{logo}" width="110">' if logo else ""
 
 st.markdown(f"""
@@ -25,43 +26,50 @@ html, body, [class*="st-"] {{ font-family: 'Poppins', sans-serif; }}
     background-position: center;
 }}
 
-.block-container {{ padding-top: 2rem; padding-bottom: 2rem; max-width: 700px; }}
+.block-container {{ padding-top: 1.5rem; padding-bottom: 2rem; max-width: 700px; }}
 header {{ visibility: hidden; }}
 
-/* HEADER */
+/* HEADER KOTAK */
 .hero-header {{
     display: flex; align-items: center; gap: 15px;
-    background: rgba(255,255,255,0.95); /* 95% PEKAT */
-    padding: 18px 20px; border-radius: 18px;
-    margin-bottom: 40px; /* JARAK JAUH */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background: rgba(255,255,255,0.96); /* PEKAT */
+    padding: 18px 20px; border-radius: 16px;
+    margin-bottom: 25px; 
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
 }}
-.hero-text h1 {{ color: #C62828!important; font-size: 1.7rem; font-weight: 800; margin: 0; }}
+.hero-text h1 {{ color: #D32F2F!important; font-size: 1.7rem; font-weight: 800; margin: 0; }}
 .hero-text p {{ color: #333!important; font-size: 1rem; font-weight: 600; margin: 4px 0 0 0; }}
 
-/* INI KOTAK TIAP PESAN - BENER2 KOTAK */
+/* KOTAK TIAP PESAN - PUTIH JELAS */
 .section {{ 
-    background: rgba(255,255,255,0.95); /* 95% PEKAT BIAR KEBACA */
+    background: rgba(255,255,255,0.96); /* 96% PEKAT */
     padding: 25px; 
-    border-radius: 18px; 
-    margin-bottom: 40px; /* KASIH JARAK 40PX = BACKGROUND KELIATAN LEBAR */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); 
-    border: 1px solid rgba(0,0,0,0.05);
+    border-radius: 16px; 
+    margin-bottom: 20px; /* JARAK 20PX */
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08); 
 }}
-h2 {{ color: #C62828!important; font-size: 1.5rem; font-weight: 800; margin-bottom: 15px; }}
-p, li {{ color: #111!important; font-size: 16px; line-height: 1.8; font-weight: 600; }} /* TULISAN TEBEL */
+h2 {{ color: #D32F2F!important; font-size: 1.5rem; font-weight: 800; margin-bottom: 15px; }}
+p, li {{ color: #111!important; font-size: 16px; line-height: 1.8; font-weight: 600; }}
 
-/* KOTAK MERAH */
-.contact-box {{ 
-    background: #C62828; /* MERAH SOLID */
-    color: white; padding: 25px; border-radius: 18px; text-align: center; 
-    margin-bottom: 40px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+/* GARIS PEMBATAS PENGGANTI KOTAK MERAH */
+.divider {{
+    height: 1px;
+    background: rgba(211, 47, 47, 0.2); /* GARIS MERAH TIPIS */
+    margin: 20px 0; /* JARAK ATAS BAWAH */
 }}
-.contact-box p {{ color: white!important; font-weight: 600; }}
-.contact-box h2 {{ color: white!important; }}
 
-.stLinkButton>button {{ background: #C62828; color: white; border-radius: 12px; font-weight: 700; border: none; padding: 14px 20px; font-size: 16px; width: 100%;}}
+/* CONTACT JUGA DIKOTAKIN BIAR SAMA */
+.contact-section {{ 
+    background: rgba(255,255,255,0.96);
+    padding: 25px; 
+    border-radius: 16px; 
+    margin-bottom: 20px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+}}
+.contact-section h2 {{ color: #D32F2F!important; }}
+
+.stLinkButton>button {{ background: #D32F2F; color: white; border-radius: 12px; font-weight: 700; border: none; padding: 14px 20px; font-size: 16px; width: 100%;}}
+[data-testid="stTable"] {{ background: rgba(255,255,255,0.8); border-radius: 10px; }}
 </style>
 """, unsafe_allow_html=True)
 
@@ -80,7 +88,9 @@ st.write("Halo! Pengen bisa Bahasa Jepang tapi bingung mulainya dari mana? Sini 
 st.link_button("YUK DAFTAR KELAS", LINK_GOOGLE_FORM, use_container_width=True, type="primary")
 st.markdown('</div>', unsafe_allow_html=True)
 
-# KOTAK 2 - INI YG KAMU LINGKARI
+st.markdown('<div class="divider"></div>', unsafe_allow_html=True) # GARIS
+
+# KOTAK 2 - KENALAN
 st.markdown('<div class="section">', unsafe_allow_html=True)
 st.header("🏢 Kenalan Dulu Yuk sama Kami")
 st.write("**AL MAHYRA JAPAN CENTER** itu lembaga kursus Bahasa Jepang di **Brebes**.")
@@ -89,15 +99,31 @@ st.write("✓ **NIB** : 1234567890123")
 st.write("✓ **Akta Notaris** : No. 05 Tanggal 10 Januari 2024")
 st.markdown('</div>', unsafe_allow_html=True)
 
-# KOTAK 3
+st.markdown('<div class="divider"></div>', unsafe_allow_html=True) # GARIS
+
+# KOTAK 3 - VISI MISI
 st.markdown('<div class="section">', unsafe_allow_html=True)
 st.header("🎯 Visi & Misi Kita")
 st.write("**VISI**: Menjadi lembaga kursus Bahasa Jepang terpercaya...")
 st.write("**MISI**: 1. Pembelajaran Berkualitas 2. 4 Kemampuan Seimbang ...")
 st.markdown('</div>', unsafe_allow_html=True)
 
-# KOTAK 4 CONTACT
-st.markdown('<div class="contact-box">', unsafe_allow_html=True)
+st.markdown('<div class="divider"></div>', unsafe_allow_html=True) # GARIS
+
+# KOTAK 4 - SISWA SESUAI GAMBAR KAMU
+st.markdown('<div class="section">', unsafe_allow_html=True)
+st.header("👨‍🎓 Temen-temen yang Udah Gabung")
+st.table({
+    "Nama": ["Ahmad Fauzi", "Siti Nurhaliza", "Budi Santoso"],
+    "Umur": ["21 Tahun", "19 Tahun", "23 Tahun"],
+    "Asal": ["Brebes", "Tegal", "Cirebon"]
+})
+st.markdown('</div>', unsafe_allow_html=True)
+
+st.markdown('<div class="divider"></div>', unsafe_allow_html=True) # GARIS
+
+# KOTAK 5 - CONTACT UDAH GA MERAH LAGI
+st.markdown('<div class="contact-section">', unsafe_allow_html=True)
 st.header("📞 Mau Tanya-tanya Dulu?")
 st.write("Chat admin kita aja. Konsultasi gratis kok 😄")
 st.write(f"**WhatsApp**: {NO_WA_ADMIN}")
