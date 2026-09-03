@@ -1,7 +1,7 @@
 import streamlit as st
 import base64
 
-st.set_page_config(page_title="ALMAHYRA JAPAN CENTER", page_icon="🎌", layout="centered")
+st.set_page_config(page_title="AL MAHYRA JAPAN CENTER", page_icon="🎌", layout="centered")
 
 # 1. BACKGROUND + LOGO
 def get_base64(bin_file):
@@ -10,53 +10,34 @@ def get_base64(bin_file):
             data = f.read()
         return base64.b64encode(data).decode()
     except:
-        st.warning(f"File {bin_file} tidak ditemukan. Pastikan nama filenya benar ya 😊")
+        st.warning(f"File {bin_file} tidak ditemukan. Cek nama file & ejaannya ya 😊")
         return ""
 
-bg = get_base64('latar belakang.jpg') # INI UDAH DISET PAKE GAMBAR KAMU
+bg = get_base64('Latar belakang.jpg') # UDAH AKU GANTI IKUTIN NAMAMU
 logo = get_base64('logo.png')
 
 bg_css = f"url(data:image/jpg;base64,{bg})" if bg else "linear-gradient(180deg, #FFF0F5 0%, #ffffff 100%)"
 logo_html = f'<img src="data:image/png;base64,{logo}" width="180">' if logo else ""
 
-# 2. CSS HIDUP + KEJEPANG-JEPANGAN + OVERLAY BIAR TEKS JELAS
+# 2. CSS HIDUP + KEJEPANG-JEPANGAN
 st.markdown(f"""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 html, body, [class*="st-"] {{ font-family: 'Poppins', sans-serif; }}
-
-.stApp {{ 
-    background-image: {bg_css}; 
-    background-size: cover; 
-    background-attachment: fixed; 
-    background-position: center;
-}}
+.stApp {{ background-image: {bg_css}; background-size: cover; background-attachment: fixed; background-position: center;}}
 .block-container {{ padding-top: 1rem; padding-bottom: 2rem; max-width: 720px; }}
 header {{ visibility: hidden; }}
-
 h1 {{ color: #D32F2F!important; font-size: 2.2rem; font-weight: 700; text-align: center; line-height: 1.3; text-shadow: 2px 2px 4px rgba(255,255,255,0.9); }}
 h2 {{ color: #D32F2F!important; font-size: 1.5rem; font-weight: 600; border-bottom: 2px dashed #D32F2F; padding-bottom: 8px; margin-bottom: 15px; }}
-h3 {{ color: #333!important; font-size: 1.1rem; font-weight: 600; }}
-p, li {{ color: #444!important; font-size: 16px; line-height: 1.8; }}
-.section {{ 
-    background: rgba(255,255,255,0.94); /* AGAK OPAK BIAR BACKGROUND KELIATAN TAPI TEKS TETEP JELAS */
-    padding: 25px; 
-    border-radius: 20px; 
-    margin-bottom: 25px; 
-    box-shadow: 0 8px 25px rgba(211, 47, 47, 0.15); 
-    border: 1px solid rgba(211, 47, 47, 0.2);
-    backdrop-filter: blur(4px); /* EFEK KACA */
-    transition: transform 0.3s ease; 
-}}
+.section {{ background: rgba(255,255,255,0.94); padding: 25px; border-radius: 20px; margin-bottom: 25px; box-shadow: 0 8px 25px rgba(211, 47, 47, 0.15); border: 1px solid rgba(211, 47, 47, 0.2); backdrop-filter: blur(4px); transition: transform 0.3s ease; }}
 .section:hover {{ transform: translateY(-5px); }}
-.hero {{ text-align: center; padding: 20px 20px; }}
 .contact-box {{ background: linear-gradient(135deg, #D32F2F 0%, #B71C1C 100%); color: white; padding: 25px; border-radius: 20px; text-align: center; }}
 .contact-box p {{ color: white!important; }}
 .stButton>button, .stLinkButton>button {{ background: linear-gradient(90deg, #D32F2F 0%, #E57373 100%); color: white; border-radius: 12px; font-weight: 600; border: none; padding: 12px 20px; font-size: 16px; width: 100%; transition: all 0.3s ease;}}
-.stButton>button:hover, .stLinkButton>button:hover {{ transform: scale(1.03); background: linear-gradient(90deg, #B71C1C 0%, #D32F2F 100%); }}
-[data-testid="stTable"] {{ border-radius: 10px; overflow: hidden; }}
+.stButton>button:hover, .stLinkButton>button:hover {{ transform: scale(1.03); }}
 </style>
 """, unsafe_allow_html=True)
+
 
 # 3. DATA
 NO_WA_ADMIN = "6281234567890"
