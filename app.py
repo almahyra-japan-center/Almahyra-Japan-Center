@@ -18,25 +18,25 @@ st.markdown(f"""
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 html, body, [class*="st-"] {{ font-family: 'Poppins', sans-serif; }}
 .stApp {{ background-image: {bg_css}; background-size: cover; background-attachment: fixed; background-position: center;}}
-.block-container {{ padding-top: 1.5rem; padding-bottom: 2rem; max-width: 720px; }}
+.block-container {{ padding-top: 1rem; padding-bottom: 2rem; max-width: 720px; }}
 header {{ visibility: hidden; }}
 
 h1 {{ color: #D32F2F!important; font-size: 2.2rem; font-weight: 700; text-align: center; }}
 h2 {{ color: #D32F2F!important; font-size: 1.5rem; font-weight: 700; border-bottom: 2px solid #FFCDD2; padding-bottom: 8px; margin-bottom: 15px; }}
 p, li {{ color: #111!important; font-size: 16px; line-height: 1.8; font-weight: 500; }}
 
-/* HANYA SECTION YANG ADA ISINYA YANG MUNCUL */
-.section {{ 
-    background: rgba(255,255,255,0.95);
+/* KOTAK HANYA UNTUK YANG ADA KONTEN */
+.card {{ 
+    background: rgba(255,255,255,0.96);
     padding: 25px; 
     border-radius: 18px; 
-    margin-bottom: 25px; /* dikecilin dikit biar rapet */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); 
+    margin: 0 0 20px 0; /* margin cuma bawah */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07); 
 }}
 .hero {{ text-align: center; }}
-.garis {{ height: 2px; background: #FFCDD2; margin: 0 0 25px 0; }}
+.divider {{ height: 1px; background: #FFCDD2; margin: 20px 0; border: none; }}
 .stLinkButton>button {{ background: linear-gradient(90deg, #D32F2F 0%, #E57373 100%); color: white; border-radius: 12px; font-weight: 600; border: none; padding: 12px 20px; font-size: 16px; width: 100%;}}
-[data-testid="stTable"] {{ background: rgba(255,255,255,0.8); border-radius: 10px; }}
+[data-testid="stTable"] {{ background: transparent; }}
 </style>
 """, unsafe_allow_html=True)
 
@@ -50,7 +50,7 @@ with st.sidebar:
     st.button("🔐 Login Siswa", disabled=True, use_container_width=True)
     st.button("👨‍🏫 Login Staf/Admin", disabled=True, use_container_width=True)
 
-st.markdown('<div class="section hero">', unsafe_allow_html=True)
+st.markdown('<div class="card hero">', unsafe_allow_html=True)
 st.markdown(f"<div style='text-align:center; margin-bottom:20px'>{logo_html}</div>", unsafe_allow_html=True)
 st.header("AL MAHYRA JAPAN CENTER")
 st.subheader("Belajar Bahasa Jepang, Santai Tapi Pasti 🇯🇵")
@@ -60,9 +60,9 @@ st.write("Mau buat hobi, nonton anime tanpa subtitle, atau persiapan ujian JLPT?
 st.link_button("YUK DAFTAR KELAS BAHASA JEPANG", LINK_GOOGLE_FORM, use_container_width=True, type="primary")
 st.markdown('</div>', unsafe_allow_html=True)
 
-st.markdown('<div class="garis"></div>', unsafe_allow_html=True)
+st.markdown('<hr class="divider">', unsafe_allow_html=True)
 
-st.markdown('<div class="section">', unsafe_allow_html=True)
+st.markdown('<div class="card">', unsafe_allow_html=True)
 st.header("🏢 Kenalan Dulu Yuk sama Kami")
 st.write("**AL MAHYRA JAPAN CENTER** itu lembaga kursus Bahasa Jepang di **Brebes**.")
 st.write("Fokus kita cuma satu: **Bikin kamu jago Bahasa Jepang dari nol sampe lancar**.")
@@ -73,9 +73,9 @@ st.write("✓ **Akta Notaris** : No. 05 Tanggal 10 Januari 2024")
 st.write("✓ **Terdaftar Resmi** di Kemenkumham RI")
 st.markdown('</div>', unsafe_allow_html=True)
 
-st.markdown('<div class="garis"></div>', unsafe_allow_html=True)
+st.markdown('<hr class="divider">', unsafe_allow_html=True)
 
-st.markdown('<div class="section">', unsafe_allow_html=True)
+st.markdown('<div class="card">', unsafe_allow_html=True)
 st.header("🎯 Visi & Misi Kita")
 st.subheader("VISI")
 st.write("“Menjadi lembaga kursus Bahasa Jepang terpercaya yang membentuk generasi kompeten, berkarakter, dan siap meraih masa depan.”")
@@ -96,24 +96,26 @@ st.write("**7. Pendampingan Penuh**")
 st.write("→ Ada sensei yang siap bimbing & kasih motivasi sampai kamu capai cita-cita.")
 st.markdown('</div>', unsafe_allow_html=True)
 
-st.markdown('<div class="garis"></div>', unsafe_allow_html=True)
+st.markdown('<hr class="divider">', unsafe_allow_html=True)
 
-st.markdown('<div class="section">', unsafe_allow_html=True)
+st.markdown('<div class="card">', unsafe_allow_html=True)
 st.header("👨‍🎓 Temen-temen yang Udah Gabung")
 st.write("Yuk liat temen-temen yang udah mulai belajar bareng kita:")
 st.table({"Nama": ["Ahmad Fauzi", "Siti Nurhaliza", "Budi Santoso"], "Umur": ["21 Tahun", "19 Tahun", "23 Tahun"], "Asal": ["Brebes", "Tegal", "Cirebon"]})
 st.caption("*Data langsung dari form pendaftaran ya")
 st.markdown('</div>', unsafe_allow_html=True)
 
-# LANGSUNG KELAS BARU - GA ADA KOTAK KOSONG
-st.markdown('<div class="section">', unsafe_allow_html=True)
+st.markdown('<hr class="divider">', unsafe_allow_html=True)
+
+st.markdown('<div class="card">', unsafe_allow_html=True)
 st.header("📝 Kelas Baru Buka Lho!")
 st.write("Kuotanya terbatas. Jangan sampe ketinggalan ya.")
 st.link_button("DAFTAR SEKARANG", LINK_GOOGLE_FORM, use_container_width=True, type="primary")
 st.markdown('</div>', unsafe_allow_html=True)
 
-# LANGSUNG CONTACT - GA ADA KOTAK KOSONG
-st.markdown('<div class="section">', unsafe_allow_html=True)
+st.markdown('<hr class="divider">', unsafe_allow_html=True)
+
+st.markdown('<div class="card">', unsafe_allow_html=True)
 st.header("📞 Mau Tanya-tanya Dulu?")
 st.write("Chat admin kita aja. Konsultasi gratis kok 😄")
 st.write("**Alamat**: Jl. Jenderal Sudirman No. 123, Brebes, Jawa Tengah")
@@ -122,12 +124,12 @@ pesan_wa = "Halo%20Admin%20AL%20MAHYRA%20JC,%20aku%20mau%20tanya%20tentang%20kur
 st.link_button("CHAT ADMIN", f"https://wa.me/{NO_WA_ADMIN}?text={pesan_wa}", use_container_width=True)
 st.markdown('</div>', unsafe_allow_html=True)
 
-st.markdown('<div class="garis"></div>', unsafe_allow_html=True)
+st.markdown('<hr class="divider">', unsafe_allow_html=True)
 
-st.markdown('<div class="section hero">', unsafe_allow_html=True)
+st.markdown('<div class="card hero">', unsafe_allow_html=True)
 st.header("🚀 Yuk Mulai Sekarang!")
 st.write("Bahasa Jepang itu gampang kalau ada temennya. Dan temennya ya kita 😊")
 st.link_button("GAS IKUT KELAS", LINK_GOOGLE_FORM, use_container_width=True, type="primary")
 st.markdown('</div>', unsafe_allow_html=True)
 
-st.markdown("<hr><center style='font-size:14px; color:#555'>© 2026 AL MAHYRA JAPAN CENTER. Lembaga Kursus Bahasa Jepang</center>", unsafe_allow_html=True)
+st.markdown("<center style='font-size:14px; color:#555; margin-top:20px'>© 2026 AL MAHYRA JAPAN CENTER. Lembaga Kursus Bahasa Jepang</center>", unsafe_allow_html=True)
