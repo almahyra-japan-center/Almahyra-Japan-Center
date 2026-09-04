@@ -1,3 +1,6 @@
+import qrcode
+import io
+
 import streamlit as st
 import base64
 
@@ -133,3 +136,15 @@ st.link_button("GAS IKUT KELAS", LINK_GOOGLE_FORM, use_container_width=True, typ
 st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown("<center style='font-size:14px; color:#555; margin-top:20px'>© 2026 AL MAHYRA JAPAN CENTER. Lembaga Kursus Bahasa Jepang</center>", unsafe_allow_html=True)
+
+# === FITUR QR CODE LINK ===
+st.sidebar.markdown("---")
+st.sidebar.header("📱 QR Code Aplikasi")
+link_app = "https://almahyra-jc.streamlit.app"
+
+if st.sidebar.button("Tampilkan QR Code"):
+    img = qrcode.make(link_app)
+    buf = io.BytesIO()
+    img.save(buf, format="PNG")
+    st.sidebar.image(buf, caption="Scan untuk buka app")
+    st.sidebar.download_button("Download QR", buf, "QR_Almahyra.png")
