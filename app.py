@@ -24,20 +24,18 @@ html, body, [class*="st-"] {{ font-family: 'Poppins', sans-serif; }}
 .block-container {{ padding-top: 1rem; padding-bottom: 2rem; max-width: 720px; }}
 header {{ visibility: hidden; }}
 
-/* PENGUATAN KONTRAS JUDUL UTAMA */
 h1 {{ color: #D32F2F!important; font-size: 2.2rem; font-weight: 700; text-align: center; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); }}
 h2 {{ color: #D32F2F!important; font-size: 1.5rem; font-weight: 700; border-bottom: 2px solid #FFCDD2; padding-bottom: 8px; margin-bottom: 15px; }}
 p, li {{ color: #111!important; font-size: 16px; line-height: 1.8; font-weight: 500; }}
 
-/* 🛠️ MODIFIKASI KOTAK KARTU AGAR TEKS 100% TERBACA JELAS */
 .card {{ 
-    background: rgba(255, 255, 255, 0.98); /* Menaikkan ketebalan warna putih agar background asli tidak menabrak teks */
-    backdrop-filter: blur(8px); /* Memberikan efek kaca blur pada background di belakang teks */
+    background: rgba(255, 255, 255, 0.98); 
+    backdrop-filter: blur(8px); 
     -webkit-backdrop-filter: blur(8px);
     padding: 25px; 
     border-radius: 18px; 
     margin: 0 0 20px 0; 
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12); /* Mempertegas bayangan kotak agar teks lebih 'menonjol' keluar */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12); 
     border: 1px solid rgba(255, 205, 210, 0.5);
 }}
 .hero {{ text-align: center; }}
@@ -49,6 +47,9 @@ p, li {{ color: #111!important; font-size: 16px; line-height: 1.8; font-weight: 
 
 NO_WA_ADMIN = "628789271860"
 LINK_GOOGLE_FORM = "https://forms.gle"
+
+# === LINK MAPS MENGGUNAKAN PLUS CODE KURSUS ===
+LINK_GOOGLE_MAPS = "https://google.com"
 
 with st.sidebar:
     st.markdown(f"<div style='text-align:center'>{logo_html}</div>", unsafe_allow_html=True)
@@ -120,10 +121,12 @@ st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<hr class="divider">', unsafe_allow_html=True)
 
+# === BAGIAN ALAMAT DENGAN TOMBOL GOOGLE MAPS AKTIF ===
 st.markdown('<div class="card">', unsafe_allow_html=True)
 st.header("📞 Mau Tanya-tanya Dulu?")
 st.write("Chat admin kita aja. Konsultasi gratis kok 😄")
-st.write("**Alamat**: karangsari, rt005/001 , bulakamba , Brebes, Jawa Tengah")
+st.write("**Alamat**: Karangsari, RT 005/001, Bulakamba, Kabupaten Brebes, Jawa Tengah (4WGP+2Q)")
+st.link_button("📍 BUKA DI GOOGLE MAPS", LINK_GOOGLE_MAPS, use_container_width=True)
 st.write(f"**WhatsApp**: {NO_WA_ADMIN}")
 pesan_wa = "Halo%20Admin%20AL%20MAHYRA%20JC,%20aku%20mau%20tanya%20tentang%20kursus%20Bahasa%20Jepang%20dong"
 st.link_button("CHAT ADMIN", f"https://wa.me{NO_WA_ADMIN}?text={pesan_wa}", use_container_width=True)
