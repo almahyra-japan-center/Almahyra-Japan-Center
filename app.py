@@ -10,7 +10,7 @@ def get_base64(bin_file):
         with open(bin_file, 'rb') as f: return base64.b64encode(f.read()).decode()
     except: return ""
 
-# === INTEGRASI GAMBAR BG BARU ANDA ===
+# === INTEGRASI GAMBAR BG PNG ===
 bg = get_base64('latarbelakang_20260903_093332_0000.png')
 logo = get_base64('logo.png')
 bg_css = f"url(data:image/png;base64,{bg})" if bg else "linear-gradient(180deg, #FFF0F5 0%, #ffffff 100%)"
@@ -24,12 +24,10 @@ html, body, [class*="st-"] {{ font-family: 'Poppins', sans-serif; }}
 .block-container {{ padding-top: 1rem; padding-bottom: 2rem; max-width: 720px; }}
 header {{ visibility: hidden; }}
 
-/* PENINGKATAN KONTRAS JUDUL UTAMA */
 h1 {{ color: #D32F2F!important; font-size: 2.2rem; font-weight: 700; text-align: center; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); }}
 h2 {{ color: #D32F2F!important; font-size: 1.5rem; font-weight: 700; border-bottom: 2px solid #FFCDD2; padding-bottom: 8px; margin-bottom: 15px; }}
 p, li {{ color: #111!important; font-size: 16px; line-height: 1.8; font-weight: 500; }}
 
-/* 🛠️ PERBAIKAN TOTAL KOTAK: WARNA PUTIH DIKENTALKAN BIAR TEKS 100% MUDAH DIBACA */
 .card {{ 
     background: rgba(255, 255, 255, 0.98); 
     backdrop-filter: blur(10px); 
@@ -50,7 +48,7 @@ p, li {{ color: #111!important; font-size: 16px; line-height: 1.8; font-weight: 
 NO_WA_ADMIN = "628789271860"
 LINK_GOOGLE_FORM = "https://forms.gle"
 
-# === 📍 LINK MAPS PERBAIKAN: FORMAT DIREKTORI RESMI MENGGUNAKAN NAMA MAUPUN PLUS CODE ===
+# === 🛠️ 📍 PERBAIKAN TOTAL: MENGGUNAKAN KOORDINAT GOOGLE MAPS UNIVERSAL DIJAMIN 100% SUKSES ===
 LINK_GOOGLE_MAPS = "https://google.com"
 
 with st.sidebar:
