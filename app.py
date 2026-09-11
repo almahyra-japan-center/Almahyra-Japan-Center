@@ -43,7 +43,7 @@ p, li {{ color: #111!important; font-size: 16px; line-height: 1.8; font-weight: 
 </style>
 """, unsafe_allow_html=True)
 
-NO_WA_ADMIN = "6281234567890"
+NO_WA_ADMIN = "628789271860"
 LINK_GOOGLE_FORM = "https://forms.gle/gQ4QZz8yGmmTUc8y5"
 
 with st.sidebar:
@@ -71,7 +71,7 @@ st.write("**AL MAHYRA JAPAN CENTER** itu lembaga kursus Bahasa Jepang di **Brebe
 st.write("Fokus kita cuma satu: **Bikin kamu jago Bahasa Jepang dari nol sampe lancar**.")
 st.write("Metodenya? Santai, banyak praktek ngomong, dan ga ngebosenin deh pokoknya.")
 st.write("Tenang aja, kita udah legal kok:")
-st.write("✓ **NIB** : 1234567890123")
+st.write("✓ **NIB** : 0309260123769")
 st.write("✓ **Akta Notaris** : No. 05 Tanggal 10 Januari 2024")
 st.write("✓ **Terdaftar Resmi** di Kemenkumham RI")
 st.markdown('</div>', unsafe_allow_html=True)
