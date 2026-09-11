@@ -10,7 +10,7 @@ def get_base64(bin_file):
         with open(bin_file, 'rb') as f: return base64.b64encode(f.read()).decode()
     except: return ""
 
-# === PERUBAHAN NAMA FILE & FORMAT BG MENJADI PNG ===
+# === FILE BG PNG ===
 bg = get_base64('latarbelakang_20260903_093332_0000.png')
 logo = get_base64('logo.png')
 bg_css = f"url(data:image/png;base64,{bg})" if bg else "linear-gradient(180deg, #FFF0F5 0%, #ffffff 100%)"
@@ -24,22 +24,26 @@ html, body, [class*="st-"] {{ font-family: 'Poppins', sans-serif; }}
 .block-container {{ padding-top: 1rem; padding-bottom: 2rem; max-width: 720px; }}
 header {{ visibility: hidden; }}
 
-h1 {{ color: #D32F2F!important; font-size: 2.2rem; font-weight: 700; text-align: center; }}
+/* PENGUATAN KONTRAS JUDUL UTAMA */
+h1 {{ color: #D32F2F!important; font-size: 2.2rem; font-weight: 700; text-align: center; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); }}
 h2 {{ color: #D32F2F!important; font-size: 1.5rem; font-weight: 700; border-bottom: 2px solid #FFCDD2; padding-bottom: 8px; margin-bottom: 15px; }}
 p, li {{ color: #111!important; font-size: 16px; line-height: 1.8; font-weight: 500; }}
 
-/* KOTAK HANYA UNTUK YANG ADA KONTEN */
+/* 🛠️ MODIFIKASI KOTAK KARTU AGAR TEKS 100% TERBACA JELAS */
 .card {{ 
-    background: rgba(255,255,255,0.96);
+    background: rgba(255, 255, 255, 0.98); /* Menaikkan ketebalan warna putih agar background asli tidak menabrak teks */
+    backdrop-filter: blur(8px); /* Memberikan efek kaca blur pada background di belakang teks */
+    -webkit-backdrop-filter: blur(8px);
     padding: 25px; 
     border-radius: 18px; 
-    margin: 0 0 20px 0; /* margin cuma bawah */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07); 
+    margin: 0 0 20px 0; 
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12); /* Mempertegas bayangan kotak agar teks lebih 'menonjol' keluar */
+    border: 1px solid rgba(255, 205, 210, 0.5);
 }}
 .hero {{ text-align: center; }}
-.divider {{ height: 1px; background: #FFCDD2; margin: 20px 0; border: none; }}
+.divider {{ height: 2px; background: rgba(213, 47, 47, 0.3); margin: 25px 0; border: none; }}
 .stLinkButton>button {{ background: linear-gradient(90deg, #D32F2F 0%, #E57373 100%); color: white; border-radius: 12px; font-weight: 600; border: none; padding: 12px 20px; font-size: 16px; width: 100%;}}
-[data-testid="stTable"] {{ background: transparent; }}
+[data-testid="stTable"] {{ background: white; border-radius: 8px; padding: 10px; }}
 </style>
 """, unsafe_allow_html=True)
 
@@ -133,7 +137,7 @@ st.write("Bahasa Jepang itu gampang kalau ada temennya. Dan temennya ya kita �
 st.link_button("GAS IKUT KELAS", LINK_GOOGLE_FORM, use_container_width=True, type="primary")
 st.markdown('</div>', unsafe_allow_html=True)
 
-st.markdown("<center style='font-size:14px; color:#555; margin-top:20px'>© 2026 AL MAHYRA JAPAN CENTER. Lembaga Kursus Bahasa Jepang</center>", unsafe_allow_html=True)
+st.markdown("<center style='font-size:14px; color:#555; margin-top:20px; text-shadow: 1px 1px 1px #fff;'>© 2026 AL MAHYRA JAPAN CENTER. Lembaga Kursus Bahasa Jepang</center>", unsafe_allow_html=True)
 
 # === FITUR QR CODE LINK ===
 st.sidebar.markdown("---")
