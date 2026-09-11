@@ -51,6 +51,7 @@ LINK_GOOGLE_FORM = "https://forms.gle"
 # === LINK MAPS MENGGUNAKAN PLUS CODE KURSUS ===
 LINK_GOOGLE_MAPS = "https://google.com"
 
+
 with st.sidebar:
     st.markdown(f"<div style='text-align:center'>{logo_html}</div>", unsafe_allow_html=True)
     st.markdown("<h3 style='text-align:center; color:#D32F2F'>AL MAHYRA JC</h3>", unsafe_allow_html=True)
