@@ -1,6 +1,5 @@
 import qrcode
 import io
-
 import streamlit as st
 import base64
 
@@ -11,14 +10,15 @@ def get_base64(bin_file):
         with open(bin_file, 'rb') as f: return base64.b64encode(f.read()).decode()
     except: return ""
 
-bg = get_base64('Background.jpg')
+# === PERUBAHAN NAMA FILE & FORMAT BG MENJADI PNG ===
+bg = get_base64('latarbelakang_20260903_093332_0000.png')
 logo = get_base64('logo.png')
-bg_css = f"url(data:image/jpg;base64,{bg})" if bg else "linear-gradient(180deg, #FFF0F5 0%, #ffffff 100%)"
+bg_css = f"url(data:image/png;base64,{bg})" if bg else "linear-gradient(180deg, #FFF0F5 0%, #ffffff 100%)"
 logo_html = f'<img src="data:image/png;base64,{logo}" width="180">' if logo else ""
 
 st.markdown(f"""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://googleapis.com');
 html, body, [class*="st-"] {{ font-family: 'Poppins', sans-serif; }}
 .stApp {{ background-image: {bg_css}; background-size: cover; background-attachment: fixed; background-position: center;}}
 .block-container {{ padding-top: 1rem; padding-bottom: 2rem; max-width: 720px; }}
@@ -44,7 +44,7 @@ p, li {{ color: #111!important; font-size: 16px; line-height: 1.8; font-weight: 
 """, unsafe_allow_html=True)
 
 NO_WA_ADMIN = "628789271860"
-LINK_GOOGLE_FORM = "https://forms.gle/gQ4QZz8yGmmTUc8y5"
+LINK_GOOGLE_FORM = "https://forms.gle"
 
 with st.sidebar:
     st.markdown(f"<div style='text-align:center'>{logo_html}</div>", unsafe_allow_html=True)
@@ -122,7 +122,7 @@ st.write("Chat admin kita aja. Konsultasi gratis kok 😄")
 st.write("**Alamat**: karangsari, rt005/001 , bulakamba , Brebes, Jawa Tengah")
 st.write(f"**WhatsApp**: {NO_WA_ADMIN}")
 pesan_wa = "Halo%20Admin%20AL%20MAHYRA%20JC,%20aku%20mau%20tanya%20tentang%20kursus%20Bahasa%20Jepang%20dong"
-st.link_button("CHAT ADMIN", f"https://wa.me/{NO_WA_ADMIN}?text={pesan_wa}", use_container_width=True)
+st.link_button("CHAT ADMIN", f"https://wa.me{NO_WA_ADMIN}?text={pesan_wa}", use_container_width=True)
 st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<hr class="divider">', unsafe_allow_html=True)
@@ -138,7 +138,7 @@ st.markdown("<center style='font-size:14px; color:#555; margin-top:20px'>© 2026
 # === FITUR QR CODE LINK ===
 st.sidebar.markdown("---")
 st.sidebar.header("📱 QR Code Aplikasi")
-link_app = "https://almahyra-jc.streamlit.app"
+link_app = "https://streamlit.app"
 
 if st.sidebar.button("Tampilkan QR Code"):
     img = qrcode.make(link_app)
