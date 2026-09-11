@@ -49,7 +49,10 @@ NO_WA_ADMIN = "628789271860"
 LINK_GOOGLE_FORM = "https://forms.gle"
 
 # === LINK MAPS MENGGUNAKAN PLUS CODE KURSUS ===
-LINK_GOOGLE_MAPS = "https://google.com"
+import urllib.parse
+query_lokasi = "almahyra japan center, 4WGP+2Q Karangsari, Kabupaten Brebes, Jawa Tengah"
+LINK_GOOGLE_MAPS = f"https://google.com{urllib.parse.quote(query_lokasi)}"
+
 
 
 with st.sidebar:
