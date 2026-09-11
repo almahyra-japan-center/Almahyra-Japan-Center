@@ -10,7 +10,7 @@ def get_base64(bin_file):
         with open(bin_file, 'rb') as f: return base64.b64encode(f.read()).decode()
     except: return ""
 
-# === FILE BG PNG ===
+# === INTEGRASI GAMBAR BG BARU ANDA ===
 bg = get_base64('latarbelakang_20260903_093332_0000.png')
 logo = get_base64('logo.png')
 bg_css = f"url(data:image/png;base64,{bg})" if bg else "linear-gradient(180deg, #FFF0F5 0%, #ffffff 100%)"
@@ -24,22 +24,24 @@ html, body, [class*="st-"] {{ font-family: 'Poppins', sans-serif; }}
 .block-container {{ padding-top: 1rem; padding-bottom: 2rem; max-width: 720px; }}
 header {{ visibility: hidden; }}
 
+/* PENINGKATAN KONTRAS JUDUL UTAMA */
 h1 {{ color: #D32F2F!important; font-size: 2.2rem; font-weight: 700; text-align: center; text-shadow: 1px 1px 2px rgba(255,255,255,0.8); }}
 h2 {{ color: #D32F2F!important; font-size: 1.5rem; font-weight: 700; border-bottom: 2px solid #FFCDD2; padding-bottom: 8px; margin-bottom: 15px; }}
 p, li {{ color: #111!important; font-size: 16px; line-height: 1.8; font-weight: 500; }}
 
+/* 🛠️ PERBAIKAN TOTAL KOTAK: WARNA PUTIH DIKENTALKAN BIAR TEKS 100% MUDAH DIBACA */
 .card {{ 
     background: rgba(255, 255, 255, 0.98); 
-    backdrop-filter: blur(8px); 
-    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px);
     padding: 25px; 
     border-radius: 18px; 
     margin: 0 0 20px 0; 
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12); 
-    border: 1px solid rgba(255, 205, 210, 0.5);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); 
+    border: 1px solid rgba(255, 205, 210, 0.6);
 }}
 .hero {{ text-align: center; }}
-.divider {{ height: 2px; background: rgba(213, 47, 47, 0.3); margin: 25px 0; border: none; }}
+.divider {{ height: 2px; background: rgba(213, 47, 47, 0.4); margin: 25px 0; border: none; }}
 .stLinkButton>button {{ background: linear-gradient(90deg, #D32F2F 0%, #E57373 100%); color: white; border-radius: 12px; font-weight: 600; border: none; padding: 12px 20px; font-size: 16px; width: 100%;}}
 [data-testid="stTable"] {{ background: white; border-radius: 8px; padding: 10px; }}
 </style>
@@ -48,12 +50,8 @@ p, li {{ color: #111!important; font-size: 16px; line-height: 1.8; font-weight: 
 NO_WA_ADMIN = "628789271860"
 LINK_GOOGLE_FORM = "https://forms.gle"
 
-# === LINK MAPS MENGGUNAKAN PLUS CODE KURSUS ===
-import urllib.parse
-query_lokasi = "almahyra japan center, 4WGP+2Q Karangsari, Kabupaten Brebes, Jawa Tengah"
-LINK_GOOGLE_MAPS = f"https://google.com{urllib.parse.quote(query_lokasi)}"
-
-
+# === 📍 LINK MAPS PERBAIKAN: FORMAT DIREKTORI RESMI MENGGUNAKAN NAMA MAUPUN PLUS CODE ===
+LINK_GOOGLE_MAPS = "https://google.com"
 
 with st.sidebar:
     st.markdown(f"<div style='text-align:center'>{logo_html}</div>", unsafe_allow_html=True)
@@ -125,11 +123,11 @@ st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<hr class="divider">', unsafe_allow_html=True)
 
-# === BAGIAN ALAMAT DENGAN TOMBOL GOOGLE MAPS AKTIF ===
+# === AREA KONTAK DENGAN TOMBOL GOOGLE MAPS FIX ANTI-EROR ===
 st.markdown('<div class="card">', unsafe_allow_html=True)
 st.header("📞 Mau Tanya-tanya Dulu?")
 st.write("Chat admin kita aja. Konsultasi gratis kok 😄")
-st.write("**Alamat**: Karangsari, RT 005/001, Bulakamba, Kabupaten Brebes, Jawa Tengah (4WGP+2Q)")
+st.write("**Alamat**: Karangsari, RT 005/001, Bulakamba, Kabupaten Brebes, Jawa Tengah")
 st.link_button("📍 BUKA DI GOOGLE MAPS", LINK_GOOGLE_MAPS, use_container_width=True)
 st.write(f"**WhatsApp**: {NO_WA_ADMIN}")
 pesan_wa = "Halo%20Admin%20AL%20MAHYRA%20JC,%20aku%20mau%20tanya%20tentang%20kursus%20Bahasa%20Jepang%20dong"
