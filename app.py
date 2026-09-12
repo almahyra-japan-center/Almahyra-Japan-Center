@@ -3,7 +3,7 @@ import io
 import streamlit as st
 import base64
 
-st.set_page_config(page_title="ALMAHYRA JAPAN CENTER", page_icon="🎌", layout="centered")
+st.set_page_config(page_title="AL MAHYRA JAPAN CENTER", page_icon="🎌", layout="centered")
 
 def get_base64(bin_file):
     try:
@@ -45,11 +45,9 @@ p, li {{ color: #111!important; font-size: 16px; line-height: 1.8; font-weight: 
 </style>
 """, unsafe_allow_html=True)
 
-NO_WA_ADMIN = "6287816094321"
+NO_WA_ADMIN = "628789271860"
 LINK_GOOGLE_FORM = "https://forms.gle"
-
-# === 🛠️ 📍 PERBAIKAN FINAL: MENGGUNAKAN LINK SHARE RESMI DARI PETA GOOGLE MAPS ANDA ===
-LINK_GOOGLE_MAPS = "https://maps.app.goo.gl/NnHng73PS8PMchNw7?g_st=ac"
+LINK_GOOGLE_MAPS = "https://goo.gl"
 
 with st.sidebar:
     st.markdown(f"<div style='text-align:center'>{logo_html}</div>", unsafe_allow_html=True)
@@ -76,6 +74,7 @@ st.write("**AL MAHYRA JAPAN CENTER** itu lembaga kursus Bahasa Jepang di **Brebe
 st.write("Fokus kita cuma satu: **Bikin kamu jago Bahasa Jepang dari nol sampe lancar**.")
 st.write("Metodenya? Santai, banyak praktek ngomong, dan ga ngebosenin deh pokoknya.")
 st.write("✓ **NIB** : 0309260123769")
+st.write("✓ **Terdaftar Resmi** di Kemenkumham RI")
 st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<hr class="divider">', unsafe_allow_html=True)
@@ -120,7 +119,7 @@ st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<hr class="divider">', unsafe_allow_html=True)
 
-# === AREA KONTAK DENGAN TOMBOL GOOGLE MAPS SHARE DILINDUNGI SIKLUS HUKUM ===
+# === AREA KONTAK FIX ===
 st.markdown('<div class="card">', unsafe_allow_html=True)
 st.header("📞 Mau Tanya-tanya Dulu?")
 st.write("Chat admin kita aja. Konsultasi gratis kok 😄")
