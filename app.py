@@ -1,6 +1,6 @@
 import qrcode
 import io
-import streamlit st
+import streamlit as st
 import base64
 
 st.set_page_config(page_title="AL MAHYRA JAPAN CENTER", page_icon="🎌", layout="centered")
@@ -48,7 +48,7 @@ p, li {{ color: #111!important; font-size: 16px; line-height: 1.8; font-weight: 
 NO_WA_ADMIN = "628789271860"
 LINK_GOOGLE_FORM = "https://forms.gle"
 
-# === 🛠️ 📍 LINK BARU PROTOKOL WEB: MENGARAHKAN KE WEB MAPS PENCARIAN DIREK (ANTI FIREBASE) ===
+# === LINK MAPS FIX ANTI DYNAMIC LINK ===
 LINK_GOOGLE_MAPS = "https://google.com"
 
 with st.sidebar:
@@ -121,7 +121,7 @@ st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<hr class="divider">', unsafe_allow_html=True)
 
-# === AREA TOMBOL FIX ANTI DYNAMIC LINK ===
+# === AREA KONTAK DENGAN TOMBOL GOOGLE MAPS FIX ANTI-EROR ===
 st.markdown('<div class="card">', unsafe_allow_html=True)
 st.header("📞 Mau Tanya-tanya Dulu?")
 st.write("Chat admin kita aja. Konsultasi gratis kok 😄")
