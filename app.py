@@ -3,7 +3,7 @@ import io
 import streamlit as st
 import base64
 
-st.set_page_config(page_title="AL MAHYRA JAPAN CENTER", page_icon="🎌", layout="centered")
+st.set_page_config(page_title="ALMAHYRA JAPAN CENTER", page_icon="🎌", layout="centered")
 
 def get_base64(bin_file):
     try:
@@ -45,7 +45,7 @@ p, li {{ color: #111!important; font-size: 16px; line-height: 1.8; font-weight: 
 </style>
 """, unsafe_allow_html=True)
 
-NO_WA_ADMIN = "628789271860"
+NO_WA_ADMIN = "6287892741860"
 LINK_GOOGLE_FORM = "https://forms.gle"
 
 # === 🛠️ 📍 PERBAIKAN FINAL: MENGGUNAKAN LINK SHARE RESMI DARI PETA GOOGLE MAPS ANDA ===
@@ -76,7 +76,6 @@ st.write("**AL MAHYRA JAPAN CENTER** itu lembaga kursus Bahasa Jepang di **Brebe
 st.write("Fokus kita cuma satu: **Bikin kamu jago Bahasa Jepang dari nol sampe lancar**.")
 st.write("Metodenya? Santai, banyak praktek ngomong, dan ga ngebosenin deh pokoknya.")
 st.write("✓ **NIB** : 0309260123769")
-st.write("✓ **Terdaftar Resmi** di Kemenkumham RI")
 st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<hr class="divider">', unsafe_allow_html=True)
