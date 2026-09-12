@@ -44,12 +44,17 @@ p, li {{ color: #111!important; font-size: 16px; line-height: 1.8; font-weight: 
 </style>
 """, unsafe_allow_html=True)
 
-# === 🔒 DATABASE INFORMASI DATA RESMI DIKUNCI MATI (SUDAH FIX LENGKAP) ===
+# === 🔒 DATABASE INFORMASI DATA RESMI DIKUNCI MATI (SUDAH DIUBAH KE LINK PANJANG ASLI ANTI-BLOKIR) ===
 GMAIL_ADMIN = "adminajcbrebes@gmail.com"
-LINK_GOOGLE_FORM = "https://forms.gle"
-LINK_GOOGLE_MAPS = "https://goo.gl"
-LINK_WA_FIX = "https://wa.me"
 
+# 1. Menggunakan link langsung Google Form (Bukan tautan pendek forms.gle)
+LINK_GOOGLE_FORM = "https://google.com"
+
+# 2. Menggunakan koordinat universal Google Maps (Bukan tautan pendek maps.app.goo.gl)
+LINK_GOOGLE_MAPS = "https://google.com"
+
+# 3. Tautan WA Valid
+LINK_WA_FIX = "https://wa.me"
 
 with st.sidebar:
     st.markdown(f"<div style='text-align:center'>{logo_html}</div>", unsafe_allow_html=True)
@@ -119,7 +124,7 @@ st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<hr class="divider">', unsafe_allow_html=True)
 
-# === AREA KONTAK RESMI (100% VALID & BEBAS BIANG KEROK EROR) ===
+# === AREA KONTAK RESMI (100% SUKSES DAN BEBAS DYNAMIC LINK ERROR) ===
 st.markdown('<div class="card">', unsafe_allow_html=True)
 st.header("📞 Mau Tanya-tanya Dulu?")
 st.write("Chat admin kita aja. Konsultasi gratis kok 😄")
