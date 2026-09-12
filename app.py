@@ -1,5 +1,5 @@
 import io
-import streamlit as st
+import streamlit st
 import base64
 
 st.set_page_config(page_title="ALMAHYRA JAPAN CENTER", page_icon="🎌", layout="centered")
@@ -39,33 +39,22 @@ p, li {{ color: #111!important; font-size: 16px; line-height: 1.8; font-weight: 
 }}
 .hero {{ text-align: center; }}
 .divider {{ height: 2px; background: rgba(213, 47, 47, 0.4); margin: 25px 0; border: none; }}
-.stLinkButton>button {{ background: linear-gradient(90deg, #D32F2F 0%, #E57373 100%); color: white; border-radius: 12px; font-weight: 600; border: none; padding: 12px 20px; font-size: 16px; width: 100%;}}
 [data-testid="stTable"] {{ background: white; border-radius: 8px; padding: 10px; }}
 </style>
 """, unsafe_allow_html=True)
 
-# === 🔒 DATABASE INFORMASI DATA RESMI DIKUNCI MATI (SUDAH DIPERBAIKI TOTAL) ===
-NO_WA_ADMIN = "6287892741860"
-GMAIL_ADMIN = "adminajcbrebes@gmail.com"
-LINK_GOOGLE_FORM = "https://forms.gle"
-LINK_GOOGLE_MAPS = "https://google.com"
-PESAN_WA = "Halo%20Admin%20AL%20MAHYRA%20JC,%20aku%20mau%20tanya%20tentang%20kursus%20Bahasa%20Jepang%20dong"
-
 with st.sidebar:
     st.markdown(f"<div style='text-align:center'>{logo_html}</div>", unsafe_allow_html=True)
     st.markdown("<h3 style='text-align:center; color:#D32F2F'>AL MAHYRA JC</h3>", unsafe_allow_html=True)
-    st.info("Area Login Siswa & Staf masih dalam tahap pengembangan ya 😊")
-    st.button("🔐 Login Siswa", disabled=True, use_container_width=True)
-    st.button("👨‍🏫 Login Staf/Admin", disabled=True, use_container_width=True)
+    st.info("Situs Resmi Informasi Lembaga")
 
 st.markdown('<div class="card hero">', unsafe_allow_html=True)
 st.markdown(f"<div style='text-align:center; margin-bottom:20px'>{logo_html}</div>", unsafe_allow_html=True)
-st.header("AL MAHYRA JAPAN CENTER")
+st.header("ALMAHYRA JAPAN CENTER")
 st.subheader("Belajar Bahasa Jepang, Santai Tapi Pasti")
 st.write("Halo! Pengen bisa Bahasa Jepang tapi bingung mulainya dari mana?") 
 st.write("Sini gabung bareng kita 😊 Di AL MAHYRA belajarnya asik, materinya gampang, dan ada sensei yang sabar nemenin kamu.")
 st.write("Mau buat hobi, nonton anime tanpa subtitle, atau persiapan ujian JLPT? Bisa banget!")
-st.link_button("YUK DAFTAR KELAS BAHASA JEPANG", LINK_GOOGLE_FORM, use_container_width=True, type="primary")
 st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<hr class="divider">', unsafe_allow_html=True)
@@ -108,29 +97,7 @@ st.markdown('<div class="card">', unsafe_allow_html=True)
 st.header("👨‍🎓 Temen-temen yang Udah Gabung")
 st.write("Yuk liat temen-temen yang udah mulai belajar bareng kita:")
 st.table({"Nama": ["Ahmad Fauzi", "Siti Nurhaliza", "Budi Santoso"], "Umur": ["21 Tahun", "19 Tahun", "23 Tahun"], "Asal": ["Brebes", "Tegal", "Cirebon"]})
-st.caption("*Data langsung dari form pendaftaran ya")
-st.markdown('</div>', unsafe_allow_html=True)
-
-st.markdown('<hr class="divider">', unsafe_allow_html=True)
-
-st.markdown('<div class="card">', unsafe_allow_html=True)
-st.header("📝 Kelas Baru Buka Lho!")
-st.write("Kuotanya terbatas. Jangan sampe ketinggalan ya.")
-st.link_button("DAFTAR SEKARANG", LINK_GOOGLE_FORM, use_container_width=True, type="primary")
-st.markdown('</div>', unsafe_allow_html=True)
-
-st.markdown('<hr class="divider">', unsafe_allow_html=True)
-
-# === AREA KONTAK RESMI BAWAAN STREAMLIT (100% SUKSES DAN BEBAS TYPO) ===
-st.markdown('<div class="card">', unsafe_allow_html=True)
-st.header("📞 Mau Tanya-tanya Dulu?")
-st.write("Chat admin kita aja. Konsultasi gratis kok 😄")
-st.write("**Alamat**: Karangsari, RT 005/001, Bulakamba, Kabupaten Brebes, Jawa Tengah")
-st.link_button("📍 BUKA DI GOOGLE MAPS", LINK_GOOGLE_MAPS, use_container_width=True)
-
-st.write("**WhatsApp**: 0878-9274-1860")
-st.write(f"**Email Resmi**: {GMAIL_ADMIN}")
-st.link_button("💬 CHAT ADMIN VIA WHATSAPP", f"https://wa.me{NO_WA_ADMIN}?text={PESAN_WA}", use_container_width=True)
+st.caption("*Data simulasi angkatan awal")
 st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<hr class="divider">', unsafe_allow_html=True)
@@ -138,7 +105,6 @@ st.markdown('<hr class="divider">', unsafe_allow_html=True)
 st.markdown('<div class="card hero">', unsafe_allow_html=True)
 st.header("🚀 Yuk Mulai Sekarang!")
 st.write("Bahasa Jepang itu gampang kalau ada temennya. Dan temennya ya kita 😊")
-st.link_button("GAS IKUT KELAS", LINK_GOOGLE_FORM, use_container_width=True, type="primary")
 st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown("<center style='font-size:14px; color:#555; margin-top:20px; text-shadow: 1px 1px 1px #fff;'>© 2026 ALMAHYRA JAPAN CENTER. Lembaga Kursus Bahasa Jepang</center>", unsafe_allow_html=True)
