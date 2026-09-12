@@ -45,8 +45,10 @@ p, li {{ color: #111!important; font-size: 16px; line-height: 1.8; font-weight: 
 </style>
 """, unsafe_allow_html=True)
 
+# === 🔒 DATABASE INFORMASI DATA RESMI DIKUNCI MATI ===
 NO_WA_ADMIN = "6287892741860"
-LINK_GOOGLE_FORM = "https://forms.gle"
+GMAIL_ADMIN = "adminajcbrebes@gmail.com"
+LINK_GOOGLE_FORM = "https://forms.gle/EKnuM42jY5d1Lbbu6"
 LINK_GOOGLE_MAPS = "https://google.com"
 
 with st.sidebar:
@@ -119,7 +121,7 @@ st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<hr class="divider">', unsafe_allow_html=True)
 
-# === AREA KONTAK KHUSUS HTML ANTI-EROR BROWSER ===
+# === AREA KONTAK KHUSUS HTML TRANSMISI LANGSUNG ANTI-LAG ===
 st.markdown('<div class="card">', unsafe_allow_html=True)
 st.header("📞 Mau Tanya-tanya Dulu?")
 st.write("Chat admin kita aja. Konsultasi gratis kok 😄")
@@ -129,6 +131,7 @@ html_maps = f'<a href="{LINK_GOOGLE_MAPS}" target="_blank"><button style="backgr
 st.markdown(html_maps, unsafe_allow_html=True)
 
 st.write("**WhatsApp**: 0878-9274-1860")
+st.write(f"**Email Resmi**: {GMAIL_ADMIN}")
 pesan_wa = "Halo%20Admin%20AL%20MAHYRA%20JC,%20aku%20mau%20tanya%20tentang%20kursus%20Bahasa%20Jepang%20dong"
 
 html_wa = f'<a href="https://wa.me{NO_WA_ADMIN}?text={pesan_wa}" target="_blank"><button style="background: linear-gradient(90deg, #D32F2F 0%, #E57373 100%); color: white; border-radius: 12px; font-weight: 600; border: none; padding: 12px 20px; font-size: 16px; width: 100%; cursor: pointer;">💬 CHAT ADMIN</button></a>'
@@ -144,7 +147,7 @@ st.write("Bahasa Jepang itu gampang kalau ada temennya. Dan temennya ya kita �
 st.link_button("GAS IKUT KELAS", LINK_GOOGLE_FORM, use_container_width=True, type="primary")
 st.markdown('</div>', unsafe_allow_html=True)
 
-st.markdown("<center style='font-size:14px; color:#555; margin-top:20px; text-shadow: 1px 1px 1px #fff;'>© 2026 AL MAHYRA JAPAN CENTER. Lembaga Kursus Bahasa Jepang</center>", unsafe_allow_html=True)
+st.markdown("<center style='font-size:14px; color:#555; margin-top:20px; text-shadow: 1px 1px 1px #fff;'>© 2026 ALMAHYRA JAPAN CENTER. Lembaga Kursus Bahasa Jepang</center>", unsafe_allow_html=True)
 
 # === FITUR QR CODE LINK ===
 st.sidebar.markdown("---")
@@ -157,4 +160,3 @@ if st.sidebar.button("Tampilkan QR Code"):
     img.save(buf, format="PNG")
     st.sidebar.image(buf, caption="Scan untuk buka app")
     st.sidebar.download_button("Download QR", buf, "QR_Almahyra.png")
-
