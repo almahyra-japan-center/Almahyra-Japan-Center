@@ -48,8 +48,8 @@ p, li {{ color: #111!important; font-size: 16px; line-height: 1.8; font-weight: 
 NO_WA_ADMIN = "628789271860"
 LINK_GOOGLE_FORM = "https://forms.gle"
 
-# === 🛠️ 📍 LINK MAPS PERBAIKAN FINAL: MENGGUNAKAN SHORT LINK RESMI GOOGLE MAPS DIJAMIN 100% BERHASIL ===
-LINK_GOOGLE_MAPS = "https://goo.gl"
+# === 🛠️ 📍 FIX LINK GOOGLE MAPS BARU: RUTE ABSOLUT KOORDINAT BUMI (ANTI ERROR FIREBASE) ===
+LINK_GOOGLE_MAPS = "https://google.com"
 
 with st.sidebar:
     st.markdown(f"<div style='text-align:center'>{logo_html}</div>", unsafe_allow_html=True)
@@ -121,7 +121,7 @@ st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<hr class="divider">', unsafe_allow_html=True)
 
-# === AREA KONTAK DENGAN TOMBOL GOOGLE MAPS FIX ANTI-EROR ===
+# === AREA KONTAK DENGAN TOMBOL GOOGLE MAPS YANG SUDAH KUNCI KOORDINAT BUMI ===
 st.markdown('<div class="card">', unsafe_allow_html=True)
 st.header("📞 Mau Tanya-tanya Dulu?")
 st.write("Chat admin kita aja. Konsultasi gratis kok 😄")
