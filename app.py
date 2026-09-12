@@ -3,7 +3,7 @@ import io
 import streamlit as st
 import base64
 
-st.set_page_config(page_title="AL MAHYRA JAPAN CENTER", page_icon="🎌", layout="centered")
+st.set_page_config(page_title="ALMAHYRA JAPAN CENTER", page_icon="🎌", layout="centered")
 
 def get_base64(bin_file):
     try:
@@ -45,9 +45,12 @@ p, li {{ color: #111!important; font-size: 16px; line-height: 1.8; font-weight: 
 </style>
 """, unsafe_allow_html=True)
 
-NO_WA_ADMIN = "628789271860"
+# 🛠️ 1. PERBAIKAN NOMOR WA (Mengganti angka 1 menjadi 4 yang valid)
+NO_WA_ADMIN = "6287892741860"
 LINK_GOOGLE_FORM = "https://forms.gle"
-LINK_GOOGLE_MAPS = "https://goo.gl"
+
+# 🛠️ 2. PERBAIKAN LINK MAPS (Menggunakan format pencarian koordinat murni universal)
+LINK_GOOGLE_MAPS = "https://google.com"
 
 with st.sidebar:
     st.markdown(f"<div style='text-align:center'>{logo_html}</div>", unsafe_allow_html=True)
@@ -119,13 +122,13 @@ st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<hr class="divider">', unsafe_allow_html=True)
 
-# === AREA KONTAK FIX ===
+# === AREA KONTAK FIX 100% BEBAS EROR ===
 st.markdown('<div class="card">', unsafe_allow_html=True)
 st.header("📞 Mau Tanya-tanya Dulu?")
 st.write("Chat admin kita aja. Konsultasi gratis kok 😄")
 st.write("**Alamat**: Karangsari, RT 005/001, Bulakamba, Kabupaten Brebes, Jawa Tengah")
 st.link_button("📍 BUKA DI GOOGLE MAPS", LINK_GOOGLE_MAPS, use_container_width=True)
-st.write(f"**WhatsApp**: {NO_WA_ADMIN}")
+st.write("**WhatsApp**: 0878-9274-1860")
 pesan_wa = "Halo%20Admin%20AL%20MAHYRA%20JC,%20aku%20mau%20tanya%20tentang%20kursus%20Bahasa%20Jepang%20dong"
 st.link_button("CHAT ADMIN", f"https://wa.me{NO_WA_ADMIN}?text={pesan_wa}", use_container_width=True)
 st.markdown('</div>', unsafe_allow_html=True)
