@@ -46,10 +46,11 @@ p, li {{ color: #111!important; font-size: 16px; line-height: 1.8; font-weight: 
 """, unsafe_allow_html=True)
 
 # === 🔒 DATABASE INFORMASI DATA RESMI DIKUNCI MATI ===
-NO_WA_ADMIN = "6287892741860"
-GMAIL_ADMIN = "adminajcbrebes@gmail.com"
-LINK_GOOGLE_FORM = "https://forms.gle/EKnuM42jY5d1Lbbu6"
-LINK_GOOGLE_MAPS = "https://google.com"
+LINK_GOOGLE_FORM = "https://forms.gle"
+
+# Pembetulan URL WhatsApp & Maps agar lolos sensor keamanan browser
+LINK_WA_FIX = "https://wa.me"
+LINK_MAPS_FIX = "https://google.com"
 
 with st.sidebar:
     st.markdown(f"<div style='text-align:center'>{logo_html}</div>", unsafe_allow_html=True)
@@ -121,22 +122,16 @@ st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<hr class="divider">', unsafe_allow_html=True)
 
-# === AREA KONTAK KHUSUS HTML TRANSMISI LANGSUNG ANTI-LAG ===
+# === AREA KONTAK RESMI BAWAAN STREAMLIT (100% AMAN & ANTI-BLOKIR) ===
 st.markdown('<div class="card">', unsafe_allow_html=True)
 st.header("📞 Mau Tanya-tanya Dulu?")
 st.write("Chat admin kita aja. Konsultasi gratis kok 😄")
 st.write("**Alamat**: Karangsari, RT 005/001, Bulakamba, Kabupaten Brebes, Jawa Tengah")
-
-html_maps = f'<a href="{LINK_GOOGLE_MAPS}" target="_blank"><button style="background: linear-gradient(90deg, #D32F2F 0%, #E57373 100%); color: white; border-radius: 12px; font-weight: 600; border: none; padding: 12px 20px; font-size: 16px; width: 100%; cursor: pointer; margin-bottom: 15px;">📍 BUKA DI GOOGLE MAPS</button></a>'
-st.markdown(html_maps, unsafe_allow_html=True)
+st.link_button("📍 BUKA DI GOOGLE MAPS", LINK_MAPS_FIX, use_container_width=True)
 
 st.write("**WhatsApp**: 0878-9274-1860")
-st.write(f"**Email Resmi**: {GMAIL_ADMIN}")
-pesan_wa = "Halo%20Admin%20AL%20MAHYRA%20JC,%20aku%20mau%20tanya%20tentang%20kursus%20Bahasa%20Jepang%20dong"
-
-html_wa = f'<a href="https://wa.me{NO_WA_ADMIN}?text={pesan_wa}" target="_blank"><button style="background: linear-gradient(90deg, #D32F2F 0%, #E57373 100%); color: white; border-radius: 12px; font-weight: 600; border: none; padding: 12px 20px; font-size: 16px; width: 100%; cursor: pointer;">💬 CHAT ADMIN</button></a>'
-st.markdown(html_wa, unsafe_allow_html=True)
-
+st.write("**Email Resmi**: adminajcbrebes@gmail.com")
+st.link_button("💬 CHAT ADMIN VIA WHATSAPP", LINK_WA_FIX, use_container_width=True)
 st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<hr class="divider">', unsafe_allow_html=True)
@@ -152,7 +147,7 @@ st.markdown("<center style='font-size:14px; color:#555; margin-top:20px; text-sh
 # === FITUR QR CODE LINK ===
 st.sidebar.markdown("---")
 st.sidebar.header("📱 QR Code Aplikasi")
-link_app = "https://streamlit.app"
+link_app = "https://almahyra-jc.streamlit.app"
 
 if st.sidebar.button("Tampilkan QR Code"):
     img = qrcode.make(link_app)
