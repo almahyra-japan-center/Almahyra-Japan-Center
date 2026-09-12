@@ -128,7 +128,7 @@ st.link_button("📍 BUKA DI GOOGLE MAPS", LINK_GOOGLE_MAPS, use_container_width
 
 st.write("**WhatsApp**: 0878-9274-1860")
 st.write(f"**Email Resmi**: {GMAIL_ADMIN}")
-st.link_button("💬 CHAT ADMIN VIA WHATSAPP", f"https://wa.me{NO_WA_ADMIN}?text={PESAN_WA}", use_container_width=True)
+st.link_button("💬 CHAT ADMIN VIA WHATSAPP", LINK_WA_FIX, use_container_width=True)
 st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<hr class="divider">', unsafe_allow_html=True)
