@@ -45,7 +45,7 @@ p, li {{ color: #111!important; font-size: 16px; line-height: 1.8; font-weight: 
 """, unsafe_allow_html=True)
 
 # === 🔒 DATABASE INFORMASI DATA RESMI DIKUNCI MATI (VERSI FIX 100%) ===
-NO_WA_ADMIN = "6287892741860"
+NO_WA_ADMIN = "6287816094321"
 GMAIL_ADMIN = "adminajcbrebes@gmail.com"
 LINK_GOOGLE_FORM = "https://forms.gle/LHNtrU4Qmw8jk75R7"
 LINK_GOOGLE_MAPS = "https://maps.app.goo.gl/qGJQbUtFiBMtN1dZ7"
