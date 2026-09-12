@@ -45,11 +45,8 @@ p, li {{ color: #111!important; font-size: 16px; line-height: 1.8; font-weight: 
 </style>
 """, unsafe_allow_html=True)
 
-# 🛠️ 1. PERBAIKAN NOMOR WA (Mengganti angka 1 menjadi 4 yang valid)
 NO_WA_ADMIN = "6287892741860"
 LINK_GOOGLE_FORM = "https://forms.gle"
-
-# 🛠️ 2. PERBAIKAN LINK MAPS (Menggunakan format pencarian koordinat murni universal)
 LINK_GOOGLE_MAPS = "https://google.com"
 
 with st.sidebar:
@@ -122,15 +119,21 @@ st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<hr class="divider">', unsafe_allow_html=True)
 
-# === AREA KONTAK FIX 100% BEBAS EROR ===
+# === AREA KONTAK KHUSUS HTML ANTI-EROR BROWSER ===
 st.markdown('<div class="card">', unsafe_allow_html=True)
 st.header("📞 Mau Tanya-tanya Dulu?")
 st.write("Chat admin kita aja. Konsultasi gratis kok 😄")
 st.write("**Alamat**: Karangsari, RT 005/001, Bulakamba, Kabupaten Brebes, Jawa Tengah")
-st.link_button("📍 BUKA DI GOOGLE MAPS", LINK_GOOGLE_MAPS, use_container_width=True)
+
+html_maps = f'<a href="{LINK_GOOGLE_MAPS}" target="_blank"><button style="background: linear-gradient(90deg, #D32F2F 0%, #E57373 100%); color: white; border-radius: 12px; font-weight: 600; border: none; padding: 12px 20px; font-size: 16px; width: 100%; cursor: pointer; margin-bottom: 15px;">📍 BUKA DI GOOGLE MAPS</button></a>'
+st.markdown(html_maps, unsafe_allow_html=True)
+
 st.write("**WhatsApp**: 0878-9274-1860")
 pesan_wa = "Halo%20Admin%20AL%20MAHYRA%20JC,%20aku%20mau%20tanya%20tentang%20kursus%20Bahasa%20Jepang%20dong"
-st.link_button("CHAT ADMIN", f"https://wa.me{NO_WA_ADMIN}?text={pesan_wa}", use_container_width=True)
+
+html_wa = f'<a href="https://wa.me{NO_WA_ADMIN}?text={pesan_wa}" target="_blank"><button style="background: linear-gradient(90deg, #D32F2F 0%, #E57373 100%); color: white; border-radius: 12px; font-weight: 600; border: none; padding: 12px 20px; font-size: 16px; width: 100%; cursor: pointer;">💬 CHAT ADMIN</button></a>'
+st.markdown(html_wa, unsafe_allow_html=True)
+
 st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<hr class="divider">', unsafe_allow_html=True)
@@ -154,3 +157,4 @@ if st.sidebar.button("Tampilkan QR Code"):
     img.save(buf, format="PNG")
     st.sidebar.image(buf, caption="Scan untuk buka app")
     st.sidebar.download_button("Download QR", buf, "QR_Almahyra.png")
+
