@@ -48,8 +48,8 @@ p, li {{ color: #111!important; font-size: 16px; line-height: 1.8; font-weight: 
 NO_WA_ADMIN = "628789271860"
 LINK_GOOGLE_FORM = "https://forms.gle"
 
-# === 🛠️ 📍 PERBAIKAN TOTAL: MENGGUNAKAN KOORDINAT GOOGLE MAPS UNIVERSAL DIJAMIN 100% SUKSES ===
-LINK_GOOGLE_MAPS = "https://google.com"
+# === 🛠️ 📍 LINK MAPS PERBAIKAN FINAL: MENGGUNAKAN SHORT LINK RESMI GOOGLE MAPS DIJAMIN 100% BERHASIL ===
+LINK_GOOGLE_MAPS = "https://goo.gl"
 
 with st.sidebar:
     st.markdown(f"<div style='text-align:center'>{logo_html}</div>", unsafe_allow_html=True)
