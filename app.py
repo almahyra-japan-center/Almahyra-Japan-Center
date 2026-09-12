@@ -44,17 +44,12 @@ p, li {{ color: #111!important; font-size: 16px; line-height: 1.8; font-weight: 
 </style>
 """, unsafe_allow_html=True)
 
-# === 🔒 DATABASE INFORMASI DATA RESMI DIKUNCI MATI (VERSI WEB DIREK MURNI) ===
+# === 🔒 DATABASE INFORMASI DATA RESMI DIKUNCI MATI (VERSI FIX 100%) ===
+NO_WA_ADMIN = "6287892741860"
 GMAIL_ADMIN = "adminajcbrebes@gmail.com"
-
-# 1. Menggunakan Jalur Web Murni Google Form Tanpa Enkripsi Dinamis
-LINK_GOOGLE_FORM = "https://google.com"
-
-# 2. Menggunakan Jalur Web Murni Maps Penanda Koordinat Absolut Bumi
-LINK_GOOGLE_MAPS = "https://google.com"
-
-# 3. Tautan WhatsApp Valid
-LINK_WA_FIX = "https://wa.me"
+LINK_GOOGLE_FORM = "https://forms.gle/LHNtrU4Qmw8jk75R7"
+LINK_GOOGLE_MAPS = "https://maps.app.goo.gl/qGJQbUtFiBMtN1dZ7"
+PESAN_WA = "Halo%20Admin%20AL%20MAHYRA%20JC,%20aku%20mau%20tanya%20tentang%20kursus%20Bahasa%20Jepang%20dong"
 
 with st.sidebar:
     st.markdown(f"<div style='text-align:center'>{logo_html}</div>", unsafe_allow_html=True)
@@ -124,7 +119,7 @@ st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<hr class="divider">', unsafe_allow_html=True)
 
-# === AREA KONTAK RESMI BENAR-BENAR FIX 100% ===
+# === AREA KONTAK RESMI (100% VALID & BEBAS BIANG KEROK EROR) ===
 st.markdown('<div class="card">', unsafe_allow_html=True)
 st.header("📞 Mau Tanya-tanya Dulu?")
 st.write("Chat admin kita aja. Konsultasi gratis kok 😄")
@@ -133,7 +128,7 @@ st.link_button("📍 BUKA DI GOOGLE MAPS", LINK_GOOGLE_MAPS, use_container_width
 
 st.write("**WhatsApp**: 0878-9274-1860")
 st.write(f"**Email Resmi**: {GMAIL_ADMIN}")
-st.link_button("💬 CHAT ADMIN VIA WHATSAPP", LINK_WA_FIX, use_container_width=True)
+st.link_button("💬 CHAT ADMIN VIA WHATSAPP", f"https://wa.me{NO_WA_ADMIN}?text={PESAN_WA}", use_container_width=True)
 st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<hr class="divider">', unsafe_allow_html=True)
