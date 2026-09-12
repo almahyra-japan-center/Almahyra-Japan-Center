@@ -1,4 +1,3 @@
-import qrcode
 import io
 import streamlit as st
 import base64
@@ -46,11 +45,11 @@ p, li {{ color: #111!important; font-size: 16px; line-height: 1.8; font-weight: 
 """, unsafe_allow_html=True)
 
 # === 🔒 DATABASE INFORMASI DATA RESMI DIKUNCI MATI ===
+NO_WA_ADMIN = "6287892741860"
+GMAIL_ADMIN = "adminajcbrebes@gmail.com"
 LINK_GOOGLE_FORM = "https://forms.gle"
-
-# Pembetulan URL WhatsApp & Maps agar lolos sensor keamanan browser
-LINK_WA_FIX = "https://wa.me"
-LINK_MAPS_FIX = "https://google.com"
+LINK_GOOGLE_MAPS = "https://google.com"
+PESAN_WA = "Halo%20Admin%20AL%20MAHYRA%20JC,%20aku%20mau%20tanya%20tentang%20kursus%20Bahasa%20Jepang%20dong"
 
 with st.sidebar:
     st.markdown(f"<div style='text-align:center'>{logo_html}</div>", unsafe_allow_html=True)
@@ -108,7 +107,7 @@ st.markdown('<hr class="divider">', unsafe_allow_html=True)
 st.markdown('<div class="card">', unsafe_allow_html=True)
 st.header("👨‍🎓 Temen-temen yang Udah Gabung")
 st.write("Yuk liat temen-temen yang udah mulai belajar bareng kita:")
-st.table({"Nama": ["Ahmad Fauzi", "Siti Nurhaliza", "Budi Santoso"], "Umur": ["21 Tahun", "19 Tahun", "23 Tahun"], "Asal": ["Brebes", "Tegal", "Cirebon"]})
+st.table({"Nama": ["Ahmad Fauzi", "Siti Nurhaliza", "Budi Santoso"], "Big Data": ["21 Tahun", "19 Tahun", "23 Tahun"], "Asal": ["Brebes", "Tegal", "Cirebon"]})
 st.caption("*Data langsung dari form pendaftaran ya")
 st.markdown('</div>', unsafe_allow_html=True)
 
@@ -122,16 +121,16 @@ st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<hr class="divider">', unsafe_allow_html=True)
 
-# === AREA KONTAK RESMI BAWAAN STREAMLIT (100% AMAN & ANTI-BLOKIR) ===
+# === AREA KONTAK RESMI BAWAAN STREAMLIT (100% AMAN & SUKSES) ===
 st.markdown('<div class="card">', unsafe_allow_html=True)
 st.header("📞 Mau Tanya-tanya Dulu?")
 st.write("Chat admin kita aja. Konsultasi gratis kok 😄")
 st.write("**Alamat**: Karangsari, RT 005/001, Bulakamba, Kabupaten Brebes, Jawa Tengah")
-st.link_button("📍 BUKA DI GOOGLE MAPS", LINK_MAPS_FIX, use_container_width=True)
+st.link_button("📍 BUKA DI GOOGLE MAPS", LINK_GOOGLE_MAPS, use_container_width=True)
 
 st.write("**WhatsApp**: 0878-9274-1860")
-st.write("**Email Resmi**: adminajcbrebes@gmail.com")
-st.link_button("💬 CHAT ADMIN VIA WHATSAPP", LINK_WA_FIX, use_container_width=True)
+st.write(f"**Email Resmi**: {GMAIL_ADMIN}")
+st.link_button("💬 CHAT ADMIN VIA WHATSAPP", f"https://wa.me{NO_WA_ADMIN}?text={PESAN_WA}", use_container_width=True)
 st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<hr class="divider">', unsafe_allow_html=True)
@@ -143,15 +142,3 @@ st.link_button("GAS IKUT KELAS", LINK_GOOGLE_FORM, use_container_width=True, typ
 st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown("<center style='font-size:14px; color:#555; margin-top:20px; text-shadow: 1px 1px 1px #fff;'>© 2026 ALMAHYRA JAPAN CENTER. Lembaga Kursus Bahasa Jepang</center>", unsafe_allow_html=True)
-
-# === FITUR QR CODE LINK ===
-st.sidebar.markdown("---")
-st.sidebar.header("📱 QR Code Aplikasi")
-link_app = "https://almahyra-jc.streamlit.app"
-
-if st.sidebar.button("Tampilkan QR Code"):
-    img = qrcode.make(link_app)
-    buf = io.BytesIO()
-    img.save(buf, format="PNG")
-    st.sidebar.image(buf, caption="Scan untuk buka app")
-    st.sidebar.download_button("Download QR", buf, "QR_Almahyra.png")
