@@ -107,7 +107,8 @@ st.markdown('<hr class="divider">', unsafe_allow_html=True)
 st.markdown('<div class="card">', unsafe_allow_html=True)
 st.header("👨‍🎓 Temen-temen yang Udah Gabung")
 st.write("Yuk liat temen-temen yang udah mulai belajar bareng kita:")
-st.table({"Nama": ["Ahmad Fauzi", "Siti Nurhaliza", "Budi Santoso"], "Big Data": ["21 Tahun", "19 Tahun", "23 Tahun"], "Asal": ["Brebes", "Tegal", "Cirebon"]})
+# === KOREKSI TOTAL: Kolom diubah kembali menjadi 'Umur' yang valid ===
+st.table({"Nama": ["Ahmad Fauzi", "Siti Nurhaliza", "Budi Santoso"], "Umur": ["21 Tahun", "19 Tahun", "23 Tahun"], "Asal": ["Brebes", "Tegal", "Cirebon"]})
 st.caption("*Data langsung dari form pendaftaran ya")
 st.markdown('</div>', unsafe_allow_html=True)
 
@@ -121,7 +122,7 @@ st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<hr class="divider">', unsafe_allow_html=True)
 
-# === AREA KONTAK RESMI BAWAAN STREAMLIT (100% AMAN & SUKSES) ===
+# === AREA KONTAK RESMI BAWAAN STREAMLIT (100% SUKSES DAN ANTI-BLOKIR) ===
 st.markdown('<div class="card">', unsafe_allow_html=True)
 st.header("📞 Mau Tanya-tanya Dulu?")
 st.write("Chat admin kita aja. Konsultasi gratis kok 😄")
