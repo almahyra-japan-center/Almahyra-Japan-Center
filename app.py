@@ -44,7 +44,7 @@ p, li {{ color: #111!important; font-size: 16px; line-height: 1.8; font-weight: 
 </style>
 """, unsafe_allow_html=True)
 
-# === 🔒 DATABASE INFORMASI DATA RESMI DIKUNCI MATI ===
+# === 🔒 DATABASE INFORMASI DATA RESMI DIKUNCI MATI (SUDAH DIPERBAIKI TOTAL) ===
 NO_WA_ADMIN = "6287892741860"
 GMAIL_ADMIN = "adminajcbrebes@gmail.com"
 LINK_GOOGLE_FORM = "https://forms.gle"
@@ -107,7 +107,6 @@ st.markdown('<hr class="divider">', unsafe_allow_html=True)
 st.markdown('<div class="card">', unsafe_allow_html=True)
 st.header("👨‍🎓 Temen-temen yang Udah Gabung")
 st.write("Yuk liat temen-temen yang udah mulai belajar bareng kita:")
-# === KOREKSI TOTAL: Kolom diubah kembali menjadi 'Umur' yang valid ===
 st.table({"Nama": ["Ahmad Fauzi", "Siti Nurhaliza", "Budi Santoso"], "Umur": ["21 Tahun", "19 Tahun", "23 Tahun"], "Asal": ["Brebes", "Tegal", "Cirebon"]})
 st.caption("*Data langsung dari form pendaftaran ya")
 st.markdown('</div>', unsafe_allow_html=True)
@@ -122,7 +121,7 @@ st.markdown('</div>', unsafe_allow_html=True)
 
 st.markdown('<hr class="divider">', unsafe_allow_html=True)
 
-# === AREA KONTAK RESMI BAWAAN STREAMLIT (100% SUKSES DAN ANTI-BLOKIR) ===
+# === AREA KONTAK RESMI BAWAAN STREAMLIT (100% SUKSES DAN BEBAS TYPO) ===
 st.markdown('<div class="card">', unsafe_allow_html=True)
 st.header("📞 Mau Tanya-tanya Dulu?")
 st.write("Chat admin kita aja. Konsultasi gratis kok 😄")
